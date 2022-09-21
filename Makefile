@@ -1,16 +1,13 @@
 
 ARG = maps/map_basic.cub
 NAME = cub3D
-SRCS = main.c exit.c data_set.c
-D_SRCS = debug.c
+SRCS = main.c exit.c data_set.c free.c errors.c
 DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
-D_OBJS = $(addprefix $(DIR)/,$(D_SRCS:%.c=%.o))
 CC = gcc
 RM = rm -f
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror # -g
 LIBFT = libft/libft.a
-V_ARG = --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s
 
 R = \033[38;5;1m
 G = \033[38;5;2m
@@ -22,10 +19,10 @@ D = \033[38;5;255m
 
 all: $(NAME)
 
-$(NAME): $(OBJS) ${D_OBJS}
+$(NAME): $(OBJS)
 	@make -sC libft
 	@echo "$(B)Building $(NAME) program.$(D)"
-	@$(CC) $(FLAGS) $(OBJS) ${D_OBJS} ${LIBFT} -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) ${LIBFT} -o $(NAME)
 	@echo "$(G)$(NAME) program created.$(D)"
 
 clean:
@@ -39,6 +36,18 @@ fclean: clean
 	@make fclean -sC libft
 
 re: fclean all
+
+D_FLAGS = -g3 -ggdb -I. -D DEBUG=1
+D_DIR = debug
+D_SRCS = debug.c
+D_OBJS = $(addprefix $(D_DIR)/,$(D_SRCS:%.c=%.o))
+V_ARG = --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s
+
+debug: $(OBJS) ${D_OBJS}
+	@make -sC libft
+	@echo "$(B)Building $(NAME) debug program.$(D)"
+	@$(CC) $(FLAGS) $(D_FLAGS) $(OBJS) ${D_OBJS} ${LIBFT} -o $(NAME)
+	@echo "$(G)$(NAME) debug program created.$(D)"
 
 valgrind:
 	valgrind ${V_ARG} ./${NAME} ${ARG}

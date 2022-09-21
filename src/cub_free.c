@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_main.c                                         :+:      :+:    :+:   */
+/*   cub_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/21 15:26:03 by mdaadoun         ###   ########.fr       */
+/*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
+/*   Updated: 2022/09/21 15:27:42 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-// void	cub_initialize_cub3D(t_cub **cub)
-// {
-
-// }
-
-
-int	main(int ac, char **av)
+void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 {
-	t_cub	cub;
-
-	// if (DEBUG)
-	// 	debug_print_arg(ac, av);
-	ft_printf("Cub3D running...\n");
-	// cub_initialize_cub3D(cub);
-	cub_data_set(&cub, ac, av);
-	cub_free_before_exit(&cub, NO_ERROR);
-	return (0);
+	// free cub
+	(void) cub;
+	if (errkey)
+	{
+		cub_print_error(errkey, 2);
+		exit(EXIT_FAILURE);
+	}
+	cub_print_error(errkey, 1);
+	exit(EXIT_SUCCESS);
 }

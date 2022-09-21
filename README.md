@@ -1,5 +1,7 @@
 # CUB3D
 
+-> DEBUGGER
+
 ## Init program
 * malloc main structure cub3d
 	* structure player (direction)

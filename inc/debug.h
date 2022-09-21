@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_main.c                                         :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/21 15:26:03 by mdaadoun         ###   ########.fr       */
+/*   Created: 2022/09/21 14:28:35 by mdaadoun          #+#    #+#             */
+/*   Updated: 2022/09/21 14:29:51 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub.h"
-
-// void	cub_initialize_cub3D(t_cub **cub)
-// {
-
-// }
+#ifndef DEBUG_H
+# define DEBUG_H
+# ifndef DEBUG
+# 	define DEBUG 1
 
 
-int	main(int ac, char **av)
-{
-	t_cub	cub;
+/*
+ *	Debug function:
+*/
 
-	// if (DEBUG)
-	// 	debug_print_arg(ac, av);
-	ft_printf("Cub3D running...\n");
-	// cub_initialize_cub3D(cub);
-	cub_data_set(&cub, ac, av);
-	cub_free_before_exit(&cub, NO_ERROR);
-	return (0);
-}
+void	debug_print_arg(int ac, char **av);
+void	debug_lst_data(t_cub *cub);
+
+# endif
+#endif
