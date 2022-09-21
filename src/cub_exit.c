@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_main.c                                         :+:      :+:    :+:   */
+/*   cub_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlaidet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/21 12:54:51 by dlaidet          ###   ########.fr       */
+/*   Created: 2022/09/21 12:48:29 by dlaidet           #+#    #+#             */
+/*   Updated: 2022/09/21 12:50:04 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-int	main(int ac, char **av)
+void	cub_exit(char *str)
 {
-	t_cub	cub;
-
-	debug_print_arg(ac, av);
-	cub_data_set(&cub, ac, av);
-	return (0);
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
+	exit (1);
 }
