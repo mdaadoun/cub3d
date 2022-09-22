@@ -7,7 +7,10 @@ OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror # -g
+LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
+LIBXPATH = ./mlbx/minilibx-linux/
+LIBXNAME = $(addprefix $(LIBXPATH)libmlx.a,)
 
 R = \033[38;5;1m
 G = \033[38;5;2m
@@ -21,8 +24,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -sC libft
+	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) program.$(D)"
-	@$(CC) $(FLAGS) $(OBJS) ${LIBFT} -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
 	@echo "$(G)$(NAME) program created.$(D)"
 
 clean:
@@ -34,6 +38,7 @@ fclean: clean
 	@echo "$(R)Remove $(NAME) program if present.$(D)"
 	@$(RM) $(NAME)
 	@make fclean -sC libft
+	@make clean -sC ${LIBXPATH}
 
 re: fclean all
 
