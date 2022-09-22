@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/21 15:32:29 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 08:37:20 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 // Libraries
 //==========
 
+# include "../mlbx/mlx.h"
+# include "../mlbx/mlx_int.h"
 # include "libft.h"
 # include <fcntl.h>
 
@@ -82,18 +84,30 @@ typedef struct s_data {
 }	t_data;
 
 /*
+ *	Player structure:
+*/
+
+typedef struct s_win {
+	void	*mlx;
+	void	*win;
+	int		win_x;
+	int		win_y;
+}	t_win;
+
+/*
  *	Main structure:
 */
 
 typedef struct s_cub {
 	t_player	player;
 	t_data		data;
+	t_win		win;
 	char		**map;
 }	t_cub;
 
-
 void		cub_data_set(t_cub *cub, int ac, char **av);
 void		cub_exit(char *str);
+void		cub_init(t_cub *cub);
 
 /*
  * Free functions
@@ -101,7 +115,7 @@ void		cub_exit(char *str);
  *			cub_free.c
 */
 
-void	cub_free_before_exit(t_cub *cub, t_errkey errkey);
+void		cub_free_before_exit(t_cub *cub, t_errkey errkey);
 
 /*
  * Errors functions
@@ -109,9 +123,9 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey);
  *			cub_errors.c
 */
 
-void	cub_print_error(t_errkey errkey, t_u8 out);
-char	*cub_get_error_msg(t_errkey errkey);
-int		cub_get_error_length(t_errkey errkey);
+void		cub_print_error(t_errkey errkey, t_u8 out);
+char		*cub_get_error_msg(t_errkey errkey);
+int			cub_get_error_length(t_errkey errkey);
 
 // # include "debug.h"
 #endif

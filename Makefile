@@ -1,16 +1,16 @@
 
 ARG = maps/map_basic.cub
 NAME = cub3D
-SRCS = main.c exit.c data_set.c free.c errors.c
+SRCS = main.c exit.c data_set.c free.c errors.c	init.c
 DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
 RM = rm -f
-FLAGS = -Wall -Wextra -Werror # -g
+FLAGS = -Wall -Wextra -Werror -g
 LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
 LIBXPATH = ./mlbx/
-LIBXNAME = $(addprefix $(LIBXPATH)libmlx.a,)
+LIBXNAME = ./mlbx/libmlx.a
 
 R = \033[38;5;1m
 G = \033[38;5;2m
