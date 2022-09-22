@@ -41,7 +41,7 @@ fclean: clean
 
 re: fclean all
 
-D_FLAGS = -g3 -ggdb -I. -D DEBUG=1
+D_FLAGS = -g3 -ggdb -I. -D DEBUG=0
 D_DIR = debug
 D_SRCS = debug.c
 D_OBJS = $(addprefix $(D_DIR)/,$(D_SRCS:%.c=%.o))

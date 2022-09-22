@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 12:35:28 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/22 13:03:24 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(int ac, char **av)
 	t_cub	*cub;
 
 	cub = ft_calloc(1, sizeof(t_cub));
-	// if (DEBUG)
-	// 	debug_print_arg(ac, av);
+//	if (DEBUG)
+//		debug_print_arg(ac, av);
 	ft_printf("Cub3D running...\n");
 	cub_data_set(cub, ac, av);
 	cub_init(cub);
