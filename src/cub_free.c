@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/22 12:02:15 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:36:39 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	fs_free_data(t_data *data)
 		free(tmp);
 		tmp = NULL;
 	}
-	free(data);
 }
 
 void	fs_clear_window(t_win *win)
@@ -45,7 +44,9 @@ void	fs_clear_window(t_win *win)
 void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 {
 	fs_free_data(cub->data);
+	free(cub->data);
 	fs_clear_window(cub->win);
+	free(cub);
 	if (errkey)
 	{
 		cub_print_error(errkey, 2);

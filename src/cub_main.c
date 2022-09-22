@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 12:07:37 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:35:28 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,16 @@ int	fs_key_hook(int keycode, t_cub *cub)
 
 int	main(int ac, char **av)
 {
-	t_cub	cub;
+	t_cub	*cub;
 
+	cub = ft_calloc(1, sizeof(t_cub));
 	// if (DEBUG)
 	// 	debug_print_arg(ac, av);
 	ft_printf("Cub3D running...\n");
-	cub_data_set(&cub, ac, av);
-	cub_init(&cub);
-	mlx_hook(cub.win->win, KeyPress, (1L << 0), fs_key_hook, &cub);
-	mlx_hook(cub.win->win, DestroyNotify, 1L << 17, fs_close, &cub);
-	mlx_loop(cub.win->mlx);
+	cub_data_set(cub, ac, av);
+	cub_init(cub);
+	mlx_hook(cub->win->win, KeyPress, (1L << 0), fs_key_hook, cub);
+	mlx_hook(cub->win->win, DestroyNotify, 1L << 17, fs_close, cub);
+	mlx_loop(cub->win->mlx);
 	return (0);
 }
