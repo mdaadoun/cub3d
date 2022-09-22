@@ -6,14 +6,31 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/21 15:27:42 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 07:22:55 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
+void	fs_free_data(t_data *data)
+{
+	t_list_str	*list;
+	t_list_str	*tmp;
+
+	list = data->data_list;
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp->str);
+		free(tmp);
+		tmp = NULL;
+	}
+}
+
 void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 {
+	fs_free_data(&cub->data);
 	// free cub
 	(void) cub;
 	if (errkey)

@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:45:36 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/21 15:22:13 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 07:23:46 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	fs_build_data_list(t_cub *cub)
 		data = ft_lstnew_str(line);
 		ft_lstadd_back_str(&cub->data.data_list, data);
 	}
+	close(fd);
 	// if (DEBUG)
 	// 	debug_lst_data(cub);
 }
