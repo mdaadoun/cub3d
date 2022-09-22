@@ -1,6 +1,6 @@
 ARG = maps/map_basic.cub
 NAME = cub3D
-SRCS = main.c exit.c data_set.c free.c errors.c	init.c
+SRCS = main.c exit.c data_set.c free.c errors.c	init.c utils.c
 DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc

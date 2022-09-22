@@ -6,13 +6,13 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/22 12:36:39 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/22 14:54:14 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-void	fs_free_data(t_data *data)
+static void	fs_free_data(t_data *data)
 {
 	t_list_str	*list;
 	t_list_str	*tmp;
@@ -30,7 +30,7 @@ void	fs_free_data(t_data *data)
 	}
 }
 
-void	fs_clear_window(t_win *win)
+static void	fs_clear_window(t_win *win)
 {
 	if (win)
 	{
@@ -43,10 +43,13 @@ void	fs_clear_window(t_win *win)
 
 void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 {
-	fs_free_data(cub->data);
-	free(cub->data);
-	fs_clear_window(cub->win);
-	free(cub);
+	if (cub)
+	{
+		fs_free_data(cub->data);
+		free(cub->data);
+		fs_clear_window(cub->win);
+		free(cub);
+	}
 	if (errkey)
 	{
 		cub_print_error(errkey, 2);

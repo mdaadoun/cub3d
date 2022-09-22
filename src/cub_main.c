@@ -6,19 +6,19 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 13:03:24 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/22 15:33:23 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-int	fs_close(t_cub *cub)
+static int	fs_close(t_cub *cub)
 {
 	cub_free_before_exit(cub, NO_ERROR);
 	return (0);
 }
 
-int	fs_key_hook(int keycode, t_cub *cub)
+static int	fs_key_hook(int keycode, t_cub *cub)
 {
 	if (keycode == XK_Escape)
 		cub_free_before_exit(cub, NO_ERROR);
@@ -41,12 +41,15 @@ int	main(int ac, char **av)
 {
 	t_cub	*cub;
 
-	cub = ft_calloc(1, sizeof(t_cub));
 //	if (DEBUG)
 //		debug_print_arg(ac, av);
-	ft_printf("Cub3D running...\n");
+	cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
+	
 	cub_data_set(cub, ac, av);
 	cub_init(cub);
+	// if no error, print logo and Cub3D running
+	ft_printf("%s", CUB3D_LOGO);
+	
 	mlx_hook(cub->win->win, KeyPress, (1L << 0), fs_key_hook, cub);
 	mlx_hook(cub->win->win, DestroyNotify, 1L << 17, fs_close, cub);
 	mlx_loop(cub->win->mlx);
