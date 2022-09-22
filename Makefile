@@ -9,7 +9,7 @@ RM = rm -f
 FLAGS = -Wall -Wextra -Werror # -g
 LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
-LIBXPATH = ./mlbx/minilibx-linux/
+LIBXPATH = ./mlbx/
 LIBXNAME = $(addprefix $(LIBXPATH)libmlx.a,)
 
 R = \033[38;5;1m
