@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:45:36 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 08:43:07 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/22 11:11:19 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ void	fs_build_data_list(t_cub *cub)
 	char		*line;
 	int			fd;
 
-	fd = open(cub->data.data_file, 0);
+	fd = open(cub->data.data_file, O_RDONLY);
+	if (fd == -1)
+		cub_free_before_exit(cub, ERROR_FILE_MISSING);
 	line = get_next_line(fd);
 	data = ft_lstnew_str(line);
-	ft_lstadd_back_str(&cub->data.data_list, data);
+	cub->data.data_list = data;
 	while (line)
 	{
 		line = get_next_line(fd);

@@ -1,0 +1,3 @@
+* clean libft from unused headers
+* segfault with getnextline from file.cub reading
+* debugger to fix

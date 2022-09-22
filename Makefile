@@ -9,8 +9,8 @@ RM = rm -f
 FLAGS = -Wall -Wextra -Werror -g
 LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
-LIBXPATH = ./mlbx/
-LIBXNAME = ./mlbx/libmlx.a
+LIBXPATH = mlbx/
+LIBXNAME = mlbx/libmlx.a
 
 R = \033[38;5;1m
 G = \033[38;5;2m
@@ -50,8 +50,9 @@ V_ARG = --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=
 
 debug: $(OBJS) ${D_OBJS}
 	@make -sC libft
+	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) debug program.$(D)"
-	@$(CC) $(FLAGS) $(D_FLAGS) $(OBJS) ${D_OBJS} ${LIBFT} -o $(NAME)
+	@$(CC) $(FLAGS) $(D_FLAGS) $(OBJS) ${D_OBJS} ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
 	@echo "$(G)$(NAME) debug program created.$(D)"
 
 valgrind:

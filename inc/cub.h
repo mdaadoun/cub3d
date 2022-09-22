@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 08:37:20 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/22 11:10:48 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef enum e_errkey {
 	NO_ERROR,
 	ERROR_PARAMS,
 	ERROR_FILE_EXT,
+	ERROR_FILE_MISSING,
 	ERROR_PARAMS_VALID,
 	ERROR_MALLOC
 }			t_errkey;
