@@ -14,6 +14,7 @@
 >**ft_function_name**: utils, libft  
 **cub_function_name**: global functions (add to cub.h)  
 **fs_function_name**: static function (same file)  
+**dg_function_name**: debug function (add to debug.h)
   
 ## Structures names:  
 >**t_cub \*cub**: main structure  

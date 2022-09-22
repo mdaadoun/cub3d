@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 15:33:23 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:41:24 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,12 @@ int	main(int ac, char **av)
 {
 	t_cub	*cub;
 
-//	if (DEBUG)
-//		debug_print_arg(ac, av);
+	if (DEBUG)  // TO REMOVE
+		dg_main(ac, av);
 	cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
-	
 	cub_data_set(cub, ac, av);
 	cub_init(cub);
-	// if no error, print logo and Cub3D running
 	ft_printf("%s", CUB3D_LOGO);
-	
 	mlx_hook(cub->win->win, KeyPress, (1L << 0), fs_key_hook, cub);
 	mlx_hook(cub->win->win, DestroyNotify, 1L << 17, fs_close, cub);
 	mlx_loop(cub->win->mlx);

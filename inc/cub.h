@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 15:29:49 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:10:50 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef signed long long	t_i64;
 typedef unsigned long long	t_u64;
 typedef double				t_f64;
 
-//=================
-// Cub3d structures
-//=================
+//==================
+// Cub3d global data
+//==================
 
 # define WIDTH	320
 # define HEIGHT	240
@@ -61,6 +61,11 @@ typedef double				t_f64;
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣤⣀⠀⣿⡇ ⣀⣤⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
 "
+
+//=================
+// Cub3d structures
+//=================
+
 /*
  *	Errors structures and keys:
 */
@@ -71,7 +76,7 @@ typedef double				t_f64;
 a map file as a unique parameter."
 # define MSG_ERROR_PATH "The file path is incorrect."
 # define MSG_ERROR_FILE_EXT "The file is not a .cub file."
-# define MSG_ERROR_FILE_MISSING "The file is not found."
+# define MSG_ERROR_FILE_MISSING "The path for the file is not correct."
 # define MSG_ERROR_EMPTY "The map file is empty."
 # define MSG_ERROR_WALL "The map need a closed wall."
 # define MSG_ERROR_CHAR "The map has wrong chars that can't be parsed."
@@ -148,7 +153,6 @@ void		cub_print_error(t_errkey errkey, t_u8 out);
 char		*cub_get_error_msg(t_errkey errkey);
 int			cub_get_error_length(t_errkey errkey);
 
-
 /*
  * Errors functions
  *		files:
@@ -157,6 +161,16 @@ int			cub_get_error_length(t_errkey errkey);
 
 void *cub_alloc(t_cub *cub, size_t nmemb, size_t size);
 
+# ifndef DEBUG
+#  define DEBUG 1
+# endif
 
-// # include "debug.h"
+/*
+ *	Debug function:
+*/
+
+int		dg_main(int ac, char **av);
+void	dg_print_arg(int ac, char **av);
+void	dg_lst_data(t_cub *cub);
+
 #endif

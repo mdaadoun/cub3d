@@ -5,7 +5,8 @@ DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
 RM = rm -f
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
+
 LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
 LIBXPATH = mlbx/
@@ -25,7 +26,7 @@ $(NAME): $(OBJS)
 	@make -sC libft
 	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) program.$(D)"
-	@$(CC) $(FLAGS) $(OBJS) ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) debug/debug.c ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
 	@echo "$(G)$(NAME) program created.$(D)"
 
 clean:
@@ -41,23 +42,22 @@ fclean: clean
 
 re: fclean all
 
-D_FLAGS = -g3 -ggdb -I. -D DEBUG=0
-D_DIR = debug
-D_SRCS = debug.c
-D_OBJS = $(addprefix $(D_DIR)/,$(D_SRCS:%.c=%.o))
-V_ARG = --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s
+DFLAGS = -g3 -ggdb -I. -D DEBUG=1
+DSRCS = debug/debug.c src/cub_main.c src/cub_exit.c src/cub_data_set.c src/cub_free.c	\
+src/cub_init.c src/cub_utils.c src/cub_errors.c
+VARG = --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s
 
-debug: $(OBJS) ${D_OBJS}
+debug: fclean
 	@make -sC libft
 	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) debug program.$(D)"
-	@$(CC) $(FLAGS) $(D_FLAGS) $(OBJS) ${D_OBJS} ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
+	@$(CC) $(FLAGS) $(DFLAGS) ${DSRCS} ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
 	@echo "$(G)$(NAME) debug program created.$(D)"
 
 valgrind:
-	valgrind ${V_ARG} ./${NAME} ${ARG}
+	valgrind ${VARG} ./${NAME} ${ARG}
 
 run:
 	./${NAME} ${ARG}
 
-.PHONY:  all clean fclean re
+.PHONY:  all clean fclean re debug valgrind run

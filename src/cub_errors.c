@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:08 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/21 15:33:18 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:04:44 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*cub_get_error_msg(t_errkey errkey)
 		return (MSG_ERROR_PARAMS);
 	else if (errkey == ERROR_FILE_EXT)
 		return (MSG_ERROR_FILE_EXT);
+	else if (errkey == ERROR_FILE_MISSING)
+		return (MSG_ERROR_FILE_MISSING);
 	else if (errkey == NO_ERROR)
 		return (MSG_SUCCESS_EXIT);
 	return (NULL);
@@ -40,6 +42,8 @@ int	cub_get_error_length(t_errkey errkey)
 		str = MSG_ERROR_PARAMS;
 	else if (errkey == ERROR_FILE_EXT)
 		str = MSG_ERROR_FILE_EXT;
+	else if (errkey == ERROR_FILE_MISSING)
+		str = MSG_ERROR_FILE_MISSING;
 	else if (errkey == NO_ERROR)
 		str = MSG_SUCCESS_EXIT;
 	if (str)

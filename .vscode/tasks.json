@@ -1,0 +1,14 @@
+{
+    "tasks": [
+		{
+			"label": "make_cub3d",
+			"command": "make",
+            "args": ["debug"],
+			"type": "shell",
+			"options": {
+                "cwd": "${fileDirname}"
+			}
+		}
+    ],
+    "version": "2.0.0"
+}
