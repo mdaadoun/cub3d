@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 11:10:48 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:34:02 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ typedef struct s_win {
 */
 
 typedef struct s_cub {
-	t_player	player;
-	t_data		data;
-	t_win		win;
+	t_player	*player;
+	t_data		*data;
+	t_win		*win;
 	char		**map;
 }	t_cub;
 

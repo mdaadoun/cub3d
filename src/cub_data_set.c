@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:45:36 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 11:11:19 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:40:26 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	fs_build_data_list(t_cub *cub)
 	char		*line;
 	int			fd;
 
-	fd = open(cub->data.data_file, O_RDONLY);
+	fd = open(cub->data->data_file, O_RDONLY);
 	if (fd == -1)
 		cub_free_before_exit(cub, ERROR_FILE_MISSING);
 	line = get_next_line(fd);
 	data = ft_lstnew_str(line);
-	cub->data.data_list = data;
+	cub->data->data_list = data;
 	while (line)
 	{
 		line = get_next_line(fd);
 		data = ft_lstnew_str(line);
-		ft_lstadd_back_str(&cub->data.data_list, data);
+		ft_lstadd_back_str(&cub->data->data_list, data);
 	}
 	close(fd);
 	// if (DEBUG)
@@ -50,9 +50,10 @@ void	fs_build_data_list(t_cub *cub)
 
 void	cub_data_set(t_cub *cub, int ac, char **av)
 {
+	cub->data = ft_calloc(1, sizeof(t_data));
 	if (ac != 2)
 		cub_free_before_exit(cub, ERROR_PARAMS);
 	fs_is_cub(cub, av[1]);
-	cub->data.data_file = av[1];
+	cub->data->data_file = av[1];
 	fs_build_data_list(cub);
 }

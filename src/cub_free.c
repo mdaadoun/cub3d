@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/22 10:50:23 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:48:27 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	fs_free_data(t_data *data)
 	t_list_str	*list;
 	t_list_str	*tmp;
 
+	if (!data->data_list)
+		return ;
 	list = data->data_list;
 	while (list)
 	{
@@ -37,8 +39,12 @@ void	fs_clear_window(t_win *win)
 
 void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 {
-	fs_free_data(&cub->data);
-	fs_clear_window(&cub->win);
+	if (!cub->win)
+		return ;
+	fs_free_data(cub->data);
+	free(cub->data);
+	fs_clear_window(cub->win);
+	free(cub->win);
 	(void) cub;
 	if (errkey)
 	{
