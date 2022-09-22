@@ -1,4 +1,3 @@
-
 ARG = maps/map_basic.cub
 NAME = cub3D
 SRCS = main.c exit.c data_set.c free.c errors.c	init.c

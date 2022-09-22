@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 11:34:02 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/22 11:53:12 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef double				t_f64;
 //=================
 // Cub3d structures
 //=================
+
+# define WIDTH	320
+# define HEIGHT	240
 
 /*
  *	Errors structures and keys:
