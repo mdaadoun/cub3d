@@ -6,11 +6,9 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:06:08 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/05/24 11:14:43 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:45:51 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../inc/libft.h"
 
 /*
 ** check if c is a printable char 

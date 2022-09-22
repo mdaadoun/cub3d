@@ -6,11 +6,9 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 07:56:57 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/05/24 11:14:45 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:45:56 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../inc/libft.h"
 
 int	ft_isspace(int c)
 {

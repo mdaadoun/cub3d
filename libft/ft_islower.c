@@ -6,11 +6,9 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:46:23 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/05/24 11:14:40 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:45:47 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../inc/libft.h"
 
 /*
 ** check if c is a char between 'a' and 'z'

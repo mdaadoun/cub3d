@@ -6,11 +6,9 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:48:55 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/05/24 11:14:35 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:45:38 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../inc/libft.h"
 
 /*
 ** checks whether c is an ascii char between 0 and 127

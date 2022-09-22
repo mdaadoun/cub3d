@@ -6,11 +6,9 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 09:23:02 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/05/24 11:15:57 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:47:56 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../inc/libft.h"
 
 /*
  * Apply the f function to each char of the string s (without return)
