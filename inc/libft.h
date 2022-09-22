@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:54:43 by pi                #+#    #+#             */
-/*   Updated: 2022/09/09 09:10:45 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/22 12:51:35 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include <stdbool.h>
-# include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 
