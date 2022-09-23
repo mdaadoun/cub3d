@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/23 15:05:55 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:11:51 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static char	**fs_split_and_trim(t_cub *cub, char *line)
 	char	**split;
 
 	trim = ft_strtrim(line, " \n");
+	if (ft_strlen(trim) == 0)
+		return (NULL);
 	split = ft_split(trim, ' ');
 	free(trim);
 	if (split[2])
@@ -32,7 +34,7 @@ static t_u8	fs_save_data(t_cub *cub, char *line, t_u8 count)
 
 	data = cub->data;
 	count++;
-	if (!ft_char_in_set(line[0], "\nFCSENSW"))
+	if (!ft_char_in_set(line[0], "\nFENSWC"))
 		cub_free_before_exit(cub, ERROR_FORMAT);
 	split = fs_split_and_trim(cub, line);
 	if (line[0] == 'F' && line[1] == ' ')
