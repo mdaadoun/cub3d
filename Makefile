@@ -1,4 +1,3 @@
-ARG = maps/map_basic.cub
 NAME = cub3D
 SRCS = main.c file.c free.c errors.c utils.c events.c parser.c map.c
 DIR = src
@@ -46,7 +45,8 @@ DFLAGS = -g3 -ggdb -I. -D DEBUG=1
 DSRCS = debug/debug.c src/cub_main.c src/cub_file.c src/cub_free.c \
 src/cub_parser.c src/cub_utils.c src/cub_errors.c src/cub_events.c \
 src/cub_map.c
-VARG = --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s
+VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
+ARG = maps/map_basic_0.cub
 
 debug: fclean
 	@make -sC libft

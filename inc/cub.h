@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 15:04:27 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:26:49 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef double				t_f64;
 # define MSG_NO_ERROR "Cub3d terminated with success."
 # define MSG_ERROR_MALLOC "An error with memory allocation occured."
 # define MSG_ERROR_PARAMS "The program need the path of \
-a map file as a \e[0;36munique\e[m parameter."
+a map file as a unique parameter."
 # define MSG_ERROR_PATH "The file path is incorrect."
 # define MSG_ERROR_FILE "The file is not a .cub file."
 # define MSG_ERROR_SCREEN "The screen size is incorrect."
@@ -161,6 +161,7 @@ void		cub_get_data(t_cub *cub, int ac, char **av);
  */
 
 void		cub_free_before_exit(t_cub *cub, t_errkey errkey);
+void		cub_free_split(char **split);
 
 /*
  * Errors functions
@@ -185,8 +186,8 @@ void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
  *			cub_map.c
  */
 
-void	cub_parse_data(t_cub *cub);
-void	cub_build_map(t_cub *cub);
+void		cub_parse_data(t_cub *cub);
+void		cub_build_map(t_cub *cub);
 
 // TO DELETE:
 
@@ -199,8 +200,8 @@ void	cub_build_map(t_cub *cub);
  *		files:
  */
 
-int		dg_main(int ac, char **av);
-void	dg_print_arg(int ac, char **av);
-void	dg_lst_data(t_cub *cub);
+int			dg_main(int ac, char **av);
+void		dg_print_arg(int ac, char **av);
+void		dg_lst_data(t_cub *cub);
 
 #endif

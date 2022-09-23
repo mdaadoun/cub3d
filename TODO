@@ -1,3 +1,2 @@
 
-
-* remove the debug.c in the Makefile and .h
+* valgrind leaks to fix with parser

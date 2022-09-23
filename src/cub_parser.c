@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/23 15:11:51 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:31:00 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static char	**fs_split_and_trim(t_cub *cub, char *line)
 	split = ft_split(trim, ' ');
 	free(trim);
 	if (split[2])
+	{
+		cub_free_split(split);
 		cub_free_before_exit(cub, ERROR_FORMAT);
+	}
 	return (split);
 }
 
@@ -51,7 +54,8 @@ static t_u8	fs_save_data(t_cub *cub, char *line, t_u8 count)
 		data->imgpath_WE = split[1];
 	else
 		count--;
-	free(split);
+	// if (split)
+	// 	cub_free_split(split);
 	return (count);
 }
 

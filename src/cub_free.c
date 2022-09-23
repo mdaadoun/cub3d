@@ -6,11 +6,25 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/23 10:57:12 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:27:42 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
+
+
+void	cub_free_split(char **split)
+{
+	t_i8 i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
 
 static void	fs_free_data(t_data *data)
 {
@@ -29,6 +43,12 @@ static void	fs_free_data(t_data *data)
 			tmp = NULL;
 		}
 	}
+	free(data->color_C);
+	free(data->color_F);
+	free(data->imgpath_EA);
+	free(data->imgpath_SO);
+	free(data->imgpath_WE);
+	free(data->imgpath_NO);
 	free(data);
 }
 
