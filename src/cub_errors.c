@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:08 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/23 09:40:52 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:04:35 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ static char	*fs_get_error_msg(t_errkey errkey)
 		return (MSG_ERROR_FILE);
 	else if (errkey == ERROR_PATH)
 		return (MSG_ERROR_PATH);
-	else if (errkey ==ERROR_SCREEN)
+	else if (errkey == ERROR_SCREEN)
 		return (MSG_ERROR_SCREEN);
+	else if (errkey == ERROR_FORMAT)
+		return (MSG_ERROR_FORMAT);
+	else if (errkey == ERROR_MAP)
+		return (MSG_ERROR_MAP);
 	else if (errkey == NO_ERROR)
 		return (MSG_NO_ERROR);
 	return (NULL);

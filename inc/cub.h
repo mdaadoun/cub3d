@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 11:19:03 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 15:04:27 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,8 @@ a map file as a \e[0;36munique\e[m parameter."
 # define MSG_ERROR_PATH "The file path is incorrect."
 # define MSG_ERROR_FILE "The file is not a .cub file."
 # define MSG_ERROR_SCREEN "The screen size is incorrect."
-# define MSG_ERROR_FORMAT "The file format is incorrect."
-// # define MSG_ERROR_EMPTY "The map file is empty."
-// # define MSG_ERROR_WALL "The map need a closed wall."
-// # define MSG_ERROR_CHAR "The map has wrong chars that can't be parsed."
-// # define MSG_ERROR_CONTENT "The map missing important chars to be playable."
+# define MSG_ERROR_FORMAT "The file content is not formated correctly."
+# define MSG_ERROR_MAP "The map is not formated correctly."
 
 typedef enum e_errkey {
 	NO_ERROR,
@@ -90,6 +87,7 @@ typedef enum e_errkey {
 	ERROR_PATH,
 	ERROR_SCREEN,
 	ERROR_FORMAT,
+	ERROR_MAP,
 	ERROR_MALLOC
 }			t_errkey;
 

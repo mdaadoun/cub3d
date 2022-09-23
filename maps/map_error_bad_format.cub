@@ -1,8 +1,8 @@
 F 220,100,0
-EA ./img/wolf/EA.xpm
-NO ./img/wolf/NO.xpm
+  EA ./img/wolf/EA.xpm
+	NO ./img/wolf/NO.xpm
 SO                      ./img/wolf/SO.xpm 
-WE   ./img/wolf/WE.xpm                           
+ WE   ./img/wolf/WE.xpm                           
 
 C    225,30,0
 
