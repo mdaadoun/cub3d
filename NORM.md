@@ -3,9 +3,9 @@
 ## Structure:  
 >./Makefile  
 ./libft  
-./minlibx  
+./mlibx  
 ./maps/*.cub  
-./img/*.xpm  
+./img/theme/*.xpm  
 ./inc/cub.h  
 ./src/cub_main.c  
 ./src/parser/cub_map_parsing.c  

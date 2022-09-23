@@ -3,11 +3,13 @@ NO ./img/wolf/NO.xpm
 
 SO ./img/wolf/SO.xpm
 
+WE ./img/wolf/WE.xpm
+
 EA ./img/wolf/EA.xpm
 
 F 220,100,0
 
-C 225,30,0
+C 999999
 
 111111111
 100000N01

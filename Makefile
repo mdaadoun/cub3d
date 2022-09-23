@@ -1,6 +1,6 @@
 ARG = maps/map_basic.cub
 NAME = cub3D
-SRCS = main.c exit.c data_set.c free.c errors.c	init.c utils.c
+SRCS = main.c file.c free.c errors.c utils.c events.c parser.c
 DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
@@ -9,8 +9,8 @@ FLAGS = -Wall -Wextra -Werror
 
 LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
-LIBXPATH = mlbx/
-LIBXNAME = mlbx/libmlx.a
+LIBXPATH = mlibx/
+LIBXNAME = mlibx/libmlx.a
 
 R = \033[38;5;1m
 G = \033[38;5;2m
@@ -26,7 +26,7 @@ $(NAME): $(OBJS)
 	@make -sC libft
 	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) program.$(D)"
-	@$(CC) $(FLAGS) $(OBJS) debug/debug.c ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) debug/debug.c ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME) #REMOVE DEBUG
 	@echo "$(G)$(NAME) program created.$(D)"
 
 clean:
@@ -43,8 +43,8 @@ fclean: clean
 re: fclean all
 
 DFLAGS = -g3 -ggdb -I. -D DEBUG=1
-DSRCS = debug/debug.c src/cub_main.c src/cub_exit.c src/cub_data_set.c src/cub_free.c	\
-src/cub_init.c src/cub_utils.c src/cub_errors.c
+DSRCS = debug/debug.c src/cub_main.c src/cub_file.c src/cub_free.c	\
+src/cub_parser.c src/cub_utils.c src/cub_errors.c src/cub_events.c
 VARG = --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all -s
 
 debug: fclean

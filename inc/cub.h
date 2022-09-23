@@ -6,19 +6,19 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/22 18:10:50 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 09:38:51 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 //==========
 // Libraries
 //==========
 
-# include "../mlbx/mlx.h"
-# include "../mlbx/mlx_int.h"
+# include "../mlibx/mlx.h"
+# include "../mlibx/mlx_int.h"
 # include "libft.h"
 # include <fcntl.h>
 
@@ -44,7 +44,7 @@ typedef double				t_f64;
 # define WIDTH	320
 # define HEIGHT	240
 
-# define CUB3D_LOGO "\
+# define LOGO "\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠋⠁⠀⠀⠈⠙⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
 ⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀  ⠀⠀⠀⠀⠀ ⠈⠙⠻⢿⣿⣿⣿⣿⣿ \n\
@@ -67,33 +67,33 @@ typedef double				t_f64;
 //=================
 
 /*
- *	Errors structures and keys:
-*/
+ *	Errors structures and code keys:
+ */
 
+# define MSG_NO_ERROR "Cub3d terminated with success."
 # define MSG_ERROR_MALLOC "An error with memory allocation occured."
-# define MSG_SUCCESS_EXIT "Cub3d terminated with success."
 # define MSG_ERROR_PARAMS "The program need the path of \
-a map file as a unique parameter."
+a map file as a \e[0;36munique\e[m parameter."
 # define MSG_ERROR_PATH "The file path is incorrect."
-# define MSG_ERROR_FILE_EXT "The file is not a .cub file."
-# define MSG_ERROR_FILE_MISSING "The path for the file is not correct."
-# define MSG_ERROR_EMPTY "The map file is empty."
-# define MSG_ERROR_WALL "The map need a closed wall."
-# define MSG_ERROR_CHAR "The map has wrong chars that can't be parsed."
-# define MSG_ERROR_CONTENT "The map missing important chars to be playable."
+# define MSG_ERROR_FILE "The file is not a .cub file."
+# define MSG_ERROR_SCREEN "The screen size is incorrect."
+// # define MSG_ERROR_EMPTY "The map file is empty."
+// # define MSG_ERROR_WALL "The map need a closed wall."
+// # define MSG_ERROR_CHAR "The map has wrong chars that can't be parsed."
+// # define MSG_ERROR_CONTENT "The map missing important chars to be playable."
 
 typedef enum e_errkey {
 	NO_ERROR,
 	ERROR_PARAMS,
-	ERROR_FILE_EXT,
-	ERROR_FILE_MISSING,
-	ERROR_PARAMS_VALID,
+	ERROR_FILE,
+	ERROR_PATH,
+	ERROR_SCREEN,
 	ERROR_MALLOC
 }			t_errkey;
 
 /*
  *	Player structure:
-*/
+ */
 
 typedef struct s_player {
 	t_u64	x;
@@ -102,7 +102,7 @@ typedef struct s_player {
 
 /*
  *	Data structure:
-*/
+ */
 
 typedef struct s_data {
 	t_list_str	*data_list;
@@ -110,8 +110,8 @@ typedef struct s_data {
 }	t_data;
 
 /*
- *	Player structure:
-*/
+ *	Window structure:
+ */
 
 typedef struct s_win {
 	void	*mlx;
@@ -122,7 +122,7 @@ typedef struct s_win {
 
 /*
  *	Main structure:
-*/
+ */
 
 typedef struct s_cub {
 	t_player	*player;
@@ -131,15 +131,28 @@ typedef struct s_cub {
 	char		**map;
 }	t_cub;
 
-void		cub_data_set(t_cub *cub, int ac, char **av);
-void		cub_exit(char *str);
-void		cub_init(t_cub *cub);
+
+/*
+ * Initialization functions
+ *		files:
+ *			cub_events.c
+ */
+
+void		cub_init_events(t_cub *cub);
+
+/*
+ * File functions
+ *		files:
+ *			cub_file.c
+ */
+
+void		cub_get_data(t_cub *cub, int ac, char **av);
 
 /*
  * Free functions
  *		files:
  *			cub_free.c
-*/
+ */
 
 void		cub_free_before_exit(t_cub *cub, t_errkey errkey);
 
@@ -147,27 +160,36 @@ void		cub_free_before_exit(t_cub *cub, t_errkey errkey);
  * Errors functions
  *		files:
  *			cub_errors.c
-*/
+ */
 
 void		cub_print_error(t_errkey errkey, t_u8 out);
-char		*cub_get_error_msg(t_errkey errkey);
-int			cub_get_error_length(t_errkey errkey);
 
 /*
  * Errors functions
  *		files:
  *			cub_utils.c
-*/
+ */
 
-void *cub_alloc(t_cub *cub, size_t nmemb, size_t size);
+void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
+
+/*
+ * Parsing functions
+ *		files:
+ *			cub_parser.c
+ */
+
+void	cub_parse_data(t_cub *cub);
+
+// TO DELETE:
 
 # ifndef DEBUG
-#  define DEBUG 1
+#  define DEBUG 0
 # endif
 
 /*
  *	Debug function:
-*/
+ *		files:
+ */
 
 int		dg_main(int ac, char **av);
 void	dg_print_arg(int ac, char **av);

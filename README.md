@@ -1,7 +1,5 @@
 # CUB3D
 
--> DEBUGGER
-
 ## Init program
 * malloc main structure cub3d
 	* [x] main structure cub

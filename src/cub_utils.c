@@ -6,15 +6,15 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 14:54:11 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/22 15:01:26 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 09:09:05 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-void *cub_alloc(t_cub *cub, size_t nmemb, size_t size)
+void	*cub_alloc(t_cub *cub, size_t nmemb, size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
 	ptr = ft_calloc(nmemb, size);
 	if (!ptr)

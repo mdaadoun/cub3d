@@ -6,59 +6,51 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:44:08 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/22 17:04:44 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 09:40:52 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-char	*cub_get_error_msg(t_errkey errkey)
+static char	*fs_get_error_msg(t_errkey errkey)
 {
 	if (errkey == ERROR_MALLOC)
 		return (MSG_ERROR_MALLOC);
 	else if (errkey == ERROR_PARAMS)
 		return (MSG_ERROR_PARAMS);
-	else if (errkey == ERROR_PARAMS)
-		return (MSG_ERROR_PARAMS);
-	else if (errkey == ERROR_FILE_EXT)
-		return (MSG_ERROR_FILE_EXT);
-	else if (errkey == ERROR_FILE_MISSING)
-		return (MSG_ERROR_FILE_MISSING);
+	else if (errkey == ERROR_FILE)
+		return (MSG_ERROR_FILE);
+	else if (errkey == ERROR_PATH)
+		return (MSG_ERROR_PATH);
+	else if (errkey ==ERROR_SCREEN)
+		return (MSG_ERROR_SCREEN);
 	else if (errkey == NO_ERROR)
-		return (MSG_SUCCESS_EXIT);
+		return (MSG_NO_ERROR);
 	return (NULL);
 }
 
-int	cub_get_error_length(t_errkey errkey)
+static size_t	fs_get_error_length(t_errkey errkey)
 {
 	char	*str;
-	int		len;
+	size_t	len;
 
 	len = 0;
-	str = NULL;
-	if (errkey == ERROR_MALLOC)
-		str = MSG_ERROR_MALLOC;
-	else if (errkey == ERROR_PARAMS)
-		str = MSG_ERROR_PARAMS;
-	else if (errkey == ERROR_FILE_EXT)
-		str = MSG_ERROR_FILE_EXT;
-	else if (errkey == ERROR_FILE_MISSING)
-		str = MSG_ERROR_FILE_MISSING;
-	else if (errkey == NO_ERROR)
-		str = MSG_SUCCESS_EXIT;
+	str = fs_get_error_msg(errkey);
 	if (str)
 		while (str[len])
 			len++;
 	return (len);
 }
 
-
+/*
+ *	Print to stdout (1) or stderr (2) the error (or sucess) message. 
+ */
 void	cub_print_error(t_errkey errkey, t_u8 out)
 {
 	if (out == 2)
 		write(out, "\e[0;35mError\n", 13);
 	else
 		write(out, "\e[0;32m", 7);
-	write(out, cub_get_error_msg(errkey), cub_get_error_length(errkey));
+	write(out, fs_get_error_msg(errkey), fs_get_error_length(errkey));
 	write(out, "\e[m\n", 4);
 }
