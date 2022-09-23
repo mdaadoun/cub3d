@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 10:52:59 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 11:04:08 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	dg_print_data_before(t_cub *cub)
 {
 	t_list_str	*data;
 
-	data = cub->data->data_list;
-	ft_putstr_fd("\nData List\n", 1);
+	data = cub->data->filedata;
+	ft_putstr_fd("\nData List from file\n", 1);
 	while (data)
 	{
 		ft_putstr_fd(data->str, 1);
@@ -44,7 +44,13 @@ void	dg_print_data_after(t_cub *cub)
 
 	data = cub->data;
 	(void) data;
-	ft_putstr_fd("\nDatas:\n", 1);
+	ft_putstr_fd("\nDatas after parsing:\n", 1);
+	ft_printf("imgpath_EA: %s\n", data->imgpath_EA);
+	ft_printf("imgpath_NO: %s\n", data->imgpath_NO);
+	ft_printf("imgpath_SO: %s\n", data->imgpath_SO);
+	ft_printf("imgpath_WE: %s\n", data->imgpath_WE);
+	ft_printf("color_C: %s\n", data->color_C);
+	ft_printf("color_F: %s\n", data->color_F);
 }
 
 int dg_main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/23 09:08:04 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 10:57:12 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	fs_free_data(t_data *data)
 	t_list_str	*list;
 	t_list_str	*tmp;
 
-	if (data->data_list)
+	if (data->filedata)
 	{
-		list = data->data_list;
+		list = data->filedata;
 		while (list)
 		{
 			tmp = list;

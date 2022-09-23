@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 09:38:51 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/23 11:19:03 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ a map file as a \e[0;36munique\e[m parameter."
 # define MSG_ERROR_PATH "The file path is incorrect."
 # define MSG_ERROR_FILE "The file is not a .cub file."
 # define MSG_ERROR_SCREEN "The screen size is incorrect."
+# define MSG_ERROR_FORMAT "The file format is incorrect."
 // # define MSG_ERROR_EMPTY "The map file is empty."
 // # define MSG_ERROR_WALL "The map need a closed wall."
 // # define MSG_ERROR_CHAR "The map has wrong chars that can't be parsed."
@@ -88,6 +89,7 @@ typedef enum e_errkey {
 	ERROR_FILE,
 	ERROR_PATH,
 	ERROR_SCREEN,
+	ERROR_FORMAT,
 	ERROR_MALLOC
 }			t_errkey;
 
@@ -105,8 +107,14 @@ typedef struct s_player {
  */
 
 typedef struct s_data {
-	t_list_str	*data_list;
-	char		*data_file;
+	t_list_str	*filedata;
+	char		*filepath;
+	char		*imgpath_EA;
+	char		*imgpath_NO;
+	char		*imgpath_SO;
+	char		*imgpath_WE;
+	char		*color_F;
+	char		*color_C;
 }	t_data;
 
 /*
@@ -176,9 +184,11 @@ void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
  * Parsing functions
  *		files:
  *			cub_parser.c
+ *			cub_map.c
  */
 
 void	cub_parse_data(t_cub *cub);
+void	cub_build_map(t_cub *cub);
 
 // TO DELETE:
 
