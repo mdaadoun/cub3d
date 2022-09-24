@@ -6,12 +6,12 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 15:26:49 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/24 07:59:44 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB_H
+# define CUB_H
 
 //==========
 // Libraries
@@ -90,6 +90,15 @@ typedef enum e_errkey {
 	ERROR_MAP,
 	ERROR_MALLOC
 }			t_errkey;
+
+typedef enum e_data {
+	EA;
+	NO;
+	SO;
+	WE;
+	C;
+	F;
+}	t_data;
 
 /*
  *	Player structure:
