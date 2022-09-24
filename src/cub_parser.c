@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/24 09:58:43 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/24 10:53:36 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_u8	fs_save_data(t_cub *cub, char *line, t_u8 count)
 	data = cub->data;
 	count++;
 	len = ft_strlen(line);
-	if (line[0] == '\n')
+	if (len >= 1 && line[0] == '\n')
 		count--;
 	else if (len >= 2 && line[0] == 'F' && line[1] == ' ')
 		data->color_f = fs_flag_check(cub, line, &data->flag.f);
