@@ -6,13 +6,14 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/23 15:04:55 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/24 09:59:53 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
 
-void	cub_build_map(t_cub *cub)
+void	cub_build_map(t_cub *cub, t_list_str *data_list)
 {
 	(void) cub;
+	(void)data_list;
 }
