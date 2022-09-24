@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/24 07:59:44 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/24 09:44:53 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,18 @@ typedef enum e_errkey {
 	ERROR_MALLOC
 }			t_errkey;
 
-typedef enum e_data {
-	EA;
-	NO;
-	SO;
-	WE;
-	C;
-	F;
-}	t_data;
+/*
+ *	Flag data structure:
+ */
+
+typedef struct s_flag {
+	bool	c;
+	bool	f;
+	bool	ea;
+	bool	no;
+	bool	so;
+	bool	we;
+}			t_flag;
 
 /*
  *	Player structure:
@@ -116,12 +120,13 @@ typedef struct s_player {
 typedef struct s_data {
 	t_list_str	*filedata;
 	char		*filepath;
-	char		*imgpath_EA;
-	char		*imgpath_NO;
-	char		*imgpath_SO;
-	char		*imgpath_WE;
-	char		*color_F;
-	char		*color_C;
+	char		*imgpath_ea;
+	char		*imgpath_no;
+	char		*imgpath_so;
+	char		*imgpath_we;
+	char		*color_f;
+	char		*color_c;
+	t_flag		flag;
 }	t_data;
 
 /*
@@ -145,7 +150,6 @@ typedef struct s_cub {
 	t_win		*win;
 	char		**map;
 }	t_cub;
-
 
 /*
  * Initialization functions

@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 11:04:08 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/24 09:10:01 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	dg_print_data_after(t_cub *cub)
 	data = cub->data;
 	(void) data;
 	ft_putstr_fd("\nDatas after parsing:\n", 1);
-	ft_printf("imgpath_EA: %s\n", data->imgpath_EA);
-	ft_printf("imgpath_NO: %s\n", data->imgpath_NO);
-	ft_printf("imgpath_SO: %s\n", data->imgpath_SO);
-	ft_printf("imgpath_WE: %s\n", data->imgpath_WE);
-	ft_printf("color_C: %s\n", data->color_C);
-	ft_printf("color_F: %s\n", data->color_F);
+	ft_printf("imgpath_EA: %s\n", data->imgpath_ea);
+	ft_printf("imgpath_NO: %s\n", data->imgpath_no);
+	ft_printf("imgpath_SO: %s\n", data->imgpath_so);
+	ft_printf("imgpath_WE: %s\n", data->imgpath_we);
+	ft_printf("color_C: %s\n", data->color_c);
+	ft_printf("color_F: %s\n", data->color_f);
 }
 
 int dg_main(int ac, char **av)
