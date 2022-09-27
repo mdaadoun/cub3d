@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 09:35:48 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 10:07:52 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../mlibx/mlx_int.h"
 # include "libft.h"
 # include <fcntl.h>
+# include <math.h>
 
 //======
 // Types
@@ -96,6 +97,7 @@ typedef enum e_errkey {
 typedef struct s_player {
 	t_u64	x;
 	t_u64	y;
+	t_f32	radiant;
 }	t_player;
 
 /*
