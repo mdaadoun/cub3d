@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 10:07:52 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 14:06:41 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,11 +184,13 @@ void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
  *			config.c
  *			cub_map.c
  *			cub_check_map.c
+ *			cub_check_wall_map.c
  */
 
 t_list_str	*cub_set_config(t_cub *cub);
 void		cub_build_map(t_cub *cub, t_list_str *data_list);
 void		cub_check_map(t_cub *cub);
+void		cub_check_wall_map(t_cub *cub, char **map);
 
 // TO DELETE:
 
