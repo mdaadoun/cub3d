@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_check_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlaidet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 09:01:26 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 14:06:13 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 16:35:17 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,6 @@ void	cub_check_map(t_cub *cub)
 	char	**map;
 
 	map = cub->map;
-	cub->player = ft_calloc(1, sizeof(t_player));
-	if (!cub->player)
-		cub_free_before_exit(cub, ERROR_MALLOC);
 	fs_check_char_map(cub, map);
 	fs_map_space_resize(map);
 	cub_check_wall_map(cub, map);

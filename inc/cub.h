@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 14:06:41 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 15:21:01 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,23 @@ typedef struct s_player {
 }	t_player;
 
 /*
+ *	World structure:
+ */
+
+typedef struct s_color
+{
+	t_u8	T;
+	t_u8	R;
+	t_u8	G;
+	t_u8	B;
+}	t_color;
+
+typedef struct s_world {
+	t_color	*floor_color;
+	t_color	*celling_color;
+}	t_world;
+
+/*
  *	Data structure:
  */
 
@@ -132,6 +149,7 @@ typedef struct s_win {
 
 typedef struct s_cub {
 	t_player	*player;
+	t_world		*world;
 	t_data		*data;
 	t_win		*win;
 	char		**map;
@@ -160,7 +178,7 @@ void		cub_get_data(t_cub *cub, int ac, char **av);
  */
 
 void		cub_free_before_exit(t_cub *cub, t_errkey errkey);
-void		cub_free_split(char **split);
+void		cub_free_strarr(char **split);
 
 /*
  * Errors functions
@@ -177,6 +195,14 @@ void		cub_print_error(t_errkey errkey, t_u8 out);
  */
 
 void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
+
+/*
+ * Colors functions
+ *		files:
+ *			cub_colors.c
+ */
+
+bool		cub_check_set_colors(t_cub *cub, t_color *color, char *colstr);
 
 /*
  * Parsing functions
@@ -203,7 +229,7 @@ void		cub_check_wall_map(t_cub *cub, char **map);
  *		files:
  */
 
-int			dg_main(int ac, char **av);
+int			dg_main(t_cub *cub, int ac, char **av);
 void		dg_print_arg(int ac, char **av);
 void		dg_lst_data(t_cub *cub);
 

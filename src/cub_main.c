@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 10:13:29 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 16:34:56 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,33 @@ static void	fs_init_window(t_cub *cub)
 static void	fs_process_data(t_cub *cub)
 {
 	t_list_str	*datalst;
+	char		*colc;
+	char		*colf;
 
 	datalst = cub_set_config(cub);
-	// check_valid_colors();
+	colc = cub->data->color_c;
+	colf = cub->data->color_f;
+	if (!cub_check_set_colors(cub, cub->world->celling_color, colc))
+		cub_free_before_exit(cub, ERROR_FORMAT);
+	if (!cub_check_set_colors(cub, cub->world->floor_color, colf))
+		cub_free_before_exit(cub, ERROR_FORMAT);
 	cub_build_map(cub, datalst);
 	cub_check_map(cub);
+	(void) colc;
+	(void) colf;
+}
+
+static void	fs_init_cub(t_cub **cub)
+{
+	t_color	**colptr;
+
+	*cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
+	(*cub)->world = (t_world *)cub_alloc(NULL, 1, sizeof(t_world));
+	colptr = &(*cub)->world->celling_color;
+	*colptr = (t_color *)cub_alloc(NULL, 1, sizeof(t_color));
+	colptr = &(*cub)->world->floor_color;
+	*colptr = (t_color *)cub_alloc(NULL, 1, sizeof(t_color));
+	(*cub)->player = (t_player *)cub_alloc(NULL, 1, sizeof(t_player));
 }
 
 /*
@@ -45,21 +67,13 @@ int	main(int ac, char **av)
 {
 	t_cub	*cub;
 
+	fs_init_cub(&cub);
 	if (DEBUG) /* TO REMOVE */
-		dg_main(ac, av);
-	cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
-	// GET FILE DATA
+		dg_main(cub, ac, av);
 	cub_get_data(cub, ac, av);
 	fs_process_data(cub);
-	
-	// load data (images, colors)
-	// free data not used
-	
-	// INIT GAME (WINDOW, EVENT)
 	fs_init_window(cub);
 	cub_init_events(cub);
-
-	// RUN GAME
 	ft_printf("%s", LOGO);
 	mlx_loop(cub->win->mlx);
 	return (0);

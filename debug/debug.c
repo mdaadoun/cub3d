@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 10:51:52 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 16:30:37 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	dg_print_data_after(t_cub *cub)
 	t_data	*data;
 
 	data = cub->data;
-	(void) data;
-	ft_putstr_fd("\nDatas after parsing:\n", 1);
+	// (void) data;
+	// ft_putstr_fd("\nDatas after parsing:\n", 1);
 	ft_printf("imgpath_EA: %s\n", data->imgpath_ea);
 	ft_printf("imgpath_NO: %s\n", data->imgpath_no);
 	ft_printf("imgpath_SO: %s\n", data->imgpath_so);
 	ft_printf("imgpath_WE: %s\n", data->imgpath_we);
-	ft_printf("color_C: %s\n", data->color_c);
-	ft_printf("color_F: %s\n", data->color_f);
+	// ft_printf("color_C: %s\n", data->color_c);
+	// ft_printf("color_F: %s\n", data->color_f);
 }
 
 void	dg_print_map(t_cub *cub)
@@ -66,22 +66,38 @@ void	dg_print_map(t_cub *cub)
 	}
 }
 
-int	dg_main(int ac, char **av)
+void	dg_print_colors(t_world *world)
 {
-	t_cub	*cub;
+	ft_printf("Floor color:\n");
+	ft_printf("R:%d, ", world->floor_color->R);
+	ft_printf("G:%d, ", world->floor_color->G);
+	ft_printf("B:%d\n", world->floor_color->B);
+	ft_printf("Celling color:\n");
+	ft_printf("R:%d, ", world->celling_color->R);
+	ft_printf("G:%d, ", world->celling_color->G);
+	ft_printf("B:%d\n", world->celling_color->B);
+}
+
+int	dg_main(t_cub *cub, int ac, char **av)
+{
 	t_list_str	*datalst;
+	char	*colc;
+	char	*colf;
 
-
-	ft_printf("debug on.\n");
-	dg_print_arg(ac, av);
-	cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
+	// ft_printf("debug on.\n");
+	// dg_print_arg(ac, av);
 	cub_get_data(cub, ac, av);
-	dg_print_data_before(cub);
+	// dg_print_data_before(cub);
 	datalst = cub_set_config(cub);
 	dg_print_data_after(cub);
-	// check_valid_colors();
+	colc = cub->data->color_c;
+	colf = cub->data->color_f;
+	if (!cub_check_set_colors(cub, cub->world->celling_color, colc))
+		cub_free_before_exit(cub, ERROR_FORMAT);
+	if (!cub_check_set_colors(cub, cub->world->floor_color, colf))
+		cub_free_before_exit(cub, ERROR_FORMAT);
+	dg_print_colors(cub->world);
 	cub_build_map(cub, datalst);
-	dg_print_map(cub);
 	cub_check_map(cub);
 	dg_print_map(cub);
 	cub_free_before_exit(cub, NO_ERROR);
