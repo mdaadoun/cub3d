@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/24 09:10:01 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 08:20:08 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,20 @@ void	dg_print_data_after(t_cub *cub)
 	ft_printf("color_F: %s\n", data->color_f);
 }
 
-int dg_main(int ac, char **av)
+void	dg_print_map(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	ft_printf("\nMap builder\n");
+	while (cub->map[i])
+	{
+		ft_printf("%s\n", cub->map[i]);
+		i++;
+	}
+}
+
+int	dg_main(int ac, char **av)
 {
 	t_cub	*cub;
 
@@ -64,6 +77,7 @@ int dg_main(int ac, char **av)
 	dg_print_data_before(cub);
 	cub_parse_data(cub);
 	dg_print_data_after(cub);
+	dg_print_map(cub);
 	cub_free_before_exit(cub, NO_ERROR);
 	return (0);
 }
