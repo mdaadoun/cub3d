@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 08:48:56 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 09:18:37 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	fs_init_window(t_cub *cub)
 	cub->win->win = mlx_new_window(cub->win->mlx, WIDTH, HEIGHT, "Cub3d");
 }
 
-
 static void	fs_process_data(t_cub *cub)
 {
-	cub_set_config(cub);
-	// check_valid_colors();
-	cub_build_map(cub, cub->data->filedata);
-}
+	t_list_str	*datalst;
 
+	datalst = cub_set_config(cub);
+	// check_valid_colors();
+	cub_build_map(cub, datalst);
+}
 
 /*
  *	CUBE3D

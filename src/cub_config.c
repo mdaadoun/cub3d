@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/27 08:59:27 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 09:18:08 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static t_u8	fs_save_data(t_cub *cub, char *line, t_u8 count)
 	return (count);
 }
 
-void	cub_set_config(t_cub *cub)
+t_list_str	*cub_set_config(t_cub *cub)
 {
 	t_list_str	*data_list;
 	t_u8		count;
@@ -96,4 +96,5 @@ void	cub_set_config(t_cub *cub)
 	}
 	if (count != 6)
 		cub_free_before_exit(cub, ERROR_FORMAT);
+	return (data_list);
 }

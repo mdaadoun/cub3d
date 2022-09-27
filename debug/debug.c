@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 08:49:27 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 09:28:16 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	dg_print_map(t_cub *cub)
 	ft_printf("\nMap builder\n");
 	while (cub->map[i])
 	{
-		ft_printf("%s\n", cub->map[i]);
+		ft_printf("%s\e[0;31m$\e[m\n", cub->map[i]);
 		i++;
 	}
 }
@@ -69,16 +69,18 @@ void	dg_print_map(t_cub *cub)
 int	dg_main(int ac, char **av)
 {
 	t_cub	*cub;
+	t_list_str	*datalst;
+
 
 	ft_printf("debug on.\n");
 	dg_print_arg(ac, av);
 	cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
 	cub_get_data(cub, ac, av);
 	dg_print_data_before(cub);
-	cub_set_config(cub);
-	// check_valid_colors();
-	cub_build_map(cub, cub->data->filedata);
+	datalst = cub_set_config(cub);
 	dg_print_data_after(cub);
+	// check_valid_colors();
+	cub_build_map(cub, datalst);
 	dg_print_map(cub);
 	cub_free_before_exit(cub, NO_ERROR);
 	return (0);
