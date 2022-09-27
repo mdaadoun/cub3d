@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:45:36 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 10:57:12 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 08:03:51 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	fs_build_filedata(t_cub *cub)
 
 	fd = open(cub->data->filepath, O_RDONLY);
 	if (fd == -1)
-		cub_free_before_exit(cub, ERROR_PATH);
+		cub_free_before_exit(cub, ERROR_FILE);
 	line = "";
 	while (line)
 	{

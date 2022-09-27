@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/24 09:59:29 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 08:49:42 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ typedef double				t_f64;
 # define MSG_ERROR_MALLOC "An error with memory allocation occured."
 # define MSG_ERROR_PARAMS "The program need the path of \
 a map file as a unique parameter."
-# define MSG_ERROR_PATH "The file path is incorrect."
-# define MSG_ERROR_FILE "The file is not a .cub file."
+# define MSG_ERROR_FILE "The file path or name is incorrect."
 # define MSG_ERROR_SCREEN "The screen size is incorrect."
 # define MSG_ERROR_FORMAT "The file content is not formated correctly."
 # define MSG_ERROR_MAP "The map is not formated correctly."
@@ -84,25 +83,11 @@ typedef enum e_errkey {
 	NO_ERROR,
 	ERROR_PARAMS,
 	ERROR_FILE,
-	ERROR_PATH,
 	ERROR_SCREEN,
 	ERROR_FORMAT,
 	ERROR_MAP,
 	ERROR_MALLOC
 }			t_errkey;
-
-/*
- *	Flag data structure:
- */
-
-typedef struct s_flag {
-	bool	c;
-	bool	f;
-	bool	ea;
-	bool	no;
-	bool	so;
-	bool	we;
-}			t_flag;
 
 /*
  *	Player structure:
@@ -126,7 +111,7 @@ typedef struct s_data {
 	char		*imgpath_we;
 	char		*color_f;
 	char		*color_c;
-	t_flag		flag;
+	// t_flag		flag;
 }	t_data;
 
 /*
@@ -195,11 +180,11 @@ void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
 /*
  * Parsing functions
  *		files:
- *			cub_parser.c
+ *			config.c
  *			cub_map.c
  */
 
-void		cub_parse_data(t_cub *cub);
+void		cub_set_config(t_cub *cub);
 void		cub_build_map(t_cub *cub, t_list_str *data_list);
 
 // TO DELETE:

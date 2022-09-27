@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/27 08:21:20 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 08:45:33 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	fs_check_all_line(t_cub *cub, t_list_str *data)
 void	cub_build_map(t_cub *cub, t_list_str *data_list)
 {
 	char	**map;
-	size_t	len;
+	size_t	nb_lines;
 	int		i;
 
 	while (data_list->str)
@@ -61,8 +61,8 @@ void	cub_build_map(t_cub *cub, t_list_str *data_list)
 		else
 			break ;
 	}
-	len = fs_check_all_line(cub, data_list);
-	map = ft_calloc(len, sizeof(char *));
+	nb_lines = fs_check_all_line(cub, data_list);
+	map = ft_calloc(nb_lines, sizeof(char *));
 	i = 0;
 	while (data_list)
 	{
