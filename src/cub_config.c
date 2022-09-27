@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/27 08:47:22 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 08:59:27 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static char	*fs_split_and_trim(t_cub *cub, char *line)
 static void	fs_flag_check_set(t_cub *cub, char *line, char **str_ptr)
 {
 	char	*str;
-	str = fs_split_and_trim(cub, line);
 
+	str = fs_split_and_trim(cub, line);
 	if (*str_ptr)
 		cub_free_before_exit(cub, ERROR_FORMAT);
 	*str_ptr = str;
@@ -82,7 +82,6 @@ static t_u8	fs_save_data(t_cub *cub, char *line, t_u8 count)
 
 void	cub_set_config(t_cub *cub)
 {
-
 	t_list_str	*data_list;
 	t_u8		count;
 
