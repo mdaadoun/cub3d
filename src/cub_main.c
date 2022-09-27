@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/23 11:09:56 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 08:48:56 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,21 @@ static void	fs_init_window(t_cub *cub)
 	cub->win->win = mlx_new_window(cub->win->mlx, WIDTH, HEIGHT, "Cub3d");
 }
 
+
+static void	fs_process_data(t_cub *cub)
+{
+	cub_set_config(cub);
+	// check_valid_colors();
+	cub_build_map(cub, cub->data->filedata);
+}
+
+
 /*
  *	CUBE3D
  *	======
  *		1. Initialize the main structure.
  *		2. Get data from the map file.
- * 		3. Parse data and build map.
+ * 		3. Set config and build map.
  * 		4. Load resources, init window and set events.
  * 		5. Start game engine.
  */
@@ -38,10 +47,18 @@ int	main(int ac, char **av)
 	if (DEBUG) /* TO REMOVE */
 		dg_main(ac, av);
 	cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
+	// GET FILE DATA
 	cub_get_data(cub, ac, av);
-	cub_parse_data(cub);
+	fs_process_data(cub);
+	
+	// load data (images, colors)
+	// free data not used
+	
+	// INIT GAME (WINDOW, EVENT)
 	fs_init_window(cub);
 	cub_init_events(cub);
+
+	// RUN GAME
 	ft_printf("%s", LOGO);
 	mlx_loop(cub->win->mlx);
 	return (0);

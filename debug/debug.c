@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 08:20:08 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 08:49:27 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ int	dg_main(int ac, char **av)
 	cub = (t_cub *)cub_alloc(NULL, 1, sizeof(t_cub));
 	cub_get_data(cub, ac, av);
 	dg_print_data_before(cub);
-	cub_parse_data(cub);
+	cub_set_config(cub);
+	// check_valid_colors();
+	cub_build_map(cub, cub->data->filedata);
 	dg_print_data_after(cub);
 	dg_print_map(cub);
 	cub_free_before_exit(cub, NO_ERROR);
