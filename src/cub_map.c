@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/27 08:45:33 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 10:50:52 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,4 @@ void	cub_build_map(t_cub *cub, t_list_str *data_list)
 		i++;
 	}
 	cub->map = map;
-	(void)data_list;
 }

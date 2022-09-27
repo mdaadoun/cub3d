@@ -46,7 +46,7 @@ DSRCS = debug/debug.c src/cub_main.c src/cub_file.c src/cub_free.c \
 src/cub_config.c src/cub_utils.c src/cub_errors.c src/cub_events.c \
 src/cub_map.c src/cub_check_map.c
 VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
-ARG = maps/map_basic_0.cub
+ARG = maps/map_basic_1.cub
 
 debug: fclean
 	@make -sC libft
