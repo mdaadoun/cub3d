@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 09:28:16 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 09:40:30 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	dg_main(int ac, char **av)
 	// check_valid_colors();
 	cub_build_map(cub, datalst);
 	dg_print_map(cub);
+	cub_check_map(cub);
 	cub_free_before_exit(cub, NO_ERROR);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 09:18:37 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/27 09:34:44 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	fs_process_data(t_cub *cub)
 	datalst = cub_set_config(cub);
 	// check_valid_colors();
 	cub_build_map(cub, datalst);
+	cub_check_map(cub);
 }
 
 /*
