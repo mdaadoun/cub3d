@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:23:04 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/24 12:42:01 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/27 08:14:59 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ static bool	fs_check_line(char *line)
 	int		i;
 	char	c;
 
+	if (!line)
+		return (true);
 	i = 0;
 	while (line[i])
 	{
 		c = line[i];
 		if (c != '0' && c != '1' && c != 'N' && c != 'S'
-			&& c != 'E' && c != 'W')
+			&& c != 'E' && c != 'W' && c != ' ')
 			break ;
 		i++;
 	}
-	if (line[i] == '\0')
+	if (line[i] == '\n' || line[i] == '\0')
 		return (true);
 	return (false);
 }
@@ -64,7 +66,7 @@ void	cub_build_map(t_cub *cub, t_list_str *data_list)
 	i = 0;
 	while (data_list)
 	{
-		map[i] = data_list->str;
+		map[i] = ft_strtrim(data_list->str, "\n");
 		data_list = data_list->next;
 		i++;
 	}
