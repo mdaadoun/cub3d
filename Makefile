@@ -44,7 +44,7 @@ re: fclean all
 
 
 VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
-ARG = maps/map_basic_1.cub
+ARG = test2.cub
 
 # TO DELETE START
 DFLAGS = -g3 -ggdb -I. -D DEBUG=1

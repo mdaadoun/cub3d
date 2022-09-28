@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/28 09:38:43 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/28 10:09:56 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ int	dg_main(t_cub *cub, int ac, char **av)
 	cub_build_map(cub, datalst);
 	cub_check_map(cub);
 	dg_print_map(cub);
-	cub_init_window(cub);
+	cub_init_map(cub);
 	cub_init_events(cub);
-	mlx_loop_hook(cub->win->mlx, (*cub_game_loop), cub);
-	mlx_loop(cub->win->mlx);
+	mlx_loop_hook(cub->winmap->mlx, (*cub_game_loop), cub);
+	mlx_loop(cub->winmap->mlx);
 	cub_free_before_exit(cub, NO_ERROR);
 	return (0);
 }

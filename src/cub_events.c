@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 09:11:51 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/23 09:24:19 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:06:49 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ static int	fs_key_hook(int keycode, t_cub *cub)
 
 void	cub_init_events(t_cub *cub)
 {
-	mlx_hook(cub->win->win, KeyPress, (1L << 0), fs_key_hook, cub);
-	mlx_hook(cub->win->win, DestroyNotify, 1L << 17, fs_close, cub);
+	if (cub->win)
+	{
+		mlx_hook(cub->win->win, KeyPress, (1L << 0), fs_key_hook, cub);
+		mlx_hook(cub->win->win, DestroyNotify, 1L << 17, fs_close, cub);
+	}
+	if (cub->winmap)
+	{
+		mlx_hook(cub->winmap->win, KeyPress, (1L << 0), fs_key_hook, cub);
+		mlx_hook(cub->winmap->win, DestroyNotify, 1L << 17, fs_close, cub);
+	}
 }

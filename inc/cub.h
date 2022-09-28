@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/28 09:33:32 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/09/28 09:54:42 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,7 @@ void		cub_check_wall_map(t_cub *cub, char **map);
  */
 
 void	cub_init_window(t_cub *cub);
+void	cub_init_map(t_cub *cub);
 
 /*
  * Update functions
