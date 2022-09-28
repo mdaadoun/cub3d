@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/27 16:33:56 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:52:00 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 			fs_clear_window(cub->win);
 		if (cub->map)
 			cub_free_strarr(cub->map);
-		free(cub->world->celling_color);
-		free(cub->world->floor_color);
+		free(cub->world->cel_color);
+		free(cub->world->flr_color);
 		free(cub->world);
 		free(cub->player);
 		free(cub);

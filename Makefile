@@ -1,5 +1,6 @@
 NAME = cub3D
-SRCS = main.c file.c free.c errors.c utils.c events.c config.c map.c check_map.c check_wall_map.c colors.c
+SRCS = main.c file.c free.c errors.c utils.c events.c config.c map.c \
+check_map.c check_wall_map.c colors.c display.c update.c draw.c
 DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
@@ -41,12 +42,16 @@ fclean: clean
 
 re: fclean all
 
+
+VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
+ARG = maps/map_basic_1.cub
+
+# TO DELETE START
 DFLAGS = -g3 -ggdb -I. -D DEBUG=1
 DSRCS = debug/debug.c src/cub_main.c src/cub_file.c src/cub_free.c \
 src/cub_config.c src/cub_utils.c src/cub_errors.c src/cub_events.c \
-src/cub_map.c src/cub_check_map.c src/cub_check_wall_map.c src/cub_colors.c
-VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
-ARG = maps/map_basic_1.cub
+src/cub_map.c src/cub_check_map.c src/cub_check_wall_map.c src/cub_colors.c \
+src/cub_display.c src/cub_update.c src/cub_draw.c
 
 debug: fclean
 	@make -sC libft
@@ -54,6 +59,7 @@ debug: fclean
 	@echo "$(B)Building $(NAME) debug program.$(D)"
 	@$(CC) $(FLAGS) $(DFLAGS) ${DSRCS} ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
 	@echo "$(G)$(NAME) debug program created.$(D)"
+# TO DELETE END
 
 valgrind:
 	valgrind ${VARG} ./${NAME} ${ARG}

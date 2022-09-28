@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 15:21:01 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:53:57 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,20 @@ typedef struct s_color
 	t_u8	B;
 }	t_color;
 
+typedef struct s_rect
+{
+	t_u16	top_left_coord_x;
+	t_u16	top_left_coord_y;
+	t_u16	width;
+	t_u16	height;
+}	t_rect;
+
 typedef struct s_world {
-	t_color	*floor_color;
-	t_color	*celling_color;
+	bool	update;
+	t_color	*flr_color;
+	t_rect	*flr_rect;
+	t_color	*cel_color;
+	t_rect	*cel_rect;
 }	t_world;
 
 /*
@@ -218,7 +229,33 @@ void		cub_build_map(t_cub *cub, t_list_str *data_list);
 void		cub_check_map(t_cub *cub);
 void		cub_check_wall_map(t_cub *cub, char **map);
 
-// TO DELETE:
+/*
+ * Display functions
+ *		files:
+ *			cub_display.c
+ */
+
+void	cub_init_window(t_cub *cub);
+
+/*
+ * Update functions
+ *		files:
+ *			cub_update.c
+ */
+
+int		cub_game_loop(t_cub *cub);
+
+/*
+ * Drawing functions
+ *		files:
+ *			cub_draw.c
+ */
+
+void	cub_draw_world(t_cub *cub);
+
+
+///////////////////////////////////////////////////////////////////////
+// TO DELETE START
 
 # ifndef DEBUG
 #  define DEBUG 0
@@ -232,5 +269,8 @@ void		cub_check_wall_map(t_cub *cub, char **map);
 int			dg_main(t_cub *cub, int ac, char **av);
 void		dg_print_arg(int ac, char **av);
 void		dg_lst_data(t_cub *cub);
+
+// TO DELETE END
+///////////////////////////////////////////////////////////////////////
 
 #endif

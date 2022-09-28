@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 16:30:37 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:52:37 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	dg_print_map(t_cub *cub)
 void	dg_print_colors(t_world *world)
 {
 	ft_printf("Floor color:\n");
-	ft_printf("R:%d, ", world->floor_color->R);
-	ft_printf("G:%d, ", world->floor_color->G);
-	ft_printf("B:%d\n", world->floor_color->B);
+	ft_printf("R:%d, ", world->flr_color->R);
+	ft_printf("G:%d, ", world->flr_color->G);
+	ft_printf("B:%d\n", world->flr_color->B);
 	ft_printf("Celling color:\n");
-	ft_printf("R:%d, ", world->celling_color->R);
-	ft_printf("G:%d, ", world->celling_color->G);
-	ft_printf("B:%d\n", world->celling_color->B);
+	ft_printf("R:%d, ", world->cel_color->R);
+	ft_printf("G:%d, ", world->cel_color->G);
+	ft_printf("B:%d\n", world->cel_color->B);
 }
 
 int	dg_main(t_cub *cub, int ac, char **av)
@@ -92,14 +92,18 @@ int	dg_main(t_cub *cub, int ac, char **av)
 	dg_print_data_after(cub);
 	colc = cub->data->color_c;
 	colf = cub->data->color_f;
-	if (!cub_check_set_colors(cub, cub->world->celling_color, colc))
+	if (!cub_check_set_colors(cub, cub->world->cel_color, colc))
 		cub_free_before_exit(cub, ERROR_FORMAT);
-	if (!cub_check_set_colors(cub, cub->world->floor_color, colf))
+	if (!cub_check_set_colors(cub, cub->world->flr_color, colf))
 		cub_free_before_exit(cub, ERROR_FORMAT);
 	dg_print_colors(cub->world);
 	cub_build_map(cub, datalst);
 	cub_check_map(cub);
 	dg_print_map(cub);
+	cub_init_window(cub);
+	cub_init_events(cub);
+	mlx_loop_hook(cub->win->mlx, (*cub_game_loop), cub);
+	mlx_loop(cub->win->mlx);
 	cub_free_before_exit(cub, NO_ERROR);
 	return (0);
 }
