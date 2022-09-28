@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 09:01:26 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/27 16:35:17 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:37:32 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ void	fs_replace_line(char **map, size_t m_len)
 				i++;
 			}
 			while (i < m_len)
-			{
-				tmp[i] = ' ';
-				i++;
-			}
+				tmp[i++] = ' ';
 			free(map[tab]);
 			map[tab] = tmp;
 			tmp = NULL;
@@ -109,7 +106,7 @@ void	cub_check_map(t_cub *cub)
 {
 	char	**map;
 
-	map = cub->map;
+	map = cub->map->map;
 	fs_check_char_map(cub, map);
 	fs_map_space_resize(map);
 	cub_check_wall_map(cub, map);

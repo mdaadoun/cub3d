@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:41:50 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/09/28 08:52:00 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:36:03 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ static void	fs_clear_window(t_win *win)
 	free(win);
 }
 
+static void	fs_clear_map(t_map *map)
+{
+	if (map->map)
+		cub_free_strarr(map->map);
+	free(map);
+}
+
 /*
  * Free memory, print error and exit.
  */
@@ -74,7 +81,7 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 		if (cub->win)
 			fs_clear_window(cub->win);
 		if (cub->map)
-			cub_free_strarr(cub->map);
+			fs_clear_map(cub->map);
 		free(cub->world->cel_color);
 		free(cub->world->flr_color);
 		free(cub->world);

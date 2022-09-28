@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:52:32 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/28 08:52:37 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:38:43 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	dg_print_map(t_cub *cub)
 
 	i = 0;
 	ft_printf("\nMap builder\n");
-	while (cub->map[i])
+	while (cub->map->map[i])
 	{
-		ft_printf("%s\e[0;31m$\e[m\n", cub->map[i]);
+		ft_printf("%s\e[0;31m$\e[m\n", cub->map->map[i]);
 		i++;
 	}
 }

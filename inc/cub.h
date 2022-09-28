@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/28 08:53:57 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:33:32 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef double				t_f64;
 
 # define WIDTH	320
 # define HEIGHT	240
+# define GRID 64
 
 # define LOGO "\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
@@ -155,6 +156,16 @@ typedef struct s_win {
 }	t_win;
 
 /*
+ *	Window structure:
+ */
+
+typedef struct s_map {
+	char	**map;
+	int		x;
+	int		y;
+}	t_map;
+
+/*
  *	Main structure:
  */
 
@@ -163,7 +174,8 @@ typedef struct s_cub {
 	t_world		*world;
 	t_data		*data;
 	t_win		*win;
-	char		**map;
+	t_win		*winmap;
+	t_map		*map;
 }	t_cub;
 
 /*

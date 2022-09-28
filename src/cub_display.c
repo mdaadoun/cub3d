@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/28 08:41:18 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:29:17 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,9 @@ void	cub_init_window(t_cub *cub)
 	if (cub->win->win_x < WIDTH || cub->win->win_y < HEIGHT)
 		cub_free_before_exit(cub, NO_ERROR);
 	cub->win->win = mlx_new_window(cub->win->mlx, WIDTH, HEIGHT, "Cub3d");
+}
+
+void	cub_init_map(t_cub *cub)
+{
+	cub->winmap = (t_win *)cub_alloc(cub, 1, sizeof(t_win));
 }

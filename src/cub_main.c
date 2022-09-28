@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:16:31 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/28 08:53:02 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:37:10 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	fs_init_cub(t_cub **cub)
 	colptr = &(*cub)->world->flr_color;
 	*colptr = (t_color *)cub_alloc(NULL, 1, sizeof(t_color));
 	(*cub)->player = (t_player *)cub_alloc(NULL, 1, sizeof(t_player));
+	(*cub)->map = (t_map *)cub_alloc(NULL, 1, sizeof(t_map));
 }
 
 /*
