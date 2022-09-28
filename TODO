@@ -11,3 +11,7 @@
 * draw first ray cast, from player to first wall side
 * rotate vision cone of player
 * connect each input event to movement or player or vision cone (A S D W LEFT RIGHT)
+
+
+END
+* add headers

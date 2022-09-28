@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 12:41:52 by dlaidet           #+#    #+#             */
-/*   Updated: 2022/09/28 09:54:42 by dlaidet          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB_H
 # define CUB_H
 
@@ -113,10 +101,18 @@ typedef struct s_color
 	t_u8	B;
 }	t_color;
 
+typedef struct s_line
+{
+	t_u16	x1;
+	t_u16	y1;
+	t_u16	x2;
+	t_u16	y2;
+}	t_line;
+
 typedef struct s_rect
 {
-	t_u16	top_left_coord_x;
-	t_u16	top_left_coord_y;
+	t_u16	x;
+	t_u16	y;
 	t_u16	width;
 	t_u16	height;
 }	t_rect;
@@ -174,7 +170,6 @@ typedef struct s_cub {
 	t_world		*world;
 	t_data		*data;
 	t_win		*win;
-	t_win		*winmap;
 	t_map		*map;
 }	t_cub;
 
@@ -225,7 +220,7 @@ void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
  *			cub_colors.c
  */
 
-bool		cub_check_set_colors(t_cub *cub, t_color *color, char *colstr);
+void		cub_init_colors(t_cub *cub);
 
 /*
  * Parsing functions
@@ -262,9 +257,11 @@ int		cub_game_loop(t_cub *cub);
  * Drawing functions
  *		files:
  *			cub_draw.c
+ *			cub_draw_helpers.c
  */
 
 void	cub_draw_world(t_cub *cub);
+void	cub_draw_rectangle(t_win *win, t_rect *rect, t_color *color);
 
 
 ///////////////////////////////////////////////////////////////////////

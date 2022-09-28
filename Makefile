@@ -1,6 +1,7 @@
 NAME = cub3D
 SRCS = main.c file.c free.c errors.c utils.c events.c config.c map.c \
-check_map.c check_wall_map.c colors.c display.c update.c draw.c
+check_map.c check_wall_map.c colors.c display.c update.c draw.c \
+draw_helpers.c
 DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
@@ -51,7 +52,7 @@ DFLAGS = -g3 -ggdb -I. -D DEBUG=1
 DSRCS = debug/debug.c src/cub_main.c src/cub_file.c src/cub_free.c \
 src/cub_config.c src/cub_utils.c src/cub_errors.c src/cub_events.c \
 src/cub_map.c src/cub_check_map.c src/cub_check_wall_map.c src/cub_colors.c \
-src/cub_display.c src/cub_update.c src/cub_draw.c
+src/cub_display.c src/cub_update.c src/cub_draw.c src/cub_draw_helpers.c
 
 debug: fclean
 	@make -sC libft
