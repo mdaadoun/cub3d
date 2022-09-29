@@ -84,8 +84,8 @@ int	dg_main(t_cub *cub, int ac, char **av)
 	cub_build_map(cub, datalst);
 	cub_check_map(cub);
 	dg_print_map(cub);
-	cub_init_map(cub);
-	// cub_init_window(cub);
+	// cub_init_map(cub);
+	cub_init_window(cub);
 	cub_init_events(cub);
 	mlx_loop_hook(cub->win->mlx, (*cub_game_loop), cub);
 	mlx_loop(cub->win->mlx);

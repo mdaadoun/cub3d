@@ -11,17 +11,17 @@ static int	fs_key_hook(int keycode, t_cub *cub)
 	if (keycode == XK_Escape)
 		cub_free_before_exit(cub, NO_ERROR);
 	else if (keycode == XK_a)
-		ft_printf("a");
+		cub_rotate_player(cub, XK_a);
 	else if (keycode == XK_s)
-		ft_printf("s");
+		cub_move_player(cub, XK_s);
 	else if (keycode == XK_d)
-		ft_printf("d");
+		cub_rotate_player(cub, XK_d);
 	else if (keycode == XK_w)
-		ft_printf("w");
+		cub_move_player(cub, XK_w);
 	else if (keycode == XK_Left)
-		ft_printf("LEFT");
+		cub_move_player(cub, XK_Left);
 	else if (keycode == XK_Right)
-		ft_printf("RIGHT");
+		cub_move_player(cub, XK_Right);
 	return (0);
 }
 

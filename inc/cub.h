@@ -263,6 +263,14 @@ int		cub_game_loop(t_cub *cub);
 void	cub_draw_world(t_cub *cub);
 void	cub_draw_rectangle(t_win *win, t_rect *rect, t_color *color);
 
+/*
+ * Player functions
+ *		files:
+ *			cub_player.c
+ */
+
+void	cub_move_player(t_cub *cub, t_u16 key);
+void	cub_rotate_player(t_cub *cub, t_u16 key);
 
 ///////////////////////////////////////////////////////////////////////
 // TO DELETE START

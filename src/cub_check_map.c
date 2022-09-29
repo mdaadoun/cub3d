@@ -2,8 +2,8 @@
 
 void	fs_set_radiant(t_cub *cub, char c, int y, int x)
 {
-	cub->player->y = y;
-	cub->player->x = x;
+	cub->player->y = y * GRID;
+	cub->player->x = x * GRID;
 	if (c == 'E')
 		cub->player->radiant = M_PI;
 	if (c == 'N')
