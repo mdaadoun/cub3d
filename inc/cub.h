@@ -93,6 +93,14 @@ typedef struct s_player {
  *	World structure:
  */
 
+typedef struct s_buffer
+{
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
+	char	*buffer;
+}	t_buffer;
+
 typedef struct s_color
 {
 	t_u8	T;
@@ -147,6 +155,7 @@ typedef struct s_data {
 typedef struct s_win {
 	void	*mlx;
 	void	*win;
+	void	*img;
 	int		win_x;
 	int		win_y;
 }	t_win;
@@ -261,7 +270,7 @@ int		cub_game_loop(t_cub *cub);
  */
 
 void	cub_draw_world(t_cub *cub);
-void	cub_draw_rectangle(t_win *win, t_rect *rect, t_color *color);
+void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color);
 
 /*
  * Player functions

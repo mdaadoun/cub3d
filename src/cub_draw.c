@@ -7,17 +7,16 @@
 // 	(void) map;
 // }
 
-static void	fs_draw_player(t_win *win, t_player *player)
+static void	fs_draw_player(t_cub *cub)
 {
 	ft_printf("Draw player!\n");
-	(void) win;
-	(void) player;
+	(void) cub;
 }
 
 void	cub_draw_world(t_cub *cub)
 {
-	cub_draw_rectangle(cub->win, cub->world->cel_rect, cub->world->cel_color);
-	cub_draw_rectangle(cub->win, cub->world->flr_rect, cub->world->flr_color);
+	cub_draw_rectangle(cub, cub->world->cel_rect, cub->world->cel_color);
+	cub_draw_rectangle(cub, cub->world->flr_rect, cub->world->flr_color);
 	// fs_draw_map(cub->win, cub->map);
-	fs_draw_player(cub->win, cub->player);
+	fs_draw_player(cub);
 }
