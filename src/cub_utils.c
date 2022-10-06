@@ -9,3 +9,10 @@ void	*cub_alloc(t_cub *cub, size_t nmemb, size_t size)
 		cub_free_before_exit(cub, ERROR_MALLOC);
 	return (ptr);
 }
+
+bool	cub_is_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (true);
+	return (false);
+}

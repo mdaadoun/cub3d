@@ -4,20 +4,20 @@ static void	fs_get_color(t_color *color, char c)
 {
 	if (c == '1')
 	{
-		color->B = 100;
+		color->B = 150;
 		color->R = 20;
 		color->G = 65;
 	}
 	if (c == '0')
 	{
-		color->B = 0;
-		color->R = 0;
-		color->G = 0;
+		color->B = 200;
+		color->R = 200;
+		color->G = 200;
 	}
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (cub_is_player(c))
 	{
 		color->B = 0;
-		color->R = 255;
+		color->R = 150;
 		color->G = 0;
 	}
 	color->T = 0;
@@ -25,7 +25,7 @@ static void	fs_get_color(t_color *color, char c)
 
 static void	fs_get_rect(t_rect *rect, int x, int y, char c)
 {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (cub_is_player(c))
 	{
 		rect->height = 8;
 		rect->width = 8;
@@ -52,6 +52,12 @@ static void	fs_draw_map(t_cub *cub, char **map)
 	y = 0;
 	while (map[y] && map[y][x])
 	{
+		if (cub_is_player(map[y][x]))
+		{
+			fs_get_color(&color, '0');
+			fs_get_rect(&rect, x, y, '0');
+			cub_draw_rectangle(cub, &rect, &color);
+		}
 		fs_get_color(&color, map[y][x]);
 		fs_get_rect(&rect, x, y, map[y][x]);
 		if (map[y][x] != ' ')

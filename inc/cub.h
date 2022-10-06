@@ -231,6 +231,7 @@ void		cub_print_error(t_errkey errkey, t_u8 out);
  */
 
 void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
+bool		cub_is_player(char c);
 
 /*
  * Colors functions
