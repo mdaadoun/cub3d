@@ -34,19 +34,19 @@ bool	fs_check_set_colors(t_cub *cub, t_color *color, char *colstr)
 
 void	fs_set_colors_rectangles(t_cub *cub)
 {
-	t_rect *rectf;
-	t_rect *rectc;
+	t_rect	*rectf;
+	t_rect	*rectc;
 
 	rectf = (t_rect *)cub_alloc(cub, sizeof(t_rect), 1);
 	rectc = (t_rect *)cub_alloc(cub, sizeof(t_rect), 1);
-	rectc->height = HEIGHT/2;
+	rectc->height = HEIGHT / 2;
 	rectc->width = WIDTH;
 	rectc->x = 0;
 	rectc->y = 0;
-	rectf->height = HEIGHT/2;
+	rectf->height = HEIGHT / 2;
 	rectf->width = WIDTH;
 	rectf->x = 0;
-	rectf->y = HEIGHT/2;
+	rectf->y = HEIGHT / 2;
 	cub->world->flr_rect = rectf;
 	cub->world->cel_rect = rectc;
 }
