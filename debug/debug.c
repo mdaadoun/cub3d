@@ -61,13 +61,13 @@ void	dg_print_colors(t_cub *cub)
 	cub_init_colors(cub);
 	world = cub->world;
 	ft_printf("Floor color:\n");
-	ft_printf("R:%d, ", world->flr_color->R);
-	ft_printf("G:%d, ", world->flr_color->G);
-	ft_printf("B:%d\n", world->flr_color->B);
+	ft_printf("R:%d, ", world->flr_color->r);
+	ft_printf("G:%d, ", world->flr_color->g);
+	ft_printf("B:%d\n", world->flr_color->b);
 	ft_printf("Celling color:\n");
-	ft_printf("R:%d, ", world->cel_color->R);
-	ft_printf("G:%d, ", world->cel_color->G);
-	ft_printf("B:%d\n", world->cel_color->B);
+	ft_printf("R:%d, ", world->cel_color->r);
+	ft_printf("G:%d, ", world->cel_color->g);
+	ft_printf("B:%d\n", world->cel_color->b);
 }
 
 int	dg_main(t_cub *cub, int ac, char **av)

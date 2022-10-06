@@ -7,23 +7,23 @@ static void	fs_get_color(t_cub *cub, char c)
 	color = &cub->color;
 	if (c == '1')
 	{
-		color->B = 150;
-		color->R = 20;
-		color->G = 65;
+		color->b = 150;
+		color->r = 20;
+		color->g = 65;
 	}
 	if (c == '0')
 	{
-		color->B = 200;
-		color->R = 200;
-		color->G = 200;
+		color->b = 200;
+		color->r = 200;
+		color->g = 200;
 	}
 	if (cub_is_player(c))
 	{
-		color->B = 0;
-		color->R = 150;
-		color->G = 0;
+		color->b = 0;
+		color->r = 150;
+		color->g = 0;
 	}
-	color->T = 0;
+	color->t = 0;
 }
 
 static void	fs_get_rect(t_cub *cub, int x, int y, char c)
@@ -87,10 +87,10 @@ static void	fs_draw_vision(t_cub *cub)
 	t_line	line;
 	t_color	color;
 
-	color.B = 0;
-	color.R = 150;
-	color.G = 0;
-	color.T = 0;
+	color.b = 0;
+	color.r = 150;
+	color.g = 0;
+	color.t = 0;
 	line.x1 = (cub->player->map_x + cub->player->pos_x) * GRID;
 	line.y1 = (cub->player->map_y + cub->player->pos_y) * GRID;
 	line.x2 = 64;

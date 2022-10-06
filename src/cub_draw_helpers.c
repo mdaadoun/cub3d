@@ -5,10 +5,10 @@ void	cub_draw_pixel(t_buffer *bs, int x, int y, t_color *color)
 	int	pixel;
 
 	pixel = (y * bs->line_bytes) + (x * 4);
-	bs->buffer[pixel + 0] = color->B;
-	bs->buffer[pixel + 1] = color->G;
-	bs->buffer[pixel + 2] = color->R;
-	bs->buffer[pixel + 3] = color->T;
+	bs->buffer[pixel + 0] = color->b;
+	bs->buffer[pixel + 1] = color->g;
+	bs->buffer[pixel + 2] = color->r;
+	bs->buffer[pixel + 3] = color->t;
 }
 
 void	cub_draw_line(t_cub *cub, t_line *line, t_color *color)

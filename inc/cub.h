@@ -105,10 +105,10 @@ typedef struct s_buffer
 
 typedef struct s_color
 {
-	t_u8	T;
-	t_u8	R;
-	t_u8	G;
-	t_u8	B;
+	t_u8	t;
+	t_u8	r;
+	t_u8	g;
+	t_u8	b;
 }	t_color;
 
 typedef struct s_line

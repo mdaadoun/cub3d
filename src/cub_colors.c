@@ -3,11 +3,11 @@
 void	fs_set_color(t_i8 index, t_color *color, t_i8 col)
 {
 	if (index == 0)
-		color->R = col;
+		color->r = col;
 	else if (index == 1)
-		color->G = col;
+		color->g = col;
 	else if (index == 2)
-		color->B = col;
+		color->b = col;
 }
 
 bool	fs_check_set_colors(t_cub *cub, t_color *color, char *colstr)
