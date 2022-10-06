@@ -264,8 +264,8 @@ void		cub_check_wall_map(t_cub *cub, char **map);
  *			cub_display.c
  */
 
-void	cub_init_window(t_cub *cub);
-void	cub_init_map(t_cub *cub);
+void		cub_init_window(t_cub *cub);
+void		cub_init_map(t_cub *cub);
 
 /*
  * Update functions
@@ -273,7 +273,7 @@ void	cub_init_map(t_cub *cub);
  *			cub_update.c
  */
 
-int		cub_game_loop(t_cub *cub);
+int			cub_game_loop(t_cub *cub);
 
 /*
  * Drawing functions
@@ -282,18 +282,19 @@ int		cub_game_loop(t_cub *cub);
  *			cub_draw_helpers.c
  */
 
-void	cub_draw_world(t_cub *cub);
-void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color);
-void	cub_draw_line(t_cub *cub, t_line *line, t_color *color);
+void		cub_draw_world(t_cub *cub);
+void		cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color);
+void		cub_draw_line(t_cub *cub, t_line *line, t_color *color);
 
 /*
  * Player functions
  *		files:
  *			cub_player.c
+ *			cub_player_move.c
  */
 
-void	cub_move_player(t_cub *cub, t_u16 key);
-void	cub_rotate_player(t_cub *cub, t_u16 key);
+void		cub_move_player(t_cub *cub, t_u16 key);
+void		cub_rotate_player(t_cub *cub, t_u16 key);
 
 ///////////////////////////////////////////////////////////////////////
 // TO DELETE START
