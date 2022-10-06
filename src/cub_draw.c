@@ -1,26 +1,60 @@
 #include "../inc/cub.h"
 
-static void fs_draw_map(t_cub *cub, char **map)
+static void	fs_get_color(t_color *color, char c)
+{
+	if (c == '1')
+	{
+		color->B = 100;
+		color->R = 20;
+		color->G = 65;
+	}
+	if (c == '0')
+	{
+		color->B = 0;
+		color->R = 0;
+		color->G = 0;
+	}
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		color->B = 0;
+		color->R = 255;
+		color->G = 0;
+	}
+	color->T = 0;
+}
+
+static void	fs_get_rect(t_rect *rect, int x, int y, char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		rect->height = 8;
+		rect->width = 8;
+		rect->x = (x * GRID) + (GRID / 2);
+		rect->y = (y * GRID) + (GRID / 2);
+	}
+	else
+	{
+		rect->height = 64;
+		rect->width = 64;
+		rect->x = x * GRID;
+		rect->y = y * GRID;
+	}
+}
+
+static void	fs_draw_map(t_cub *cub, char **map)
 {
 	t_rect	rect;
 	t_color	color;
-	int 	x;
+	int		x;
 	int		y;
 
-	rect.height = 64;
-	rect.width = 64;
-	color.B = 100;
-	color.R = 20;
-	color.G = 65;
-	color.T = 0;
 	x = 0;
 	y = 0;
 	while (map[y] && map[y][x])
 	{
-		// get_color(&color, map[y][x], map[y]);
-		rect.x = x * 64;
-		rect.y = y * 64;
-		if (map[y][x] == '1')
+		fs_get_color(&color, map[y][x]);
+		fs_get_rect(&rect, x, y, map[y][x]);
+		if (map[y][x] != ' ')
 			cub_draw_rectangle(cub, &rect, &color);
 		x++;
 		if (!map[y][x])
