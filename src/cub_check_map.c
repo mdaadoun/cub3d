@@ -6,14 +6,14 @@ void	fs_set_radiant(t_cub *cub, char c, int y, int x)
 	cub->player->map_y = y;
 	cub->player->pos_x = ((GRID / 2.0) / 64.0);
 	cub->player->pos_y = ((GRID / 2.0) / 64.0);
-	if (c == 'E')
-		cub->player->radiant = M_PI;
 	if (c == 'N')
-		cub->player->radiant = M_PI_2;
-	if (c == 'W')
-		cub->player->radiant = 3 * M_PI;
-	if (c == 'N')
-		cub->player->radiant = 3 * M_PI_2;
+		cub->player->angle = M_PI;
+	else if (c == 'E')
+		cub->player->angle = 3 * M_PI_2;
+	else if (c == 'W')
+		cub->player->angle = M_PI_2;
+	else if (c == 'S')
+		cub->player->angle = 0;
 }
 
 void	fs_check_char_map(t_cub *cub, char **map)

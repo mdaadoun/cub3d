@@ -21,16 +21,16 @@ void	cub_draw_line(t_cub *cub, t_line *line, t_color *color)
 	bs->buffer = mlx_get_data_addr(cub->win->img, &bs->pixel_bits, &bs->line_bytes, &bs->endian);
 	x = line->x1;
 	y = line->y1;
-	while (x != line->x2 && y != line->y2)
+	while (x != (int) line->x2 || y != (int) line->y2)
 	{
 		cub_draw_pixel(bs, x, y, color);
-		if (x < line->x2)
+		if (x < (int) line->x2)
 			x++;
-		if (x > line->x2)
+		if (x > (int) line->x2)
 			x--;
-		if (y > line->y2)
+		if (y > (int) line->y2)
 			y--;
-		if (y < line->y2)
+		if (y < (int) line->y2)
 			y++;
 	}
 	free(bs);

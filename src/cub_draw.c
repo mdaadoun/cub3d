@@ -35,8 +35,8 @@ static void	fs_get_rect(t_cub *cub, int x, int y, char c)
 	{
 		rect->height = 8;
 		rect->width = 8;
-		rect->x = (cub->player->map_x + cub->player->pos_x) * 64;
-		rect->y = (cub->player->map_y + cub->player->pos_y) * 64;
+		rect->x = (cub->player->map_x + cub->player->pos_x) * GRID;
+		rect->y = (cub->player->map_y + cub->player->pos_y) * GRID;
 	}
 	else
 	{
@@ -88,13 +88,13 @@ static void	fs_draw_vision(t_cub *cub)
 	t_color	color;
 
 	color.b = 0;
-	color.r = 150;
-	color.g = 0;
+	color.r = 255;
+	color.g = 255;
 	color.t = 0;
 	line.x1 = (cub->player->map_x + cub->player->pos_x) * GRID;
 	line.y1 = (cub->player->map_y + cub->player->pos_y) * GRID;
-	line.x2 = 64;
-	line.y2 = 64;
+	line.x2 = ((cub->player->map_x + cub->player->pos_x) - sin(cub->player->angle)) * GRID;
+	line.y2 = ((cub->player->map_y + cub->player->pos_y) + cos(cub->player->angle)) * GRID;
 	cub_draw_line(cub, &line, &color);
 }
 
@@ -103,6 +103,6 @@ void	cub_draw_world(t_cub *cub)
 	cub_draw_rectangle(cub, cub->world->cel_rect, cub->world->cel_color);
 	cub_draw_rectangle(cub, cub->world->flr_rect, cub->world->flr_color);
 	fs_draw_map(cub, cub->map->map);
-	fs_draw_vision(cub);
 	fs_draw_player(cub);
+	fs_draw_vision(cub);
 }

@@ -44,7 +44,6 @@ int	main(int ac, char **av)
 	cub_get_data(cub, ac, av);
 	fs_process_data(cub);
 	cub_init_window(cub);
-	// cub_init_map(cub);
 	cub_init_events(cub);
 	ft_printf("%s", LOGO);
 	mlx_loop_hook(cub->win->mlx, (*cub_game_loop), cub);

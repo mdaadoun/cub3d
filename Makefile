@@ -27,7 +27,7 @@ $(NAME): $(OBJS)
 	@make -sC libft
 	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) program.$(D)"
-	@$(CC) $(FLAGS) $(OBJS) debug/debug.c ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME) #REMOVE DEBUG
+	@$(CC) $(FLAGS) $(OBJS) debug/debug.c ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME) -lm #REMOVE DEBUG
 	@echo "$(G)$(NAME) program created.$(D)"
 
 clean:
@@ -58,7 +58,7 @@ debug: fclean
 	@make -sC libft
 	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) debug program.$(D)"
-	@$(CC) $(FLAGS) $(DFLAGS) ${DSRCS} ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME)
+	@$(CC) $(FLAGS) $(DFLAGS) ${DSRCS} ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME) -lm
 	@echo "$(G)$(NAME) debug program created.$(D)"
 # TO DELETE END
 

@@ -89,7 +89,7 @@ typedef struct s_player {
 	t_u64	map_y;
 	t_f32	pos_x;
 	t_f32	pos_y;
-	t_f32	radiant;
+	t_f32	angle;
 }	t_player;
 
 /*
@@ -114,10 +114,10 @@ typedef struct s_color
 
 typedef struct s_line
 {
-	t_u16	x1;
-	t_u16	y1;
-	t_u16	x2;
-	t_u16	y2;
+	t_f32	x1;
+	t_f32	y1;
+	t_f32	x2;
+	t_f32	y2;
 }	t_line;
 
 // typedef struct s_circle
