@@ -281,6 +281,7 @@ int		cub_game_loop(t_cub *cub);
 
 void	cub_draw_world(t_cub *cub);
 void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color);
+void	cub_draw_line(t_cub *cub, t_line *line, t_color *color);
 
 /*
  * Player functions

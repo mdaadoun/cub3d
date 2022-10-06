@@ -34,8 +34,8 @@ static void	fs_get_rect(t_rect *rect, int x, int y, char c)
 	}
 	else
 	{
-		rect->height = 64;
-		rect->width = 64;
+		rect->height = GRID;
+		rect->width = GRID;
 		rect->x = x * GRID;
 		rect->y = y * GRID;
 	}
@@ -78,10 +78,28 @@ static void	fs_draw_player(t_cub *cub)
 	(void) cub;
 }
 
+static void	fs_draw_vision(t_cub *cub)
+{
+	t_line line;
+	t_color	color;
+
+	color.B = 0;
+	color.R = 150;
+	color.G = 0;
+	color.T = 0;
+	line.x1 = cub->player->map_x * GRID;
+	line.y1 = cub->player->map_y * GRID;
+	line.x2 = 64;
+	line.y2 = 64;
+	cub_draw_line(cub, &line, &color);
+
+}
+
 void	cub_draw_world(t_cub *cub)
 {
 	cub_draw_rectangle(cub, cub->world->cel_rect, cub->world->cel_color);
 	cub_draw_rectangle(cub, cub->world->flr_rect, cub->world->flr_color);
 	fs_draw_map(cub, cub->map->map);
+	fs_draw_vision(cub);
 	fs_draw_player(cub);
 }
