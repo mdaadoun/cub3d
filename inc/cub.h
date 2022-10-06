@@ -84,8 +84,10 @@ typedef enum e_errkey {
  */
 
 typedef struct s_player {
-	t_u64	x;
-	t_u64	y;
+	t_u64	map_x;
+	t_u64	map_y;
+	t_f32	pos_x;
+	t_f32	pos_y;
 	t_f32	radiant;
 }	t_player;
 
@@ -116,6 +118,13 @@ typedef struct s_line
 	t_u16	x2;
 	t_u16	y2;
 }	t_line;
+
+// typedef struct s_circle
+// {
+// 	t_u16	x;
+// 	t_u16	y;
+// 	t_u16	radius;
+// }	t_circle;
 
 typedef struct s_rect
 {

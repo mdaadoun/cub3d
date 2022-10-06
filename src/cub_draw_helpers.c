@@ -39,7 +39,6 @@ void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color)
 		else
 			x++;
 	}
-	mlx_put_image_to_window(cub->win->mlx, cub->win->win, cub->win->img, 0, 0);
 	free(bs);
 }
 
