@@ -189,6 +189,8 @@ typedef struct s_cub {
 	t_data		*data;
 	t_win		*win;
 	t_map		*map;
+	t_color		color;
+	t_rect		rect;
 }	t_cub;
 
 /*

@@ -1,7 +1,10 @@
 #include "../inc/cub.h"
 
-static void	fs_get_color(t_color *color, char c)
+static void	fs_get_color(t_cub *cub, char c)
 {
+	t_color	*color;
+
+	color = &cub->color;
 	if (c == '1')
 	{
 		color->B = 150;
@@ -23,14 +26,17 @@ static void	fs_get_color(t_color *color, char c)
 	color->T = 0;
 }
 
-static void	fs_get_rect(t_rect *rect, int x, int y, char c)
+static void	fs_get_rect(t_cub *cub, int x, int y, char c)
 {
+	t_rect	*rect;
+
+	rect = &cub->rect;
 	if (cub_is_player(c))
 	{
 		rect->height = 8;
 		rect->width = 8;
-		rect->x = (x * GRID) + (GRID / 2);
-		rect->y = (y * GRID) + (GRID / 2);
+		rect->x = (cub->player->map_x + cub->player->pos_x) * 64;
+		rect->y = (cub->player->map_y + cub->player->pos_y) * 64;
 	}
 	else
 	{
@@ -43,8 +49,6 @@ static void	fs_get_rect(t_rect *rect, int x, int y, char c)
 
 static void	fs_draw_map(t_cub *cub, char **map)
 {
-	t_rect	rect;
-	t_color	color;
 	int		x;
 	int		y;
 
@@ -54,14 +58,14 @@ static void	fs_draw_map(t_cub *cub, char **map)
 	{
 		if (cub_is_player(map[y][x]))
 		{
-			fs_get_color(&color, '0');
-			fs_get_rect(&rect, x, y, '0');
-			cub_draw_rectangle(cub, &rect, &color);
+			fs_get_color(cub, '0');
+			fs_get_rect(cub, x, y, '0');
+			cub_draw_rectangle(cub, &cub->rect, &cub->color);
 		}
-		fs_get_color(&color, map[y][x]);
-		fs_get_rect(&rect, x, y, map[y][x]);
+		fs_get_color(cub, map[y][x]);
+		fs_get_rect(cub, x, y, map[y][x]);
 		if (map[y][x] != ' ')
-			cub_draw_rectangle(cub, &rect, &color);
+			cub_draw_rectangle(cub, &cub->rect, &cub->color);
 		x++;
 		if (!map[y][x])
 		{
@@ -80,19 +84,18 @@ static void	fs_draw_player(t_cub *cub)
 
 static void	fs_draw_vision(t_cub *cub)
 {
-	t_line line;
+	t_line	line;
 	t_color	color;
 
 	color.B = 0;
 	color.R = 150;
 	color.G = 0;
 	color.T = 0;
-	line.x1 = cub->player->map_x * GRID;
-	line.y1 = cub->player->map_y * GRID;
+	line.x1 = (cub->player->map_x + cub->player->pos_x) * GRID;
+	line.y1 = (cub->player->map_y + cub->player->pos_y) * GRID;
 	line.x2 = 64;
 	line.y2 = 64;
 	cub_draw_line(cub, &line, &color);
-
 }
 
 void	cub_draw_world(t_cub *cub)
