@@ -7,9 +7,9 @@
 // 	(void) color;
 // }
 
-void cub_draw_pixel(t_buffer *bs, int x, int y, t_color *color)
+void	cub_draw_pixel(t_buffer *bs, int x, int y, t_color *color)
 {
-    int pixel;
+	int	pixel;
 
 	pixel = (y * bs->line_bytes) + (x * 4);
 	bs->buffer[pixel + 0] = color->B;
@@ -18,12 +18,11 @@ void cub_draw_pixel(t_buffer *bs, int x, int y, t_color *color)
 	bs->buffer[pixel + 3] = color->T;
 }
 
-
 void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color)
 {
-	t_buffer *bs;
-	int x;
-	int y;
+	t_buffer	*bs;
+	int			x;
+	int			y;
 
 	bs = cub_alloc(cub, sizeof(t_buffer), 1);
 	bs->buffer = mlx_get_data_addr(cub->win->img, &bs->pixel_bits, &bs->line_bytes, &bs->endian);
@@ -32,7 +31,7 @@ void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color)
 	while (x < rect->width && y < rect->height)
 	{
 		cub_draw_pixel(bs, rect->x + x, rect->y + y, color);
-		if ( x == rect->width - 1)
+		if (x == rect->width - 1)
 		{
 			x = 0;
 			y++;
