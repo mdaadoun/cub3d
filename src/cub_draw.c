@@ -1,108 +1,42 @@
 #include "../inc/cub.h"
 
-static void	fs_get_color(t_cub *cub, char c)
+void	cub_draw_pixel(t_buffer *bs, t_u16 x, t_u16 y, t_color *color)
 {
-	t_color	*color;
+	int	pixel;
 
-	color = &cub->color;
-	if (c == '1')
-	{
-		color->b = 150;
-		color->r = 20;
-		color->g = 65;
-	}
-	if (c == '0')
-	{
-		color->b = 200;
-		color->r = 200;
-		color->g = 200;
-	}
-	if (cub_is_player(c))
-	{
-		color->b = 0;
-		color->r = 150;
-		color->g = 0;
-	}
-	color->t = 0;
+	pixel = (y * bs->line_bytes) + (x * 4);
+	bs->buffer[pixel + 0] = color->b;
+	bs->buffer[pixel + 1] = color->g;
+	bs->buffer[pixel + 2] = color->r;
+	bs->buffer[pixel + 3] = color->t;
 }
 
-static void	fs_get_rect(t_cub *cub, int x, int y, char c)
+void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color)
 {
-	t_rect	*rect;
+	t_buffer	*bs;
+	int			x;
+	int			y;
 
-	rect = &cub->rect;
-	if (cub_is_player(c))
-	{
-		rect->height = 8;
-		rect->width = 8;
-		rect->x = (cub->player->map_x + cub->player->pos_x) * GRID;
-		rect->y = (cub->player->map_y + cub->player->pos_y) * GRID;
-	}
-	else
-	{
-		rect->height = GRID;
-		rect->width = GRID;
-		rect->x = x * GRID;
-		rect->y = y * GRID;
-	}
-}
-
-static void	fs_draw_map(t_cub *cub, char **map)
-{
-	int		x;
-	int		y;
-
+	bs = cub_alloc(cub, sizeof(t_buffer), 1);
+	bs->buffer = mlx_get_data_addr(cub->display->img, &bs->pixel_bits, &bs->line_bytes, &bs->endian);
 	x = 0;
 	y = 0;
-	while (map[y] && map[y][x])
+	while (x < rect->width && y < rect->height)
 	{
-		if (cub_is_player(map[y][x]))
-		{
-			fs_get_color(cub, '0');
-			fs_get_rect(cub, x, y, '0');
-			cub_draw_rectangle(cub, &cub->rect, &cub->color);
-		}
-		fs_get_color(cub, map[y][x]);
-		fs_get_rect(cub, x, y, map[y][x]);
-		if (map[y][x] != ' ')
-			cub_draw_rectangle(cub, &cub->rect, &cub->color);
-		x++;
-		if (!map[y][x])
+		cub_draw_pixel(bs, rect->x + x, rect->y + y, color);
+		if (x == rect->width - 1)
 		{
 			x = 0;
 			y++;
 		}
+		else
+			x++;
 	}
-	cub->world->update = true;
-}
-
-static void	fs_draw_player(t_cub *cub)
-{
-	ft_printf("Draw player!\n");
-	(void) cub;
-}
-
-static void	fs_draw_vision(t_cub *cub)
-{
-	t_line	line;
-	t_color	color;
-
-	color.b = 0;
-	color.r = 255;
-	color.g = 255;
-	color.t = 0;
-	line.x1 = (cub->player->map_x + cub->player->pos_x) * GRID;
-	line.y1 = (cub->player->map_y + cub->player->pos_y) * GRID;
-	line.x2 = ((cub->player->map_x + cub->player->pos_x) - sin(cub->player->angle)) * GRID;
-	line.y2 = ((cub->player->map_y + cub->player->pos_y) + cos(cub->player->angle)) * GRID;
-	cub_draw_line(cub, &line, &color);
+	free(bs);
 }
 
 void	cub_draw_world(t_cub *cub)
 {
 	cub_draw_rectangle(cub, cub->world->cel_rect, cub->world->cel_color);
 	cub_draw_rectangle(cub, cub->world->flr_rect, cub->world->flr_color);
-	fs_draw_map(cub, cub->map->map);
-	fs_draw_player(cub);
-	fs_draw_vision(cub);
 }

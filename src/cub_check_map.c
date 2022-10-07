@@ -1,22 +1,6 @@
 #include "../inc/cub.h"
 
-void	fs_set_radiant(t_cub *cub, char c, int y, int x)
-{
-	cub->player->map_x = x;
-	cub->player->map_y = y;
-	cub->player->pos_x = ((GRID / 2.0) / 64.0);
-	cub->player->pos_y = ((GRID / 2.0) / 64.0);
-	if (c == 'N')
-		cub->player->angle = M_PI;
-	else if (c == 'E')
-		cub->player->angle = 3 * M_PI_2;
-	else if (c == 'W')
-		cub->player->angle = M_PI_2;
-	else if (c == 'S')
-		cub->player->angle = 0;
-}
-
-void	fs_check_char_map(t_cub *cub, char **map)
+void	cub_check_char_map(t_cub *cub, char **map)
 {
 	int		count;
 	int		i;
@@ -33,7 +17,7 @@ void	fs_check_char_map(t_cub *cub, char **map)
 			c = map[tab][i];
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 			{
-				fs_set_radiant(cub, c, tab, i);
+				cub_init_player(cub, c, tab, i);
 				count++;
 			}
 			i++;
@@ -44,7 +28,7 @@ void	fs_check_char_map(t_cub *cub, char **map)
 		cub_free_before_exit(cub, ERROR_MAP);
 }
 
-void	fs_replace_line(char **map, size_t m_len)
+static void	fs_replace_line(char **map, size_t m_len)
 {
 	int		tab;
 	size_t	len;
@@ -74,7 +58,7 @@ void	fs_replace_line(char **map, size_t m_len)
 	}
 }
 
-void	fs_map_space_resize(char **map)
+void	cub_map_space_resize(char **map)
 {
 	int		tab;
 	size_t	len;
@@ -92,12 +76,44 @@ void	fs_map_space_resize(char **map)
 	fs_replace_line(map, m_len);
 }
 
-void	cub_check_map(t_cub *cub)
+static bool	fs_check_cub(char **map, int y, int x, char c)
 {
-	char	**map;
+	char	*line;
 
-	map = cub->map->map;
-	fs_check_char_map(cub, map);
-	fs_map_space_resize(map);
-	cub_check_wall_map(cub, map);
+	if (x == 0 || y == 0 || y == (int)ft_count_tab_string(map) - 1)
+		return (true);
+	line = map[y - 1];
+	if (line[x - 1] == c || line[x] == c || line[x + 1] == c)
+		return (true);
+	line = map[y];
+	if (line[x - 1] == c || line[x + 1] == c)
+		return (true);
+	line = map[y + 1];
+	if (line[x - 1] == c || line[x] == c || line[x + 1] == c)
+		return (true);
+	return (false);
+}
+
+void	cub_check_wall_map(t_cub *cub, char **map)
+{
+	int		tab;
+	int		i;
+	char	c;
+
+	tab = 0;
+	while (map[tab])
+	{
+		i = 0;
+		while (map[tab][i])
+		{
+			c = map[tab][i];
+			if (c == '0' || c == 'N' || c == 'S'
+				|| c == 'E' || c == 'W')
+				if (fs_check_cub(map, tab, i, ' ')
+					|| fs_check_cub(map, tab, i, '\0'))
+					cub_free_before_exit(cub, ERROR_MAP);
+			i++;
+		}
+		tab++;
+	}
 }

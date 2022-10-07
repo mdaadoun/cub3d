@@ -1,12 +1,15 @@
 NAME = cub3D
 SRCS = main.c file.c free.c errors.c utils.c events.c config.c map.c \
-check_map.c check_wall_map.c colors.c display.c update.c draw.c \
-draw_helpers.c player.c player_move.c
+check_map.c colors.c draw.c \
+player.c
 DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
+# TO DELETE START
+DEBUG_REMOVE = debug/debug.c debug/debug_display.c
+# TO DELETE END
 
 LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
@@ -27,7 +30,7 @@ $(NAME): $(OBJS)
 	@make -sC libft
 	@make -sC ${LIBXPATH}
 	@echo "$(B)Building $(NAME) program.$(D)"
-	@$(CC) $(FLAGS) $(OBJS) debug/debug.c ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME) -lm #REMOVE DEBUG
+	@$(CC) $(FLAGS) $(OBJS) $(DEBUG_REMOVE) ${LIBFT} ${LIBXNAME} ${LIBXFLAG} -o $(NAME) -lm #REMOVE DEBUG
 	@echo "$(G)$(NAME) program created.$(D)"
 
 clean:
@@ -50,9 +53,8 @@ ARG = test2.cub
 DFLAGS = -g3 -ggdb -I. -D DEBUG=1
 DSRCS = debug/debug.c src/cub_main.c src/cub_file.c src/cub_free.c \
 src/cub_config.c src/cub_utils.c src/cub_errors.c src/cub_events.c \
-src/cub_map.c src/cub_check_map.c src/cub_check_wall_map.c src/cub_colors.c \
-src/cub_display.c src/cub_update.c src/cub_draw.c src/cub_draw_helpers.c \
-src/cub_player.c src/cub_player_move.c
+src/cub_map.c src/cub_check_map.c src/cub_colors.c \
+src/cub_draw.c src/cub_player.c debug/debug_display.c
 
 debug: fclean
 	@make -sC libft

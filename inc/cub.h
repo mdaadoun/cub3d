@@ -32,7 +32,7 @@ typedef double				t_f64;
 
 # define WIDTH	320
 # define HEIGHT	240
-# define GRID 64
+# define GRID 64.0
 # define STEP 0.1
 
 # define LOGO "\
@@ -81,18 +81,6 @@ typedef enum e_errkey {
 }			t_errkey;
 
 /*
- *	Player structure:
- */
-
-typedef struct s_player {
-	t_u64	map_x;
-	t_u64	map_y;
-	t_f32	pos_x;
-	t_f32	pos_y;
-	t_f32	angle;
-}	t_player;
-
-/*
  *	World structure:
  */
 
@@ -114,18 +102,11 @@ typedef struct s_color
 
 typedef struct s_line
 {
-	t_f32	x1;
-	t_f32	y1;
-	t_f32	x2;
-	t_f32	y2;
+	t_u16	x1;
+	t_u16	y1;
+	t_u16	x2;
+	t_u16	y2;
 }	t_line;
-
-// typedef struct s_circle
-// {
-// 	t_u16	x;
-// 	t_u16	y;
-// 	t_u16	radius;
-// }	t_circle;
 
 typedef struct s_rect
 {
@@ -142,6 +123,18 @@ typedef struct s_world {
 	t_color	*cel_color;
 	t_rect	*cel_rect;
 }	t_world;
+
+/*
+ *	Player structure:
+ */
+
+typedef struct s_player {
+	t_u64	map_x;
+	t_u64	map_y;
+	t_f32	grid_x;
+	t_f32	grid_y;
+	t_f32	angle;
+}	t_player;
 
 /*
  *	Data structure:
@@ -162,20 +155,20 @@ typedef struct s_data {
  *	Window structure:
  */
 
-typedef struct s_win {
+typedef struct s_display {
 	void	*mlx;
 	void	*win;
 	void	*img;
 	int		win_x;
 	int		win_y;
-}	t_win;
+}	t_display;
 
 /*
  *	Window structure:
  */
 
 typedef struct s_map {
-	char	**map;
+	char	**arr;
 	int		x;
 	int		y;
 }	t_map;
@@ -185,10 +178,10 @@ typedef struct s_map {
  */
 
 typedef struct s_cub {
+	t_display	*display;
 	t_player	*player;
 	t_world		*world;
 	t_data		*data;
-	t_win		*win;
 	t_map		*map;
 	t_color		color;
 	t_rect		rect;
@@ -235,6 +228,7 @@ void		cub_print_error(t_errkey errkey, t_u8 out);
 
 void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
 bool		cub_is_player(char c);
+void		cub_init_player(t_cub *cub, char c, int y, int x);
 
 /*
  * Colors functions
@@ -257,6 +251,8 @@ t_list_str	*cub_set_config(t_cub *cub);
 void		cub_build_map(t_cub *cub, t_list_str *data_list);
 void		cub_check_map(t_cub *cub);
 void		cub_check_wall_map(t_cub *cub, char **map);
+void		cub_check_char_map(t_cub *cub, char **map);
+void		cub_map_space_resize(char **map);
 
 /*
  * Display functions
@@ -265,15 +261,6 @@ void		cub_check_wall_map(t_cub *cub, char **map);
  */
 
 void		cub_init_window(t_cub *cub);
-void		cub_init_map(t_cub *cub);
-
-/*
- * Update functions
- *		files:
- *			cub_update.c
- */
-
-int			cub_game_loop(t_cub *cub);
 
 /*
  * Drawing functions
@@ -294,7 +281,6 @@ void		cub_draw_line(t_cub *cub, t_line *line, t_color *color);
  */
 
 void		cub_move_player(t_cub *cub, t_u16 key);
-void		cub_rotate_player(t_cub *cub, t_u16 key);
 
 ///////////////////////////////////////////////////////////////////////
 // TO DELETE START
@@ -303,14 +289,11 @@ void		cub_rotate_player(t_cub *cub, t_u16 key);
 #  define DEBUG 0
 # endif
 
-/*
- *	Debug function:
- *		files:
- */
-
 int			dg_main(t_cub *cub, int ac, char **av);
 void		dg_print_arg(int ac, char **av);
 void		dg_lst_data(t_cub *cub);
+int			dg_game_loop(t_cub *cub);
+void		dg_draw_map(t_cub *cub, char **map);
 
 // TO DELETE END
 ///////////////////////////////////////////////////////////////////////

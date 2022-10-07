@@ -58,5 +58,15 @@ void	cub_build_map(t_cub *cub, t_list_str *data_list)
 		data_list = data_list->next;
 		i++;
 	}
-	cub->map->map = map;
+	cub->map->arr = map;
+}
+
+void	cub_check_map(t_cub *cub)
+{
+	char	**map;
+
+	map = cub->map->arr;
+	cub_check_char_map(cub, map);
+	cub_map_space_resize(map);
+	cub_check_wall_map(cub, map);
 }

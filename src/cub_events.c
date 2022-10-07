@@ -19,14 +19,20 @@ static int	fs_key_hook(int keycode, t_cub *cub)
 	else if (keycode == XK_w)
 		cub_move_player(cub, XK_w);
 	else if (keycode == XK_Left)
-		cub_rotate_player(cub, XK_Left);
+	{
+		cub->player->angle -= 0.1;
+		cub->world->update = true;
+	}
 	else if (keycode == XK_Right)
-		cub_rotate_player(cub, XK_Right);
+	{
+		cub->player->angle += 0.1;
+		cub->world->update = true;
+	}
 	return (0);
 }
 
 void	cub_init_events(t_cub *cub)
 {
-	mlx_hook(cub->win->win, KeyPress, (1L << 0), fs_key_hook, cub);
-	mlx_hook(cub->win->win, DestroyNotify, 1L << 17, fs_close, cub);
+	mlx_hook(cub->display->win, KeyPress, (1L << 0), fs_key_hook, cub);
+	mlx_hook(cub->display->win, DestroyNotify, 1L << 17, fs_close, cub);
 }

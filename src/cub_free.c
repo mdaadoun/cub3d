@@ -39,25 +39,30 @@ static void	fs_free_data(t_data *data)
 	free(data);
 }
 
-static void	fs_clear_window(t_win *win)
+static void	fs_clear_display(t_display *display)
 {
-	if (win->mlx)
+	if (display->mlx)
 	{
-		if (win->win)
-			mlx_destroy_window(win->mlx, win->win);
-		if (win->img)
-			mlx_destroy_image(win->mlx, win->img);
-		mlx_destroy_display(win->mlx);
-		free(win->mlx);
+		if (display->win)
+			mlx_destroy_window(display->mlx, display->win);
+		if (display->img)
+			mlx_destroy_image(display->mlx, display->img);
+		mlx_destroy_display(display->mlx);
+		free(display->mlx);
 	}
-	free(win);
+	free(display);
 }
 
-static void	fs_clear_map(t_map *map)
+static void	fs_free_world(t_cub *cub)
 {
-	if (map->map)
-		cub_free_strarr(map->map);
-	free(map);
+	if (cub->world)
+	{
+		free(cub->world->cel_color);
+		free(cub->world->flr_color);
+		free(cub->world->cel_rect);
+		free(cub->world->flr_rect);
+		free(cub->world);
+	}
 }
 
 /*
@@ -69,16 +74,15 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 	{
 		if (cub->data)
 			fs_free_data(cub->data);
-		if (cub->win)
-			fs_clear_window(cub->win);
+		if (cub->display)
+			fs_clear_display(cub->display);
 		if (cub->map)
-			fs_clear_map(cub->map);
-		free(cub->world->cel_color);
-		free(cub->world->flr_color);
-		free(cub->world->cel_rect);
-		free(cub->world->flr_rect);
-		free(cub->world);
+		{
+			cub_free_strarr(cub->map->arr);
+			free(cub->map);
+		}
 		free(cub->player);
+		fs_free_world(cub);
 		free(cub);
 	}
 	if (errkey)
