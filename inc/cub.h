@@ -134,6 +134,7 @@ typedef struct s_player {
 	t_f32	grid_x;
 	t_f32	grid_y;
 	t_f32	angle;
+	t_f32	fov;
 }	t_player;
 
 /*
@@ -271,7 +272,8 @@ void		cub_init_window(t_cub *cub);
 
 void		cub_draw_world(t_cub *cub);
 void		cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color);
-void		cub_draw_line(t_cub *cub, t_line *line, t_color *color);
+void		cub_draw_pixel(t_buffer *bs, t_u16 x, t_u16 y, t_color *color);
+
 
 /*
  * Player functions

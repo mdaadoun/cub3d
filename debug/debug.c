@@ -71,9 +71,20 @@ void	dg_draw_map(t_cub *cub, char **map)
 {
 	int		x;
 	int		y;
+	t_color colbg;
+	t_rect	recbg;
 
 	x = 0;
 	y = 0;
+	colbg.b = 0;
+	colbg.g = 0;
+	colbg.r = 0;
+	colbg.t = 0;
+	recbg.x = 0;
+	recbg.y = 0;
+	recbg.width = cub->map->x * GRID;
+	recbg.height = cub->map->y * GRID;
+	cub_draw_rectangle(cub, &recbg, &colbg);
 	while (map[y] && map[y][x])
 	{
 		if (cub_is_player(map[y][x]))

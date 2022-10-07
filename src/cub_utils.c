@@ -23,6 +23,7 @@ void	cub_init_player(t_cub *cub, char c, int y, int x)
 	cub->player->map_y = y;
 	cub->player->grid_x = ((GRID / 2.0) / GRID);
 	cub->player->grid_y = ((GRID / 2.0) / GRID);
+	cub->player->fov = M_PI / 3;
 	if (c == 'N')
 		cub->player->angle = M_PI;
 	else if (c == 'E')
