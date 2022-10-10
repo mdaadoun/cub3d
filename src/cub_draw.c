@@ -18,7 +18,8 @@ void	cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color)
 	int			y;
 
 	bs = cub_alloc(cub, sizeof(t_buffer), 1);
-	bs->buffer = mlx_get_data_addr(cub->display->img, &bs->pixel_bits, &bs->line_bytes, &bs->endian);
+	bs->buffer = mlx_get_data_addr(cub->display->img, \
+			&bs->pixel_bits, &bs->line_bytes, &bs->endian);
 	x = 0;
 	y = 0;
 	while (x < rect->width - 2 && y < rect->height - 2)

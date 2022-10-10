@@ -52,7 +52,6 @@ static void	fs_replace_line(char **map, size_t m_len)
 				tmp[i++] = ' ';
 			free(map[tab]);
 			map[tab] = tmp;
-			tmp = NULL;
 		}
 		tab++;
 	}
