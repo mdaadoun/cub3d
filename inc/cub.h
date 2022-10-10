@@ -69,6 +69,7 @@ a map file as a unique parameter."
 # define MSG_ERROR_SCREEN "The screen size is incorrect."
 # define MSG_ERROR_FORMAT "The file content is not formated correctly."
 # define MSG_ERROR_MAP "The map is not formated correctly."
+# define MSG_ERROR_IMG "Image path is invalid."
 
 typedef enum e_errkey {
 	NO_ERROR,
@@ -77,7 +78,8 @@ typedef enum e_errkey {
 	ERROR_SCREEN,
 	ERROR_FORMAT,
 	ERROR_MAP,
-	ERROR_MALLOC
+	ERROR_MALLOC,
+	ERROR_IMG
 }			t_errkey;
 
 /*
@@ -99,6 +101,14 @@ typedef struct s_color
 	t_u8	g;
 	t_u8	b;
 }	t_color;
+
+typedef struct s_image
+{
+	void	*no;
+	void	*so;
+	void	*ea;
+	void	*we;
+}	t_image;
 
 typedef struct s_line
 {
@@ -182,6 +192,7 @@ typedef struct s_cub {
 	t_display	*display;
 	t_player	*player;
 	t_world		*world;
+	t_image		*img;
 	t_data		*data;
 	t_map		*map;
 	t_color		color;
@@ -274,6 +285,14 @@ void		cub_draw_world(t_cub *cub);
 void		cub_draw_rectangle(t_cub *cub, t_rect *rect, t_color *color);
 void		cub_draw_pixel(t_buffer *bs, t_u16 x, t_u16 y, t_color *color);
 
+/*
+ * Img functions
+ * 		files:
+ * 			cub_img.c
+ */
+
+void		cub_load_img(t_cub *cub);
+void		cub_free_img(t_cub *cub);
 
 /*
  * Player functions

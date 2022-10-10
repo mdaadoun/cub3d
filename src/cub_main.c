@@ -37,6 +37,7 @@ static void	fs_init_cub(t_cub **cub)
 	*colptr = (t_color *)cub_alloc(NULL, 1, sizeof(t_color));
 	(*cub)->player = (t_player *) cub_alloc(NULL, 1, sizeof(t_player));
 	(*cub)->map = (t_map *) cub_alloc(NULL, 1, sizeof(t_map));
+	(*cub)->img = (t_image *) cub_alloc(NULL, 1, sizeof(t_image));
 }
 
 void	cub_init_window(t_cub *cub)

@@ -81,6 +81,8 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 			cub_free_strarr(cub->map->arr);
 			free(cub->map);
 		}
+		if (cub->img)
+			cub_free_img(cub);
 		free(cub->player);
 		fs_free_world(cub);
 		free(cub);

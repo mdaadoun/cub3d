@@ -14,6 +14,8 @@ static char	*fs_get_error_msg(t_errkey errkey)
 		return (MSG_ERROR_FORMAT);
 	else if (errkey == ERROR_MAP)
 		return (MSG_ERROR_MAP);
+	else if (errkey == ERROR_IMG)
+		return (MSG_ERROR_IMG);
 	else if (errkey == NO_ERROR)
 		return (MSG_NO_ERROR);
 	return (NULL);
