@@ -33,7 +33,7 @@ typedef double				t_f64;
 # define WIDTH	320
 # define HEIGHT	240
 # define GRID 64.0
-# define STEP 0.1
+# define SPEED 0.1
 
 # define LOGO "\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
