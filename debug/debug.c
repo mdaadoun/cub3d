@@ -29,8 +29,8 @@ static void	fs_get_rect(t_cub *cub, int x, int y, char c)
 	{
 		rect->height = 8;
 		rect->width = 8;
-		rect->x = (cub->player->map_x + cub->player->grid_x) * GRID;
-		rect->y = (cub->player->map_y + cub->player->grid_y) * GRID;
+		rect->x = ((cub->player->map_x + cub->player->grid_x) * GRID) - 4;
+		rect->y = ((cub->player->map_y + cub->player->grid_y) * GRID) - 4;
 	}
 	else
 	{
