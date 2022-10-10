@@ -194,6 +194,7 @@ int	dg_main(t_cub *cub, int ac, char **av)
 	cub_check_map(cub);
 	dg_print_map(cub);
 	cub_init_map(cub);
+	cub_load_img(cub);
 	// cub_init_window(cub);
 	cub_init_events(cub);
 	mlx_loop_hook(cub->display->mlx, (*dg_game_loop), cub);

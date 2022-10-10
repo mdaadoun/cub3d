@@ -16,3 +16,4 @@ debug_bin
 libft.a
 cub3D
 *.swp
+mlibx/test/mlx-test

@@ -35,6 +35,11 @@ typedef double				t_f64;
 # define GRID 64.0
 # define SPEED 0.1
 
+# define FOV (M_PI / 3)
+// # define RAYS WIDTH
+# define RAYS 10
+# define STEP (FOV / RAYS)
+
 # define LOGO "\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠋⠁⠀⠀⠈⠙⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
@@ -139,12 +144,12 @@ typedef struct s_world {
  */
 
 typedef struct s_player {
+	// bool	update;
 	t_u64	map_x;
 	t_u64	map_y;
 	t_f32	grid_x;
 	t_f32	grid_y;
 	t_f32	angle;
-	t_f32	fov;
 }	t_player;
 
 /*
@@ -185,6 +190,17 @@ typedef struct s_map {
 }	t_map;
 
 /*
+ *	Rays structure:
+ */
+
+typedef struct s_ray {
+	char			*texture;
+	t_u16			column_index;
+	t_f32			angle;
+	t_f32			length;
+}	t_ray;
+
+/*
  *	Main structure:
  */
 
@@ -195,6 +211,7 @@ typedef struct s_cub {
 	t_image		*img;
 	t_data		*data;
 	t_map		*map;
+	t_ray		rays[WIDTH];
 	t_color		color;
 	t_rect		rect;
 }	t_cub;
@@ -302,6 +319,15 @@ void		cub_free_img(t_cub *cub);
  */
 
 void		cub_move_player(t_cub *cub, t_u16 key);
+
+
+/*
+ * Ray casting functions
+ *		files:
+ *			cub_rays.c
+ */
+
+void		cub_cast_rays(t_cub *cub);
 
 ///////////////////////////////////////////////////////////////////////
 // TO DELETE START

@@ -6,7 +6,6 @@ static void	fs_process_data(t_cub *cub)
 
 	datalst = cub_set_config(cub);
 	cub_init_colors(cub);
-	cub_load_img(cub);
 	cub_build_map(cub, datalst);
 	cub_check_map(cub);
 }
@@ -18,6 +17,7 @@ static int	fs_game_loop(t_cub *cub)
 	dsp = cub->display;
 	if (cub->world->update)
 	{
+		cub_cast_rays(cub);
 		cub_draw_world(cub);
 		mlx_put_image_to_window(dsp->mlx, dsp->win, dsp->img, 0, 0);
 		cub->world->update = false;
@@ -76,6 +76,7 @@ int	main(int ac, char **av)
 	cub_get_data(cub, ac, av);
 	fs_process_data(cub);
 	cub_init_window(cub);
+	cub_load_img(cub);
 	cub_init_events(cub);
 	ft_printf("%s", LOGO);
 	mlx_loop_hook(cub->display->mlx, (*fs_game_loop), cub);

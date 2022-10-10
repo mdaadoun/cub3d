@@ -74,6 +74,8 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 	{
 		if (cub->data)
 			fs_free_data(cub->data);
+		if (cub->img)
+			cub_free_img(cub);
 		if (cub->display)
 			fs_clear_display(cub->display);
 		if (cub->map)
@@ -81,8 +83,6 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 			cub_free_strarr(cub->map->arr);
 			free(cub->map);
 		}
-		if (cub->img)
-			cub_free_img(cub);
 		free(cub->player);
 		fs_free_world(cub);
 		free(cub);
