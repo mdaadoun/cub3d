@@ -37,8 +37,7 @@ typedef double				t_f64;
 # define SPEED 0.1
 
 # define FOV (M_PI / 3)
-// # define RAYS WIDTH
-# define RAYS 5
+# define RAYS WIDTH
 # define STEP (FOV / RAYS)
 
 # define LOGO "\
@@ -196,6 +195,10 @@ typedef struct s_map {
 
 typedef struct s_ray {
 	char			*texture;
+	t_u16			target_x;
+	t_u16			target_y;
+	t_u16			prev_tgx;
+	t_u16			prev_tgy;
 	t_u16			column_index;
 	t_f32			angle;
 	t_f32			length;
