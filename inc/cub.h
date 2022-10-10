@@ -32,12 +32,13 @@ typedef double				t_f64;
 
 # define WIDTH	320
 # define HEIGHT	240
+
 # define GRID 64.0
 # define SPEED 0.1
 
 # define FOV (M_PI / 3)
 // # define RAYS WIDTH
-# define RAYS 10
+# define RAYS 5
 # define STEP (FOV / RAYS)
 
 # define LOGO "\
