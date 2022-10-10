@@ -1,10 +1,17 @@
 #include "../inc/cub.h"
 
 // get the texture on the wall from the ray and the position on the wall
-// static bool	fs_get_texture()
-// {
-
-// }
+static void	fs_set_texture(t_ray ray)
+{
+	if (ray.prev_tgx < ray.target_x && ray.prev_tgy < ray.target_y)
+		ray.texture = TEXTURE_EAST;
+	else if (ray.prev_tgx < ray.target_x && ray.prev_tgy > ray.target_y)
+		ray.texture = TEXTURE_WEST;
+	else if (ray.prev_tgx > ray.target_x && ray.prev_tgy < ray.target_y)
+		ray.texture = TEXTURE_SOUTH;
+	else if (ray.prev_tgx > ray.target_x && ray.prev_tgy > ray.target_y)
+		ray.texture = TEXTURE_NORTH;
+}
 
 static bool fs_is_wall(t_cub *cub, t_ray ray)
 {
@@ -20,11 +27,13 @@ static bool fs_is_wall(t_cub *cub, t_ray ray)
 
 static bool	fs_check_colision(t_cub *cub, t_ray ray)
 {
+	ray.prev_tgx = ray.target_x;
+	ray.prev_tgy = ray.target_y;
 	ray.target_x = (((cub->player->map_x + cub->player->grid_x) * GRID) - (sin(ray.angle) * ray.length));
 	ray.target_y = (((cub->player->map_y + cub->player->grid_y) * GRID) + (cos(ray.angle) * ray.length));
 	if (fs_is_wall(cub, ray))
 	{
-		// fs_get_texture(ray);
+		fs_set_texture(ray);
 		return (true);
 	}
 	return (false);

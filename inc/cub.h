@@ -193,8 +193,15 @@ typedef struct s_map {
  *	Rays structure:
  */
 
+typedef enum e_texture {
+	TEXTURE_EAST,
+	TEXTURE_NORTH,
+	TEXTURE_SOUTH,
+	TEXTURE_WEST,
+}			t_texture;
+
 typedef struct s_ray {
-	char			*texture;
+	t_texture		texture;
 	t_u16			target_x;
 	t_u16			target_y;
 	t_u16			prev_tgx;
