@@ -6,6 +6,7 @@ static void	fs_process_data(t_cub *cub)
 
 	datalst = cub_set_config(cub);
 	cub_init_colors(cub);
+	cub_load_img(cub);
 	cub_build_map(cub, datalst);
 	cub_check_map(cub);
 }

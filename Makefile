@@ -6,7 +6,7 @@ DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
 RM = rm -f
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 # TO DELETE START
 DEBUG_REMOVE = debug/debug.c debug/debug_display.c
 # TO DELETE END

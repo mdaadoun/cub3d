@@ -6,7 +6,9 @@ void	*fs_open_img(t_cub *cub, char *path)
 	int		wid;
 	int		hei;
 
-	ptr = mlx_xpm_file_to_image(cub->display->mlx, path, &wid, &hei);
+	wid = 64;
+	hei = 64;
+	ptr = mlx_xpm_file_to_image(cub->display->win, path, &wid, &hei);
 	if (!ptr)
 		cub_free_before_exit(cub, ERROR_IMG);
 	return (ptr);
