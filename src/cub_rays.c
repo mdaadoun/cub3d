@@ -1,36 +1,37 @@
 #include "../inc/cub.h"
 
 // get the texture on the wall from the ray and the position on the wall
-static void	fs_set_texture(t_ray ray)
+static void	fs_set_texture(t_ray *ray)
 {
-	if (ray.prev_tgx < ray.target_x && ray.prev_tgy < ray.target_y)
-		ray.texture = TEXTURE_EAST;
-	else if (ray.prev_tgx < ray.target_x && ray.prev_tgy > ray.target_y)
-		ray.texture = TEXTURE_WEST;
-	else if (ray.prev_tgx > ray.target_x && ray.prev_tgy < ray.target_y)
-		ray.texture = TEXTURE_SOUTH;
-	else if (ray.prev_tgx > ray.target_x && ray.prev_tgy > ray.target_y)
-		ray.texture = TEXTURE_NORTH;
+	if (ray->prev_tgx < ray->target_x && ray->prev_tgy < ray->target_y)
+		ray->texture = TEXTURE_EAST;
+	else if (ray->prev_tgx < ray->target_x && ray->prev_tgy > ray->target_y)
+		ray->texture = TEXTURE_WEST;
+	else if (ray->prev_tgx > ray->target_x && ray->prev_tgy < ray->target_y)
+		ray->texture = TEXTURE_SOUTH;
+	else if (ray->prev_tgx > ray->target_x && ray->prev_tgy > ray->target_y)
+		ray->texture = TEXTURE_NORTH;
+	(void) ray;
 }
 
-static bool fs_is_wall(t_cub *cub, t_ray ray)
+static bool fs_is_wall(t_cub *cub, t_ray *ray)
 {
 	t_u16 x;
 	t_u16 y;
 
-	x = ray.target_x / GRID;
-	y = ray.target_y / GRID;
+	x = ray->target_x / GRID;
+	y = ray->target_y / GRID;
 	if (cub->map->arr[y][x] == '1')
 		return (true);
 	return (false);
 }
 
-static bool	fs_check_colision(t_cub *cub, t_ray ray)
+static bool	fs_check_colision(t_cub *cub, t_ray *ray)
 {
-	ray.prev_tgx = ray.target_x;
-	ray.prev_tgy = ray.target_y;
-	ray.target_x = (((cub->player->map_x + cub->player->grid_x) * GRID) - (sin(ray.angle) * ray.length));
-	ray.target_y = (((cub->player->map_y + cub->player->grid_y) * GRID) + (cos(ray.angle) * ray.length));
+	ray->prev_tgx = ray->target_x;
+	ray->prev_tgy = ray->target_y;
+	ray->target_x = (((cub->player->map_x + cub->player->grid_x) * GRID) - (sin(ray->angle) * ray->length));
+	ray->target_y = (((cub->player->map_y + cub->player->grid_y) * GRID) + (cos(ray->angle) * ray->length));
 	if (fs_is_wall(cub, ray))
 	{
 		fs_set_texture(ray);
@@ -53,7 +54,7 @@ void	cub_cast_rays(t_cub *cub)
 		ray[idx].angle = start_angle;
 		ray[idx].length = 1;
 		ray[idx].column_index = idx + 1;
-		while(!fs_check_colision(cub, ray[idx]))
+		while(!fs_check_colision(cub, &ray[idx]))
 			ray[idx].length += 1;
 		idx++;
 		start_angle += STEP;
