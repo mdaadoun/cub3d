@@ -89,11 +89,13 @@ def cast_rays():
                     (0, 255, 0),
                     (col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE - 2, TILE_SIZE - 2)
                     )
+                #color gradient
+                color = 255 / (1 + depth * depth * 0.0001)
+                #cat fish eye
+                depth *= math.cos(player_angle - start_angle)
                 #projection
                 wall_height = 21000 / (depth + 0.00001)
-                pygame.draw.rect(win, (255, 255, 255), (SCREEN_HEIGHT + ray * SCALE, (SCREEN_HEIGHT / 2) - wall_height / 2, SCALE, wall_height))
-                # pygame.draw.rect(win, (255, 255, 255), (SCREEN_HEIGHT + ray * SCALE, (SCREEN_HEIGHT / 2) - wall_height / 2, SCALE, wall_height))
-                
+                pygame.draw.rect(win, (color, color, color), (SCREEN_HEIGHT + ray * SCALE, (SCREEN_HEIGHT / 2) - wall_height / 2, SCALE, wall_height))                
 
                 break
         pygame.draw.line(win, (0, 255, 0), (player_x, player_y), (target_x, target_y), 1)
