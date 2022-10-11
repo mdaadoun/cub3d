@@ -12,41 +12,37 @@ void	*fs_open_img(t_cub *cub, char *path)
 	return (ptr);
 }
 
+t_buffer	*fs_load_buf(t_cub *cub, void *img)
+{
+	t_buffer	*buf;
+
+	buf = (t_buffer *)cub_alloc(cub, sizeof(t_buffer), 1);
+	buf->buffer = mlx_get_data_addr(img, \
+			&buf->pixel_bits, &buf->line_bytes, &buf->endian);
+	return (buf);
+}
+
 void	cub_load_img(t_cub *cub)
 {
-	t_buffer	*img;
-
 	if (cub->data->imgpath_no)
 	{
 		cub->img->no = fs_open_img(cub, cub->data->imgpath_no);
-		img = (t_buffer *)cub_alloc(cub, sizeof(t_buffer), 1);
-		img->buffer = mlx_get_data_addr(cub->img->no, \
-				&img->pixel_bits, &img->line_bytes, &img->endian);
-		cub->img->no_buf = img;
+		cub->img->no_buf = fs_load_buf(cub, cub->img->no);
 	}
 	if (cub->data->imgpath_so)
 	{
 		cub->img->so = fs_open_img(cub, cub->data->imgpath_so);
-		img = (t_buffer *)cub_alloc(cub, sizeof(t_buffer), 1);
-		img->buffer = mlx_get_data_addr(cub->img->so, \
-				&img->pixel_bits, &img->line_bytes, &img->endian);
-		cub->img->so_buf = img;
+		cub->img->so_buf = fs_load_buf(cub, cub->img->so);
 	}
 	if (cub->data->imgpath_ea)
 	{
 		cub->img->ea = fs_open_img(cub, cub->data->imgpath_ea);
-		img = (t_buffer *)cub_alloc(cub, sizeof(t_buffer), 1);
-		img->buffer = mlx_get_data_addr(cub->img->ea, \
-				&img->pixel_bits, &img->line_bytes, &img->endian);
-		cub->img->ea_buf = img;
+		cub->img->ea_buf = fs_load_buf(cub, cub->img->ea);
 	}
 	if (cub->data->imgpath_we)
 	{
 		cub->img->we = fs_open_img(cub, cub->data->imgpath_we);
-		img = (t_buffer *)cub_alloc(cub, sizeof(t_buffer), 1);
-		img->buffer = mlx_get_data_addr(cub->img->we, \
-				&img->pixel_bits, &img->line_bytes, &img->endian);
-		cub->img->we_buf = img;
+		cub->img->we_buf = fs_load_buf(cub, cub->img->we);
 	}
 }
 
