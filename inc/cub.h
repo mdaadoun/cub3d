@@ -356,7 +356,7 @@ void		dg_print_arg(int ac, char **av);
 void		dg_lst_data(t_cub *cub);
 int			dg_game_loop(t_cub *cub);
 void		dg_draw_map(t_cub *cub, char **map);
-void		dg_get_col_img(t_cub *cub);
+void		dg_build_render(t_cub *cub);
 
 // TO DELETE END
 ///////////////////////////////////////////////////////////////////////

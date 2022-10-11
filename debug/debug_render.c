@@ -16,29 +16,50 @@ void	dg_copy_pixel(char *dest, char *src)
 	dest[3] = src[3];
 }
 
-void	dg_get_col_img(t_cub *cub)
+void	*dg_get_texture(t_cub *cub, t_texture id)
+{
+	if (id == TEXTURE_EAST)
+		return (cub->img->ea_buf);
+	if (id == TEXTURE_WEST)
+		return (cub->img->we_buf);
+	if (id == TEXTURE_NORTH)
+		return (cub->img->no_buf);
+	if (id == TEXTURE_SOUTH)
+		return (cub->img->so_buf);
+	return (0);
+}
+
+void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 {
 	t_buffer	*bs;
 	char		*pix;
 	int			x;
 	int			y;
 
-	x = 12;
+	x = 0;
 	y = 0;
 	bs = cub_alloc(cub, sizeof(t_buffer), 1);
 	bs->buffer = mlx_get_data_addr(cub->display->img, \
 			&bs->pixel_bits, &bs->line_bytes, &bs->endian);
-	while (x < 24 && y < 64)
+	while (y < 64)
 	{
-		pix = dg_get_pixel(bs, x + (2 * 64), y + (2 * 64));
-		dg_copy_pixel(pix, dg_get_pixel(cub->img->ea_buf, x, y));
-		if (x == 24 - 1)
-		{
-			x = 12;
-			y++;
-		}
-		else
-			x++;
+		pix = dg_get_pixel(bs, col, (y + HEIGHT) / 2);
+		dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), x, y));
+		y++;
 	}
 	free(bs);
+}
+
+void	dg_build_render(t_cub *cub)
+{
+	int		i;
+	t_ray	*ray;
+
+	ray = cub->rays;
+	i = 0;
+	while (i < 320)
+	{
+		dg_get_col_img(cub, i, &ray[i]);
+		i++;
+	}
 }

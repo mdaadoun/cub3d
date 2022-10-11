@@ -111,7 +111,7 @@ int	dg_game_loop(t_cub *cub)
 		}
 		if (DEBUG == 2)
 		{
-			dg_get_col_img(cub);
+			dg_build_render(cub);
 		}
 		mlx_put_image_to_window(cub->display->mlx, cub->display->win, cub->display->img, 0, 0);
 		cub->world->update = false;
