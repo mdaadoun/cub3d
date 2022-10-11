@@ -8,7 +8,7 @@ CC = gcc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror -g
 # TO DELETE START
-DEBUG = 1
+DEBUG = 2
 DEBUG_REMOVE = debug/debug.c debug/debug_display.c debug/debug_render.c
 # TO DELETE END
 
