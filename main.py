@@ -13,6 +13,7 @@ HALF_FOV = FOV / 2
 CASTED_RAYS = 120
 STEP_ANGLE = FOV / CASTED_RAYS
 SPEED_MOVE = 3
+SCALE = (SCREEN_WIDTH / 2) / CASTED_RAYS
 
 MAP = (
     '########'
@@ -50,16 +51,9 @@ def draw_map():
                 )
 
 def draw_world():
-    pygame.draw.rect(
-        win,
-        (100, 100, 100),
-        (SCREEN_HEIGHT, SCREEN_HEIGHT / 2, SCREEN_HEIGHT, SCREEN_HEIGHT)
-        )
-    pygame.draw.rect(
-        win,
-        (200, 200, 200),
-        (SCREEN_HEIGHT, -SCREEN_HEIGHT / 2, SCREEN_HEIGHT, SCREEN_HEIGHT)
-        )
+    pygame.draw.rect(win, (100, 100, 100), (SCREEN_HEIGHT, SCREEN_HEIGHT / 2, SCREEN_HEIGHT, SCREEN_HEIGHT))
+    pygame.draw.rect(win, (200, 200, 200), (SCREEN_HEIGHT, -SCREEN_HEIGHT / 2, SCREEN_HEIGHT, SCREEN_HEIGHT))
+
 
 def draw_player():
     pygame.draw.circle(win, (255, 0, 0), (player_x, player_y), 8)
@@ -95,6 +89,12 @@ def cast_rays():
                     (0, 255, 0),
                     (col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE - 2, TILE_SIZE - 2)
                     )
+                #projection
+                wall_height = 21000 / (depth + 0.00001)
+                pygame.draw.rect(win, (255, 255, 255), (SCREEN_HEIGHT + ray * SCALE, (SCREEN_HEIGHT / 2) - wall_height / 2, SCALE, wall_height))
+                # pygame.draw.rect(win, (255, 255, 255), (SCREEN_HEIGHT + ray * SCALE, (SCREEN_HEIGHT / 2) - wall_height / 2, SCALE, wall_height))
+                
+
                 break
         pygame.draw.line(win, (0, 255, 0), (player_x, player_y), (target_x, target_y), 1)
         start_angle += STEP_ANGLE
@@ -105,6 +105,9 @@ while True:
             pygame.quit()
             sys.exit(0)
     keys = pygame.key.get_pressed()
+    if keys[pygame.K_ESCAPE]:
+        pygame.quit()
+        sys.exit(0)
     if keys[pygame.K_LEFT]:
         player_x += math.sin(player_angle + (math.pi / 2)) * SPEED_MOVE
         player_y += -math.cos(player_angle + (math.pi / 2)) * SPEED_MOVE
