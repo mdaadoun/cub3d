@@ -106,6 +106,7 @@ int	dg_game_loop(t_cub *cub)
 		dg_draw_map(cub, cub->map->arr);
 		fs_display_vision(cub);
 		fs_display_rays(cub);
+		dg_get_col_img(cub);
 		mlx_put_image_to_window(cub->display->mlx, cub->display->win, cub->display->img, 0, 0);
 		cub->world->update = false;
 	}

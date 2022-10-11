@@ -177,13 +177,58 @@ void	dg_print_colors(t_cub *cub)
 	ft_printf("B:%d\n", world->cel_color->b);
 }
 
+char	*dg_get_pixel(t_buffer *bs, t_u16 x, t_u16 y)
+{
+	int	pixel;
 
+	pixel = (y * bs->line_bytes) + (x * 4);
+	return (&bs->buffer[pixel]);
+}
+
+void	dg_copy_pixel(char *dest, char *src)
+{
+	dest[0] = src[0];
+	dest[1] = src[1];
+	dest[2] = src[2];
+	dest[3] = src[3];
+}
+
+void	dg_get_col_img(t_cub *cub)
+{
+	t_buffer	*bs;
+	t_buffer	*img;
+	char		*pix;
+	int			x;
+	int			y;
+
+	x = 0;
+	y = 0;
+	bs = cub_alloc(cub, sizeof(t_buffer), 1);
+	bs->buffer = mlx_get_data_addr(cub->display->img, \
+			&bs->pixel_bits, &bs->line_bytes, &bs->endian);
+	img = cub_alloc(cub, sizeof(t_buffer), 1);
+	img->buffer = mlx_get_data_addr(cub->img->no, \
+			&img->pixel_bits, &img->line_bytes, &img->endian);
+	while (x < 64 && y < 64)
+	{
+		pix = dg_get_pixel(bs, x + (2 * 64), y + (2 * 64));
+		dg_copy_pixel(pix, dg_get_pixel(img, x, y));
+		if (x == 64 - 1)
+		{
+			x = 0;
+			y++;
+		}
+		else
+			x++;
+	}
+	free(bs);
+	free(img);
+}
 
 int	dg_main(t_cub *cub, int ac, char **av)
 {
 	t_list_str	*datalst;
 
-	// ft_printf("debug on.\n");
 	// dg_print_arg(ac, av);
 	cub_get_data(cub, ac, av);
 	// dg_print_data_before(cub);
