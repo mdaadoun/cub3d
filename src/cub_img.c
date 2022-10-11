@@ -14,7 +14,7 @@ void	*fs_open_img(t_cub *cub, char *path)
 
 void	cub_load_img(t_cub *cub)
 {
-	t_buffer *img;
+	t_buffer	*img;
 
 	if (cub->data->imgpath_no)
 	{
@@ -31,7 +31,6 @@ void	cub_load_img(t_cub *cub)
 		img->buffer = mlx_get_data_addr(cub->img->so, \
 				&img->pixel_bits, &img->line_bytes, &img->endian);
 		cub->img->so_buf = img;
-
 	}
 	if (cub->data->imgpath_ea)
 	{
@@ -53,7 +52,6 @@ void	cub_load_img(t_cub *cub)
 
 void	cub_free_img(t_cub *cub)
 {
-
 	if (cub->img->no)
 	{
 		mlx_destroy_image(cub->display->mlx, cub->img->no);

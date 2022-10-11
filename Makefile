@@ -8,7 +8,8 @@ CC = gcc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror -g
 # TO DELETE START
-DEBUG_REMOVE = debug/debug.c debug/debug_display.c
+DEBUG = 2
+DEBUG_REMOVE = debug/debug.c debug/debug_display.c debug/debug_render.c
 # TO DELETE END
 
 LIBXFLAG = -lXext -lX11
@@ -50,12 +51,12 @@ VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
 ARG = test2.cub
 
 # TO DELETE START
-DFLAGS = -g3 -ggdb -I. -D DEBUG=1
+DFLAGS = -g3 -ggdb -I. -D DEBUG=${DEBUG}
 DSRCS = debug/debug.c src/cub_main.c src/cub_file.c src/cub_free.c \
 src/cub_config.c src/cub_utils.c src/cub_errors.c src/cub_events.c \
 src/cub_map.c src/cub_check_map.c src/cub_colors.c src/cub_rays.c\
 src/cub_draw.c src/cub_player.c debug/debug_display.c\
-src/cub_img.c
+src/cub_img.c debug/debug_render.c
 
 debug: fclean
 	@make -sC libft
