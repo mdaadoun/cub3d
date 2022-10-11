@@ -94,7 +94,6 @@ static void fs_display_rays(t_cub *cub)
 		db_draw_line(cub, &line_ray, &color);
 		i++;
 	}
-	printf("\n");
 }
 
 int	dg_game_loop(t_cub *cub)

@@ -109,10 +109,14 @@ typedef struct s_color
 
 typedef struct s_image
 {
-	void	*no;
-	void	*so;
-	void	*ea;
-	void	*we;
+	void		*no;
+	t_buffer	*no_buf;
+	void		*so;
+	t_buffer	*so_buf;
+	void		*ea;
+	t_buffer	*ea_buf;
+	void		*we;
+	t_buffer	*we_buf;
 }	t_image;
 
 typedef struct s_line
