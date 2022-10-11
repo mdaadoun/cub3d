@@ -8,12 +8,17 @@ char	*dg_get_pixel(t_buffer *bs, t_u16 x, t_u16 y)
 	return (&bs->buffer[pixel]);
 }
 
-void	dg_copy_pixel(char *dest, char *src)
+void	dg_copy_pixel(char *dest, char *src, int mul)
 {
+	while (mul != 0)
+	{
 	dest[0] = src[0];
 	dest[1] = src[1];
 	dest[2] = src[2];
 	dest[3] = src[3];
+	dest = &dest[4];
+	mul--;
+	}
 }
 
 void	*dg_get_texture(t_cub *cub, t_texture id)
@@ -42,8 +47,12 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	while (y < 64)
 	{
 		pix = dg_get_pixel(bs, col, ((y * 2) + HEIGHT) / 2);
-		dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_x % 64, y));
-		dg_copy_pixel(&pix[4], dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_x % 64, y));
+		if (ray->texture == TEXTURE_NORTH || ray->texture == TEXTURE_SOUTH)
+			dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), \
+					ray->target_x % 64, y), 2);
+		else
+			dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), \
+					ray->target_y % 64, y), 2);
 		y++;
 	}
 	free(bs);
@@ -58,7 +67,7 @@ void	dg_build_render(t_cub *cub)
 	i = 0;
 	while (i < RAYS)
 	{
-		printf("ray: %d			target_x: %d\n", i, ray[i].target_x);
+		printf("ray: %d / target_x: %d / lenght: %f\n", i, ray[i].target_x, ray[i].length);
 		dg_get_col_img(cub, i, &ray[i]);
 		i++;
 	}
