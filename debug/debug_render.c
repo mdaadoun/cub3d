@@ -57,7 +57,7 @@ void	dg_build_render(t_cub *cub)
 
 	ray = cub->rays;
 	i = 0;
-	while (i < 320)
+	while (i < RAYS)
 	{
 		dg_get_col_img(cub, i, &ray[i]);
 		i++;

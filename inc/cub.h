@@ -198,6 +198,7 @@ typedef struct s_map {
  */
 
 typedef enum e_texture {
+	TEXTURE_ERROR,
 	TEXTURE_EAST,
 	TEXTURE_NORTH,
 	TEXTURE_SOUTH,

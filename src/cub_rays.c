@@ -3,14 +3,47 @@
 // get the texture on the wall from the ray and the position on the wall
 static void	fs_set_texture(t_ray *ray)
 {
-	if (ray->prev_tgx < ray->target_x && ray->prev_tgy < ray->target_y)
-		ray->texture = TEXTURE_EAST;
-	else if (ray->prev_tgx < ray->target_x && ray->prev_tgy > ray->target_y)
-		ray->texture = TEXTURE_WEST;
-	else if (ray->prev_tgx > ray->target_x && ray->prev_tgy < ray->target_y)
+	t_u16 x1;
+	t_u16 y1;
+	t_u16 x2;
+	t_u16 y2;
+	
+	x1 = ray->prev_tgx / GRID;
+	y1 = ray->prev_tgy / GRID;
+	x2 = ray->target_x / GRID;
+	y2 = ray->target_y / GRID;
+
+	(void) x1;
+	(void) y1;
+	(void) x2;
+	(void) y2;
+
+	if (x1 == x2 && y1 < y2)
 		ray->texture = TEXTURE_SOUTH;
-	else if (ray->prev_tgx > ray->target_x && ray->prev_tgy > ray->target_y)
+	if (x1 == x2 && y1 > y2)
 		ray->texture = TEXTURE_NORTH;
+	if (x1 > x2 && y1 == y2)
+		ray->texture = TEXTURE_EAST;
+	if (x1 < x2 && y1 == y2)
+		ray->texture = TEXTURE_WEST;
+	// if (ray->prev_tgy < ray->target_y)
+
+	// if (ray->prev_tgx / GRID > ray->target_x / GRID)
+	// 	ray->texture = TEXTURE_EAST;
+	// else if (ray->prev_tgy / GRID < ray->target_y / GRID)
+	// 	ray->texture = TEXTURE_NORTH;
+	// else if (ray->prev_tgy / GRID < ray->target_y / GRID)
+	// 	ray->texture = TEXTURE_SOUTH;
+	// else if (ray->prev_tgx / GRID < ray->target_x / GRID)
+	// 	ray->texture = TEXTURE_WEST;
+	// if (ray->prev_tgx < ray->target_x && ray->prev_tgy < ray->target_y)
+	// 	ray->texture = TEXTURE_EAST;
+	// else if (ray->prev_tgx < ray->target_x && ray->prev_tgy > ray->target_y)
+	// 	ray->texture = TEXTURE_WEST;
+	// else if (ray->prev_tgx > ray->target_x && ray->prev_tgy < ray->target_y)
+	// 	ray->texture = TEXTURE_SOUTH;
+	// else if (ray->prev_tgx > ray->target_x && ray->prev_tgy > ray->target_y)
+	// 	ray->texture = TEXTURE_NORTH;
 	(void) ray;
 }
 

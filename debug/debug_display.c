@@ -92,7 +92,8 @@ static void fs_display_rays(t_cub *cub)
 		line_ray.x2 = (((cub->player->map_x + cub->player->grid_x) * GRID - sin(ray[i].angle) * ray[i].length));
 		line_ray.y2 = (((cub->player->map_y + cub->player->grid_y) * GRID + cos(ray[i].angle) * ray[i].length));
 		db_draw_line(cub, &line_ray, &color);
-		printf("texture %d", ray[i].texture);
+		printf("ray: %d, texture: %d\n", ray[i].column_index ,ray[i].texture);
+		printf("length: %f\n", ray[i].length);
 		i++;
 	}
 }
