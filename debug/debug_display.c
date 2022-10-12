@@ -117,5 +117,10 @@ int	dg_game_loop(t_cub *cub)
 		mlx_put_image_to_window(cub->display->mlx, cub->display->win, cub->display->img, 0, 0);
 		cub->world->update = false;
 	}
+	// if (cub->player->update)
+	// {
+	// 	cub->player->update = false;
+	// }
+
 	return (0);
 }

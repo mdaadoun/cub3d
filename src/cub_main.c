@@ -19,6 +19,7 @@ static int	fs_game_loop(t_cub *cub)
 	{
 		cub_cast_rays(cub);
 		cub_draw_world(cub);
+		cub_build_render(cub);
 		mlx_put_image_to_window(dsp->mlx, dsp->win, dsp->img, 0, 0);
 		cub->world->update = false;
 	}

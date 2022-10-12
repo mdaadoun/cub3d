@@ -336,7 +336,6 @@ void		cub_free_img(t_cub *cub);
 
 void		cub_move_player(t_cub *cub, t_u16 key);
 
-
 /*
  * Ray casting functions
  *		files:
@@ -344,6 +343,15 @@ void		cub_move_player(t_cub *cub, t_u16 key);
  */
 
 void		cub_cast_rays(t_cub *cub);
+
+/*
+ * Rendering functions
+ *		files:
+ *			cub_render.c
+ */
+
+void		cub_build_render(t_cub *cub);
+
 
 ///////////////////////////////////////////////////////////////////////
 // TO DELETE START
