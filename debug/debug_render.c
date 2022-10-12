@@ -46,6 +46,8 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	int			a;
 	int			b;
 	int			c;
+	t_f32		ratio;
+	t_f32		count_ratio;
 
 	lineheight = (int)(HEIGHT / ray->length) * 64;
 	drawstart = -lineheight / 2 + HEIGHT / 2;
@@ -71,16 +73,25 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 		c = y;
 	}
 	printf("Y: %d	64 - C:%d\n", y, 64 - c);
-	while (y < 63 - c)
+	ratio = ((drawend - drawstart) / 64);
+	count_ratio = 0;
+	while (drawstart < drawend)
 	{
-		pix = dg_get_pixel(bs, col, drawstart + y);
+		pix = dg_get_pixel(bs, col, drawstart);
 		if (ray->texture == TEXTURE_NORTH || ray->texture == TEXTURE_SOUTH)
 			dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), \
 					ray->target_x % 64, y), size);
 		else
 			dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), \
 					ray->target_y % 64, y), size);
-		y++;
+		drawstart++;
+		if (count_ratio == ratio)
+		{
+			y++;
+			count_ratio = 0;
+		}
+		count_ratio += 1;
+		printf("drawstart: %d y:%d\n", drawstart, y);
 	}
 	free(bs);
 }
