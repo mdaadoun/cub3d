@@ -181,8 +181,9 @@ int	dg_main(t_cub *cub, int ac, char **av)
 {
 	t_list_str	*datalst;
 
+	(void) ac;
 	// dg_print_arg(ac, av);
-	cub_get_data(cub, ac, av);
+	cub_get_data(cub, av);
 	// dg_print_data_before(cub);
 	datalst = cub_set_config(cub);
 	dg_print_data_after(cub);

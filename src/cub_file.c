@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:42 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:14:42 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:40:37 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ static void	fs_build_filedata(t_cub *cub)
 /*
  *	Check if the given file is valid and build a structure from its content.
  */
-void	cub_get_data(t_cub *cub, int ac, char **av)
+void	cub_get_data(t_cub *cub, char **av)
 {
 	cub->data = (t_data *)cub_alloc(cub, 1, sizeof(t_data));
-	if (ac != 2)
-		cub_free_before_exit(cub, ERROR_PARAMS);
 	fs_is_cub_file(cub, av[1]);
 	cub->data->filepath = av[1];
 	fs_build_filedata(cub);

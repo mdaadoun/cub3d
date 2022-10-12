@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 16:28:52 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:42:06 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ void		cub_init_events(t_cub *cub);
  *			cub_file.c
  */
 
-void		cub_get_data(t_cub *cub, int ac, char **av);
+void		cub_get_data(t_cub *cub, char **av);
 
 /*
  * Free functions
