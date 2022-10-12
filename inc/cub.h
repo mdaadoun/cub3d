@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:30:42 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:46:21 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,21 @@ typedef struct s_ray {
 	t_f32			angle;
 	t_f32			length;
 }	t_ray;
+
+/*
+ *	Rays structure:
+ */
+
+typedef struct s_render {
+	t_buffer	*bs;
+	t_f64		lineheight;
+	t_f64		step;
+	t_f64		texpos;
+	int			drawstart;
+	int			drawend;
+	char		*img;
+	char		*pix;
+}	t_render;
 
 /*
  *	Main structure:

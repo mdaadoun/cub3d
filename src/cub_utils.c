@@ -6,14 +6,11 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:15:06 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:24:00 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:54:52 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
-
-
-
 
 void	*cub_alloc(t_cub *cub, size_t nmemb, size_t size)
 {
