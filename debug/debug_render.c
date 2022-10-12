@@ -8,17 +8,12 @@ char	*dg_get_pixel(t_buffer *bs, t_u16 x, t_u16 y)
 	return (&bs->buffer[pixel]);
 }
 
-void	dg_copy_pixel(char *dest, char *src, int mul)
+void	dg_copy_pixel(char *dest, char *src)
 {
-	while (mul != 0)
-	{
 	dest[0] = src[0];
 	dest[1] = src[1];
 	dest[2] = src[2];
 	dest[3] = src[3];
-	dest = &dest[4];
-	mul--;
-	}
 }
 
 void	*dg_get_texture(t_cub *cub, t_texture id)
@@ -37,6 +32,7 @@ void	*dg_get_texture(t_cub *cub, t_texture id)
 void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 {
 	t_buffer	*bs;
+	char		*img;
 	char		*pix;
 	int			y;
 	t_f64		size;
@@ -48,6 +44,7 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	int			c;
 	t_f32		ratio;
 	t_f32		count_ratio;
+	int			i;
 
 	lineheight = (int)(HEIGHT / ray->length) * 64;
 	drawstart = -lineheight / 2 + HEIGHT / 2;
@@ -77,14 +74,18 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	count_ratio = 0;
 	while (drawstart < drawend)
 	{
-		pix = dg_get_pixel(bs, col, drawstart);
+		i = 0;
 		if (ray->texture == TEXTURE_NORTH || ray->texture == TEXTURE_SOUTH)
-			dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), \
-					ray->target_x % 64, y), size);
+			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_x % 64, y);
 		else
-			dg_copy_pixel(pix, dg_get_pixel(dg_get_texture(cub, ray->texture), \
-					ray->target_y % 64, y), size);
-		drawstart++;
+			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_y % 64, y);
+		while (i < size)
+		{
+			pix = dg_get_pixel(bs, col, drawstart + i);
+			dg_copy_pixel(pix, img);
+			i++;
+		}
+		drawstart += i;
 		if (count_ratio == ratio)
 		{
 			y++;
