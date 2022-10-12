@@ -39,15 +39,10 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	t_f64		lineheight;
 	int			drawstart;
 	int			drawend;
-	int			a;
-	int			b;
-	int			c;
-	// int		ratio;
-	// int		count_ratio;
-	int			i;
+	t_f64		step;
+	t_f64		texpos;
 
 	ray->length *= cos(cub->player->angle - ray->angle);
-
 	lineheight = (t_f64)(HEIGHT / ray->length) * 64.0;
 	drawstart = -lineheight / 2 + HEIGHT / 2;
 	if (drawstart < 0)
@@ -57,45 +52,24 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 		drawend = HEIGHT - 1;
 	printf("Lineheight: %f	DrawStart: %d	DrawEnd: %d\n",lineheight, drawstart, drawend);
 	size = lineheight / 64.0;
-	// if (size == 0)
-	// 	size = 1;
 	printf("Size: %f\n", size);
 	y = 0;
 	bs = cub_alloc(cub, sizeof(t_buffer), 1);
 	bs->buffer = mlx_get_data_addr(cub->display->img, \
 			&bs->pixel_bits, &bs->line_bytes, &bs->endian);
-	a = size * 64;
-	if (a > HEIGHT)
+	step = 1.0 * 64.0 / lineheight;
+	y = drawstart;
+	texpos = (drawstart - HEIGHT / 2 + lineheight) * step;
+	while (y < drawend)
 	{
-		b = a - HEIGHT;
-		y = (b / 2) / size;
-		c = y;
-	}
-	printf("Y: %d 64 - C:%d\n", y, 64 - c);
-	// ratio = ((drawend - drawstart) / 64);
-	// count_ratio = 0;
-	while (drawstart < drawend)
-	// while (y < 64)
-	{
-		i = 0;
 		if (ray->texture == TEXTURE_NORTH || ray->texture == TEXTURE_SOUTH)
-			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_x % 64, y);
+			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_x % 64, texpos);
 		else
-			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_y % 64, y);
-		while (i < size && drawstart + i < drawend)
-		{
-			pix = dg_get_pixel(bs, col, drawstart + i);
-			dg_copy_pixel(pix, img);
-			i++;
-		}
-		drawstart += i;
-		// if (count_ratio == ratio)
-		if (y < 64 - c)
-		{
-			y++;
-			// count_ratio = 0;
-		}
-		// count_ratio += 1;
+			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_y % 64, texpos);
+		pix = dg_get_pixel(bs, col, y);
+		dg_copy_pixel(pix, img);
+		texpos += step;
+		y++;
 		// printf("drawstart: %d, drawend:%d ,size:%f, y:%d\n", drawstart, drawend, size, y);
 	}
 	free(bs);
