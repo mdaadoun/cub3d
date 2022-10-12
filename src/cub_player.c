@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:54 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:14:54 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:26:56 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,66 @@
 
 static void	fs_move_player_left(t_cub *cub)
 {
-	cub->player->grid_x += sin(cub->player->angle + (M_PI / 2)) * SPEED;
-	cub->player->grid_y += (cos(cub->player->angle + (M_PI / 2)) * -1) * SPEED;
+	t_f32	x;
+	t_f32	y;
+
+	x = cub->player->grid_x;
+	y = cub->player->grid_y;
+	x += sin(cub->player->angle + (M_PI / 2)) * SPEED;
+	y += (cos(cub->player->angle + (M_PI / 2)) * -1) * SPEED;
+	if (cub_player_can_go(cub, x, y))
+	{
+		cub->player->grid_x = x;
+		cub->player->grid_y = y;
+	}
 }
 
 static void	fs_move_player_right(t_cub *cub)
 {
-	cub->player->grid_x += (sin(cub->player->angle + (M_PI / 2)) * -1) * SPEED;
-	cub->player->grid_y += cos(cub->player->angle + (M_PI / 2)) * SPEED;
+	t_f32	x;
+	t_f32	y;
+
+	x = cub->player->grid_x;
+	y = cub->player->grid_y;
+	x += (sin(cub->player->angle + (M_PI / 2)) * -1) * SPEED;
+	y += cos(cub->player->angle + (M_PI / 2)) * SPEED;
+	if (cub_player_can_go(cub, x, y))
+	{
+		cub->player->grid_x = x;
+		cub->player->grid_y = y;
+	}
 }
 
 static void	fs_move_player_forward(t_cub *cub)
 {		
-	cub->player->grid_x += (sin(cub->player->angle) * -1) * SPEED;
-	cub->player->grid_y += cos(cub->player->angle) * SPEED;
+	t_f32	x;
+	t_f32	y;
+
+	x = cub->player->grid_x;
+	y = cub->player->grid_y;
+	x += (sin(cub->player->angle) * -1) * SPEED;
+	y += cos(cub->player->angle) * SPEED;
+	if (cub_player_can_go(cub, x, y))
+	{
+		cub->player->grid_x = x;
+		cub->player->grid_y = y;
+	}
 }
 
 static void	fs_move_player_backward(t_cub *cub)
 {
-	cub->player->grid_x += sin(cub->player->angle) * SPEED;
-	cub->player->grid_y += (cos(cub->player->angle) * -1) * SPEED;
+	t_f32	x;
+	t_f32	y;
+
+	x = cub->player->grid_x;
+	y = cub->player->grid_y;
+	x += sin(cub->player->angle) * SPEED;
+	y += (cos(cub->player->angle) * -1) * SPEED;
+	if (cub_player_can_go(cub, x, y))
+	{
+		cub->player->grid_x = x;
+		cub->player->grid_y = y;
+	}
 }
 
 void	cub_move_player(t_cub *cub, t_u16 key)

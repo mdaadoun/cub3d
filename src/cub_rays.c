@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:15:00 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:15:00 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:41:44 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	fs_set_texture(t_ray *ray)
 	x2 = ray->target_x / GRID;
 	y2 = ray->target_y / GRID;
 	if (x1 == x2 && y1 < y2)
-		ray->texture = TEXTURE_SOUTH;
-	if (x1 == x2 && y1 > y2)
 		ray->texture = TEXTURE_NORTH;
+	if (x1 == x2 && y1 > y2)
+		ray->texture = TEXTURE_SOUTH;
 	if (x1 > x2 && y1 == y2)
 		ray->texture = TEXTURE_EAST;
 	if (x1 < x2 && y1 == y2)

@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:51 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:14:52 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:25:44 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,18 @@ void	cub_check_map(t_cub *cub)
 	cub_check_char_map(cub, map);
 	cub_map_space_resize(map);
 	cub_check_wall_map(cub, map);
+}
+
+bool	cub_player_can_go(t_cub *cub, t_f32	x, t_f32 y)
+{
+	int test_x;
+	int test_y;
+
+	test_x = (int) (x + cub->player->map_x);
+	test_y = (int) (y + cub->player->map_y);
+	if (cub->map->arr[test_y][test_x] != '1')
+		return (true);
+	// printf("next_x:%f, next_y:%f\n", x + cub->player->map_x, y + cub->player->map_y);
+	// printf("next_x:%d, next_y:%d\n", test_x, test_y);
+	return (false);
 }
