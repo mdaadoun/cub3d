@@ -40,7 +40,7 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	int			drawend;
 	t_f64		step;
 	t_f64		texpos;
-
+	
 	ray->length *= cos(cub->player->angle - ray->angle);
 	lineheight = (t_f64)(HEIGHT / ray->length) * 64.0;
 	drawstart = -lineheight / 2 + HEIGHT / 2;
@@ -49,14 +49,25 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	drawend = lineheight / 2 + HEIGHT / 2;
 	if (drawend >= HEIGHT)
 		drawend = HEIGHT;
-	printf("Lineheight: %f	DrawStart: %d	DrawEnd: %d\n",lineheight, drawstart, drawend);
-	size = lineheight / 64.0;
-	printf("Size: %f\n", size);
 	bs = cub_alloc(cub, sizeof(t_buffer), 1);
 	bs->buffer = mlx_get_data_addr(cub->display->img, \
 			&bs->pixel_bits, &bs->line_bytes, &bs->endian);
-	step = (1.0 * 64 / lineheight) / 1.5;
-	texpos = (drawstart - HEIGHT / 2 + lineheight) * step;
+
+	size = lineheight / 64.0;
+	step = (64.0 / lineheight);
+	if (drawstart + lineheight > HEIGHT)
+	{
+		// step = (64.0 / lineheight) / 0.9;
+		texpos = ((drawstart - HEIGHT / 2 + lineheight) * step) - 32.0;
+	}
+	else
+	{
+		// step = (64.0 / lineheight);
+		texpos = 0;
+	}
+	printf("Lineheight: %f	DrawStart: %d	DrawEnd: %d\n",lineheight, drawstart, drawend);
+	printf("Size: %f\n", size);
+
 	while (drawstart < drawend)
 	{
 		if (ray->texture == TEXTURE_NORTH || ray->texture == TEXTURE_SOUTH)
