@@ -1,4 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/12 15:15:06 by mdaadoun          #+#    #+#             */
+/*   Updated: 2022/10/12 15:24:00 by mdaadoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub.h"
+
+
+
 
 void	*cub_alloc(t_cub *cub, size_t nmemb, size_t size)
 {
@@ -31,4 +46,25 @@ void	cub_init_player(t_cub *cub, char c, int y, int x)
 		cub->player->angle = M_PI_2;
 	else if (c == 'S')
 		cub->player->angle = 0;
+}
+
+char	*cub_get_pixel(t_buffer *bs, t_u16 x, t_u16 y)
+{
+	int	pixel;
+
+	pixel = (y * bs->line_bytes) + (x * 4);
+	return (&bs->buffer[pixel]);
+}
+
+void	*cub_get_texture(t_cub *cub, t_texture id)
+{
+	if (id == TEXTURE_EAST)
+		return (cub->img->ea_buf);
+	if (id == TEXTURE_WEST)
+		return (cub->img->we_buf);
+	if (id == TEXTURE_NORTH)
+		return (cub->img->no_buf);
+	if (id == TEXTURE_SOUTH)
+		return (cub->img->so_buf);
+	return (0);
 }

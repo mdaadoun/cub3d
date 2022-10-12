@@ -1,6 +1,5 @@
 * payer must move relative to its direction angle (fix A S D W move)
 
-
 * init flr and cel rectangle from width and height
 * draw window, draw two rectangle, top for celling, bottom for floor
 
@@ -14,7 +13,6 @@
 * draw first ray cast, from player to first wall side
 * rotate vision cone of player
 * connect each input event to movement or player or vision cone (A S D W LEFT RIGHT)
-
 
 END
 * add headers

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
+/*   Updated: 2022/10/12 15:30:42 by mdaadoun         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB_H
 # define CUB_H
 
@@ -146,7 +158,6 @@ typedef struct s_world {
  */
 
 typedef struct s_player {
-	// bool	update;
 	t_u64	map_x;
 	t_u64	map_y;
 	t_f32	grid_x;
@@ -272,6 +283,8 @@ void		cub_print_error(t_errkey errkey, t_u8 out);
 
 void		*cub_alloc(t_cub *cub, size_t nmemb, size_t size);
 bool		cub_is_player(char c);
+void		*cub_get_texture(t_cub *cub, t_texture id);
+char		*cub_get_pixel(t_buffer *bs, t_u16 x, t_u16 y);
 void		cub_init_player(t_cub *cub, char c, int y, int x);
 
 /*
@@ -350,7 +363,6 @@ void		cub_cast_rays(t_cub *cub);
  */
 
 void		cub_build_render(t_cub *cub);
-
 
 ///////////////////////////////////////////////////////////////////////
 // TO DELETE START
