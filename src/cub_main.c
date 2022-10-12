@@ -40,6 +40,8 @@ static void	fs_init_cub(t_cub **cub)
 	(*cub)->player = (t_player *) cub_alloc(NULL, 1, sizeof(t_player));
 	(*cub)->map = (t_map *) cub_alloc(NULL, 1, sizeof(t_map));
 	(*cub)->img = (t_image *) cub_alloc(NULL, 1, sizeof(t_image));
+	(*cub)->fov = M_PI / 3;
+	(*cub)->rays_steps = (*cub)->fov / RAYS;
 }
 
 void	cub_init_window(t_cub *cub)

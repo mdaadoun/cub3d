@@ -34,7 +34,6 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 	t_buffer	*bs;
 	char		*img;
 	char		*pix;
-	int			y;
 	t_f64		size;
 	t_f64		lineheight;
 	int			drawstart;
@@ -49,27 +48,25 @@ void	dg_get_col_img(t_cub *cub, int col, t_ray *ray)
 		drawstart = 0;
 	drawend = lineheight / 2 + HEIGHT / 2;
 	if (drawend >= HEIGHT)
-		drawend = HEIGHT - 1;
+		drawend = HEIGHT;
 	printf("Lineheight: %f	DrawStart: %d	DrawEnd: %d\n",lineheight, drawstart, drawend);
 	size = lineheight / 64.0;
 	printf("Size: %f\n", size);
-	y = 0;
 	bs = cub_alloc(cub, sizeof(t_buffer), 1);
 	bs->buffer = mlx_get_data_addr(cub->display->img, \
 			&bs->pixel_bits, &bs->line_bytes, &bs->endian);
-	step = 1.0 * 64.0 / lineheight;
-	y = drawstart;
+	step = (1.0 * 64 / lineheight) / 1.5;
 	texpos = (drawstart - HEIGHT / 2 + lineheight) * step;
-	while (y < drawend)
+	while (drawstart < drawend)
 	{
 		if (ray->texture == TEXTURE_NORTH || ray->texture == TEXTURE_SOUTH)
 			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_x % 64, texpos);
 		else
 			img = dg_get_pixel(dg_get_texture(cub, ray->texture), ray->target_y % 64, texpos);
-		pix = dg_get_pixel(bs, col, y);
+		pix = dg_get_pixel(bs, col, drawstart);
 		dg_copy_pixel(pix, img);
 		texpos += step;
-		y++;
+		drawstart++;
 		// printf("drawstart: %d, drawend:%d ,size:%f, y:%d\n", drawstart, drawend, size, y);
 	}
 	free(bs);
@@ -84,7 +81,7 @@ void	dg_build_render(t_cub *cub)
 	i = 0;
 	while (i < RAYS)
 	{
-		printf("ray: %d / target_x: %d / lenght: %f\n", i, ray[i].target_x, ray[i].length);
+		printf("ray: %d / target_x: %d / lenght: %f\n", ray[i].column_index, ray[i].target_x, ray[i].length);
 		dg_get_col_img(cub, i, &ray[i]);
 		i++;
 	}

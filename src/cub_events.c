@@ -20,12 +20,12 @@ static int	fs_key_hook(int keycode, t_cub *cub)
 		cub_move_player(cub, XK_w);
 	else if (keycode == XK_Left)
 	{
-		cub->player->angle -= 0.1;
+		cub->player->angle -= ROT_STEP;
 		cub->world->update = true;
 	}
 	else if (keycode == XK_Right)
 	{
-		cub->player->angle += 0.1;
+		cub->player->angle += ROT_STEP;
 		cub->world->update = true;
 	}
 	return (0);

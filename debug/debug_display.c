@@ -60,12 +60,12 @@ static void	fs_display_vision(t_cub *cub)
 	line_dir.y2 = (((cub->player->map_y + cub->player->grid_y) + cos(cub->player->angle)) * (GRID));
 	fov_left.x1 = (cub->player->map_x + cub->player->grid_x) * GRID;
 	fov_left.y1 = (cub->player->map_y + cub->player->grid_y) * GRID;
-	fov_left.x2 = (((cub->player->map_x + cub->player->grid_x) - sin(cub->player->angle - FOV / 2)) * (GRID));
-	fov_left.y2 = (((cub->player->map_y + cub->player->grid_y) + cos(cub->player->angle - FOV / 2)) * (GRID));
+	fov_left.x2 = (((cub->player->map_x + cub->player->grid_x) - sin(cub->player->angle - cub->fov / 2)) * (GRID));
+	fov_left.y2 = (((cub->player->map_y + cub->player->grid_y) + cos(cub->player->angle - cub->fov / 2)) * (GRID));
 	fov_right.x1 = (cub->player->map_x + cub->player->grid_x) * GRID;
 	fov_right.y1 = (cub->player->map_y + cub->player->grid_y) * GRID;
-	fov_right.x2 = (((cub->player->map_x + cub->player->grid_x) - sin(cub->player->angle + FOV / 2)) * (GRID));
-	fov_right.y2 = (((cub->player->map_y + cub->player->grid_y) + cos(cub->player->angle + FOV / 2)) * (GRID));
+	fov_right.x2 = (((cub->player->map_x + cub->player->grid_x) - sin(cub->player->angle + cub->fov / 2)) * (GRID));
+	fov_right.y2 = (((cub->player->map_y + cub->player->grid_y) + cos(cub->player->angle + cub->fov / 2)) * (GRID));
 	db_draw_line(cub, &line_dir, &color);
 	db_draw_line(cub, &fov_left, &color);
 	db_draw_line(cub, &fov_right, &color);

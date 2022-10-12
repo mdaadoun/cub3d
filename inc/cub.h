@@ -32,13 +32,11 @@ typedef double				t_f64;
 
 # define WIDTH	320
 # define HEIGHT	240
+# define RAYS WIDTH
 
 # define GRID 64.0
 # define SPEED 0.1
-
-# define FOV (M_PI / 3)
-# define RAYS WIDTH
-# define STEP (FOV / RAYS)
+# define ROT_STEP 0.1
 
 # define LOGO "\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
@@ -198,9 +196,8 @@ typedef struct s_map {
  */
 
 typedef enum e_texture {
-	TEXTURE_ERROR,
-	TEXTURE_EAST,
 	TEXTURE_NORTH,
+	TEXTURE_EAST,
 	TEXTURE_SOUTH,
 	TEXTURE_WEST,
 }			t_texture;
@@ -228,6 +225,8 @@ typedef struct s_cub {
 	t_data		*data;
 	t_map		*map;
 	t_ray		rays[WIDTH];
+	t_f64		fov;
+	t_f64		rays_steps;
 	t_color		color;
 	t_rect		rect;
 }	t_cub;

@@ -53,7 +53,7 @@ void	cub_cast_rays(t_cub *cub)
 	t_ray	*ray;
 	t_f32	start_angle;
 
-	start_angle = cub->player->angle - (FOV / 2);
+	start_angle = cub->player->angle - (cub->fov / 2);
 	ray = cub->rays;
 	idx = 0;
 	while (idx != RAYS)
@@ -64,6 +64,6 @@ void	cub_cast_rays(t_cub *cub)
 		while(!fs_check_colision(cub, &ray[idx]))
 			ray[idx].length += 1;
 		idx++;
-		start_angle += STEP;
+		start_angle += cub->rays_steps;
 	}
 }
