@@ -1,4 +1,4 @@
-ARG = maps/error/map_error_bad_color.cub
+ARG = maps/error/map_error_duplicate.cub
 
 NAME = cub3D
 SRCS = main.c file.c free.c errors.c utils.c events.c config.c map.c \

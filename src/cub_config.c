@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:26 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/14 07:00:31 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:53:48 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static void	fs_check_set_config(t_cub *cub, char *line, char **str_ptr)
 
 	str = fs_split_and_trim(cub, line);
 	if (*str_ptr)
+	{
+		free(str);
 		cub_free_before_exit(cub, ERROR_FORMAT);
+	}
 	*str_ptr = str;
 }
 
