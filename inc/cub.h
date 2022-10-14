@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 16:42:06 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/14 06:44:54 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,7 +326,6 @@ void		cub_check_wall_map(t_cub *cub, char **map);
 void		cub_check_char_map(t_cub *cub, char **map);
 void		cub_map_space_resize(char **map);
 bool		cub_player_can_go(t_cub *cub, t_f32	x, t_f32 y);
-
 
 /*
  * Display functions
