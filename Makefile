@@ -1,3 +1,5 @@
+ARG = maps/error/map_error_bad_color.cub
+
 NAME = cub3D
 SRCS = main.c file.c free.c errors.c utils.c events.c config.c map.c \
 check_map.c colors.c draw.c rays.c\
@@ -6,7 +8,8 @@ DIR = src
 OBJS = $(addprefix $(DIR)/cub_,$(SRCS:%.c=%.o))
 CC = gcc
 RM = rm -f
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
+VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
 
 LIBXFLAG = -lXext -lX11
 LIBFT = libft/libft.a
@@ -42,9 +45,6 @@ fclean: clean
 	@make clean -sC ${LIBXPATH}
 
 re: fclean all
-
-VARG = --track-origins=yes --leak-check=full --show-leak-kinds=all -s
-ARG = test2.cub
 
 valgrind:
 	valgrind ${VARG} ./${NAME} ${ARG}
