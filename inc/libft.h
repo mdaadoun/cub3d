@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:54:43 by pi                #+#    #+#             */
-/*   Updated: 2022/09/22 12:51:35 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:03:47 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,25 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+//======
+// Types
+//======
+
+typedef signed char			t_i8;
+typedef unsigned char		t_u8;
+typedef signed short		t_i16;
+typedef unsigned short		t_u16;
+typedef signed long			t_i32;
+typedef unsigned long		t_u32;
+typedef float				t_f32;
+typedef signed long long	t_i64;
+typedef unsigned long long	t_u64;
+typedef double				t_f64;
+
+//======
 // LIBFT
+//======
+
 int				ft_isupper(int c);
 int				ft_islower(int c);
 int				ft_isalpha(int c);
@@ -63,15 +81,22 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 size_t			ft_char_in_set(char c, char const *set);
 size_t			ft_count_tab_string(char **tab);
+void			ft_free_tab_string(char **split);
 
+//======
 // LIST
+//======
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
 
+//======
 // LIST
+//======
+
 typedef struct s_list_str
 {
 	char				*str;
@@ -95,7 +120,9 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del) \
 (void *));
 
+//======
 // DOUBLE LIST
+//======
 
 typedef struct s_double_list
 {
@@ -108,7 +135,10 @@ void			ft_dlstadd_back(t_double_list *lst, t_double_list *new);
 t_double_list	*ft_dlstnew(int value);
 t_double_list	*ft_dlstlast(t_double_list *lst);
 
+//======
 // PRINTF
+//======
+
 int				ft_printf(const char *format, ...);
 int				ft_strlen_pf(const char *s);
 int				ft_putchar_pf(char c, int *len);
@@ -117,7 +147,10 @@ int				ft_putnbr_pf(int n, int *len);
 int				ft_putpointer_pf(void *pointer, int base, int *len);
 int				ft_putbase_pf(size_t nb, int base, bool uppercase, int *len);
 
+//======
 // GNL
+//======
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif

@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:08 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 16:42:51 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/14 06:48:12 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,6 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		cub_free_before_exit(NULL, ERROR_PARAMS);
 	fs_init_cub(&cub);
-	// /* TO REMOVE START */
-	// if (DEBUG)
-	// 	dg_main(cub, ac, av);
-	// /* TO REMOVE END */
 	cub_get_data(cub, av);
 	fs_process_data(cub);
 	cub_init_window(cub);

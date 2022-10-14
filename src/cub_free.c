@@ -6,24 +6,11 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:45 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 16:40:08 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/14 06:58:50 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub.h"
-
-void	cub_free_strarr(char **split)
-{
-	t_i8	i;
-
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-}
 
 static void	fs_free_data(t_data *data)
 {
@@ -92,7 +79,8 @@ void	cub_free_before_exit(t_cub *cub, t_errkey errkey)
 			fs_clear_display(cub->display);
 		if (cub->map)
 		{
-			cub_free_strarr(cub->map->arr);
+			if (cub->map->arr)
+				ft_free_tab_string(cub->map->arr);
 			free(cub->map);
 		}
 		free(cub->player);

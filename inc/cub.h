@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/14 06:44:54 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:03:06 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,6 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <math.h>
-
-//======
-// Types
-//======
-
-typedef signed char			t_i8;
-typedef unsigned char		t_u8;
-typedef signed short		t_i16;
-typedef unsigned short		t_u16;
-typedef signed long			t_i32;
-typedef unsigned long		t_u32;
-typedef float				t_f32;
-typedef signed long long	t_i64;
-typedef unsigned long long	t_u64;
-typedef double				t_f64;
 
 //==================
 // Cub3d global data

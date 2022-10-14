@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:21 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:14:23 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/14 07:00:55 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	fs_check_set_colors(t_cub *cub, t_color *color, char *colstr)
 	}
 	if (i != 3)
 		cub_free_before_exit(cub, ERROR_FORMAT);
-	cub_free_strarr(colors);
+	ft_free_tab_string(colors);
 	return (true);
 }
 
