@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/14 07:03:06 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:11:06 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "../mlibx/mlx.h"
 # include "../mlibx/mlx_int.h"
 # include "libft.h"
-# include <fcntl.h>
 # include <math.h>
 
 //==================
