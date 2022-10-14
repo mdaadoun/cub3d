@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/14 07:11:06 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/14 07:15:05 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,22 +363,5 @@ void		cub_cast_rays(t_cub *cub);
  */
 
 void		cub_build_render(t_cub *cub);
-
-///////////////////////////////////////////////////////////////////////
-// TO DELETE START
-
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
-
-int			dg_main(t_cub *cub, int ac, char **av);
-void		dg_print_arg(int ac, char **av);
-void		dg_lst_data(t_cub *cub);
-int			dg_game_loop(t_cub *cub);
-void		dg_draw_map(t_cub *cub, char **map);
-void		dg_build_render(t_cub *cub);
-
-// TO DELETE END
-///////////////////////////////////////////////////////////////////////
 
 #endif
