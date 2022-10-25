@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:08 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/14 06:48:12 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:05:05 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	fs_init_cub(t_cub **cub)
 	(*cub)->rays_steps = (*cub)->fov / RAYS;
 }
 
-void	cub_init_window(t_cub *cub)
+static void	fs_init_window(t_cub *cub)
 {
 	t_display	*dsp;
 
@@ -88,7 +88,7 @@ int	main(int ac, char **av)
 	fs_init_cub(&cub);
 	cub_get_data(cub, av);
 	fs_process_data(cub);
-	cub_init_window(cub);
+	fs_init_window(cub);
 	cub_load_img(cub);
 	cub_init_events(cub);
 	ft_printf("%s", LOGO);
