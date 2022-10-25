@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:42 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 16:40:37 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/25 07:35:47 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	fs_is_cub_file(t_cub *cub, char *file)
 	int	len;
 
 	len = ft_strlen(file);
+	if (len < 5)
+		cub_free_before_exit(cub, ERROR_FILE);
 	if (file[len - 1] == 'b')
 		if (file[len - 2] == 'u')
 			if (file[len - 3] == 'c')
