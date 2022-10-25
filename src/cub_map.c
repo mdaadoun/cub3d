@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:51 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 16:32:29 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:14:48 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	cub_build_map(t_cub *cub, t_list_str *data_list)
 			break ;
 	}
 	nb_lines = fs_check_all_line(cub, data_list);
-	map = ft_calloc(nb_lines, sizeof(char *));
+	map = cub_alloc(cub, nb_lines, sizeof(char *));
 	i = 0;
 	while (data_list)
 	{
@@ -79,7 +79,7 @@ void	cub_check_map(t_cub *cub)
 
 	map = cub->map->arr;
 	cub_check_char_map(cub, map);
-	cub_map_space_resize(map);
+	cub_map_space_resize(cub, map);
 	cub_check_wall_map(cub, map);
 }
 

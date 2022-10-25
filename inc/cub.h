@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/22 06:34:51 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:14:55 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,7 +308,7 @@ void		cub_build_map(t_cub *cub, t_list_str *data_list);
 void		cub_check_map(t_cub *cub);
 void		cub_check_wall_map(t_cub *cub, char **map);
 void		cub_check_char_map(t_cub *cub, char **map);
-void		cub_map_space_resize(char **map);
+void		cub_map_space_resize(t_cub *cub, char **map);
 bool		cub_player_can_go(t_cub *cub, t_f32	x, t_f32 y);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/12 15:14:18 by mdaadoun         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:15:14 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	cub_check_char_map(t_cub *cub, char **map)
 		cub_free_before_exit(cub, ERROR_MAP);
 }
 
-static void	fs_replace_line(char **map, size_t m_len)
+static void	fs_replace_line(t_cub *cub, char **map, size_t m_len)
 {
 	int		tab;
 	size_t	len;
@@ -53,7 +53,7 @@ static void	fs_replace_line(char **map, size_t m_len)
 		len = ft_strlen(map[tab]);
 		if (len < m_len)
 		{
-			tmp = ft_calloc(m_len + 1, sizeof(char));
+			tmp = cub_alloc(cub, m_len + 1, sizeof(char));
 			i = 0;
 			while (map[tab][i])
 			{
@@ -69,7 +69,7 @@ static void	fs_replace_line(char **map, size_t m_len)
 	}
 }
 
-void	cub_map_space_resize(char **map)
+void	cub_map_space_resize(t_cub *cub, char **map)
 {
 	int		tab;
 	size_t	len;
@@ -84,7 +84,7 @@ void	cub_map_space_resize(char **map)
 			m_len = len;
 		tab++;
 	}
-	fs_replace_line(map, m_len);
+	fs_replace_line(cub, map, m_len);
 }
 
 static bool	fs_check_cub(char **map, int y, int x, char c)
