@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:14:21 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/14 07:45:49 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:01:57 by mdaadoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,40 @@ void	fs_set_color(t_i8 index, t_color *color, t_i8 col)
 		color->b = col;
 }
 
+char	**fs_get_colors(t_cub *cub, char *colstr)
+{
+	char	**colors;
+	int		i;
+	int		c;
+
+	i = 0;
+	c = 0;
+	while (colstr[i])
+		if (colstr[i++] == ',')
+			c++;
+	if (c != 2)
+		cub_free_before_exit(cub, ERROR_FORMAT);
+	colors = ft_split(colstr, ',');
+	i = 0;
+	c = 0;
+	while (colors[i])
+	{
+		c = 0;
+		while (colors[i][c])
+			if (!ft_isdigit(colors[i][c++]))
+				cub_free_before_exit(cub, ERROR_FORMAT);
+		i++;
+	}
+	return (colors);
+}
+
 bool	fs_check_set_colors(t_cub *cub, t_color *color, char *colstr)
 {
 	char	**colors;
 	t_u16	i;
 	t_i16	col;
 
-	colors = ft_split(colstr, ',');
+	colors = fs_get_colors(cub, colstr);
 	i = 0;
 	while (colors[i])
 	{
