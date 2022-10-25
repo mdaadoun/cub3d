@@ -6,7 +6,7 @@
 /*   By: mdaadoun <mdaadoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:30:17 by mdaadoun          #+#    #+#             */
-/*   Updated: 2022/10/14 07:15:05 by dlaidet          ###   ########.fr       */
+/*   Updated: 2022/10/22 06:34:51 by dlaidet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define RAYS WIDTH
 
 # define GRID 64.0
-# define SPEED 0.1
-# define ROT_STEP 0.1
+# define SPEED 0.05
+# define ROT_STEP 0.05
 
 # define LOGO "\
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ \n\
