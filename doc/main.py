@@ -1,4 +1,3 @@
-# learned from following code monkey king tutorial
 import pygame
 import sys
 import math
@@ -62,7 +61,6 @@ def draw_player():
         player_x - math.sin(player_angle) * 50, 
         player_y + math.cos(player_angle) * 50
     ), 3)
-    # player field of view
     pygame.draw.line(win, (0, 255, 0), (player_x, player_y), (
         player_x - math.sin(player_angle - HALF_FOV) * 50, 
         player_y + math.cos(player_angle - HALF_FOV) * 50
